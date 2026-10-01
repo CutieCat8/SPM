@@ -1,0 +1,26 @@
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(252,251,248,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.navin{max-width:1180px;margin:0 auto;padding:9px 22px;display:grid;grid-template-columns:minmax(0,1fr) 238px;gap:10px;align-items:center}
+.navlinks{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;min-width:0;padding-bottom:2px}
+.navin a{
+  flex:0 0 auto;text-decoration:none;color:var(--muted);
+  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:13.5px;
+  padding:5px 11px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
+}
+.navin a:hover,.navin a:focus-visible{color:var(--ink);border-color:var(--rule);background:#fff}
+.navin a.active{color:#fff;background:var(--ink);border-color:var(--ink)}
+.navtools{position:relative}
+.navtools input{width:100%;border:1px solid var(--rule);border-radius:999px;background:#fff;padding:7px 34px 7px 13px;font:500 13px "IBM Plex Sans Thai",sans-serif;color:var(--ink)}
+.navtools input:focus{border-color:var(--red);outline:2px solid rgba(193,39,45,.14)}
+.navtools::after{content:"⌕";position:absolute;right:12px;top:3px;color:var(--muted);font-size:20px;pointer-events:none}
+.search-results{display:none;position:fixed;z-index:80;top:58px;right:max(22px,calc((100vw - 1180px)/2 + 22px));width:min(420px,calc(100vw - 44px));max-height:56vh;overflow:auto;background:#fff;border:1px solid var(--rule);box-shadow:0 16px 46px rgba(34,32,29,.16);border-radius:10px;padding:7px}
+.search-results.show{display:block}
+.search-results a{display:block;text-decoration:none;color:var(--ink);padding:9px 11px;border-radius:6px;font-size:14px;line-height:1.45}
+.search-results a:hover,.search-results a:focus-visible{background:var(--amber-wash)}
+.search-results small{display:block;color:var(--red);font-family:"Bai Jamjuree",sans-serif;font-weight:600}
+.reading-progress{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--amber));transition:width .1s linear}

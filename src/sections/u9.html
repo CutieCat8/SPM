@@ -1,0 +1,79 @@
+<section id="u9">
+  <div class="unitbar"><span class="unitno">UNIT 9</span><h2>Project Monitoring &amp; Control</h2></div>
+  <p class="subtitle">วัดผลงานจริงเทียบแผนฐาน แปลค่า EVA สื่อสารสถานะ และควบคุมงานแบบ Agile</p>
+
+  <h3>9.1 วงจรควบคุมโครงการและ Baseline</h3>
+  <div class="flow">
+    <div class="step"><b>1 · SET BASELINE</b>กำหนดแผนฐานที่อนุมัติ</div>
+    <div class="step"><b>2 · MEASURE</b>วัดความก้าวหน้าจริงทั้งทางการ/ไม่เป็นทางการ</div>
+    <div class="step"><b>3 · COMPARE</b>เทียบ Actual กับ Baseline เพื่อหาความเบี่ยงเบน</div>
+    <div class="step"><b>4 · CORRECT</b>แก้ไขเพื่อพาโครงการกลับเข้าสู่แผน</div>
+  </div>
+  <p><b>Project Baseline</b> คือแผนความก้าวหน้าที่ได้รับอนุมัติ ใช้เป็น benchmark หรือ performance measurement baseline ไม่ใช่เพียงตัวเลขความคืบหน้า มี 3 ด้านที่สัมพันธ์กับ Triple Constraint:</p>
+  <ul>
+    <li><b>Scope Baseline</b> — Project Scope Statement, WBS และ WBS Dictionary</li>
+    <li><b>Schedule Baseline</b> — วันที่ แผนกิจกรรม Milestones และ Critical Path</li>
+    <li><b>Cost Baseline</b> — เงิน/ทรัพยากร ต้นทุนตรงและต้นทุนทางอ้อมตามช่วงเวลา</li>
+  </ul>
+
+  <h4>QA vs QC</h4>
+  <div class="cols">
+    <div><div class="h5">Quality Assurance (QA)</div><p><b>เน้นกระบวนการและการป้องกัน</b> วางแผนอย่างเป็นระบบเพื่อสร้างความเชื่อมั่นว่าผลลัพธ์จะมีคุณภาพ</p></div>
+    <div><div class="h5">Quality Control (QC)</div><p><b>เน้นผลิตภัณฑ์ การตรวจ และการค้นหาข้อบกพร่อง</b> ตรวจว่าสินค้า/บริการตรงมาตรฐานทั้งคุณภาพและปริมาณ</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ลำดับความสัมพันธ์</div><p><b>QC เป็นส่วนหนึ่งของ QA → QA เป็นส่วนหนึ่งของ QMS → QMS เป็นส่วนหนึ่งของการบริหารธุรกิจ</b> ที่มุ่งสร้างความพึงพอใจลูกค้า</p></div>
+
+  <h3>9.2 Earned Value Analysis (EVA)</h3>
+  <p>EVA รวมมิติ <b>Scope + Schedule + Cost</b> เพื่อเทียบผลงานจริงกับแผน ช่วยวิเคราะห์สถานะ กำหนดทิศทาง และพยากรณ์อนาคตของโครงการ</p>
+  <div class="tblwrap"><table>
+    <tr><th>ค่า</th><th>ชื่อเต็ม</th><th>คำถามที่ตอบ</th></tr>
+    <tr><td><span class="badge">PV / BCWS</span></td><td>Planned Value</td><td>ถึงวันนี้ “ตามแผน” ควรทำงานมูลค่าเท่าไร</td></tr>
+    <tr><td><span class="badge">EV / BCWP</span></td><td>Earned Value</td><td>งานที่ “ทำเสร็จจริง” มีมูลค่าตามงบเท่าไร</td></tr>
+    <tr><td><span class="badge">AC / ACWP</span></td><td>Actual Cost</td><td>งานที่ทำแล้ว “จ่ายจริง” ไปเท่าไร</td></tr>
+    <tr><td><span class="badge">BAC</span></td><td>Budget at Completion</td><td>งบรวมที่อนุมัติไว้เมื่อโครงการเสร็จ</td></tr>
+    <tr><td><span class="badge">EAC</span></td><td>Estimate at Completion</td><td>จากสถานะปัจจุบัน คาดว่าจบจริงจะใช้เงินรวมเท่าไร</td></tr>
+    <tr><td><span class="badge">ETC</span></td><td>Estimate to Complete</td><td>จากวันนี้ต้องใช้เงินเพิ่มอีกเท่าไรจึงเสร็จ</td></tr>
+    <tr><td><span class="badge">VAC</span></td><td>Variance at Completion</td><td>เมื่อจบ คาดว่าจะเหลือหรือเกินงบเท่าไร</td></tr>
+  </table></div>
+  <div class="formula-grid">
+    <div class="formula">SV = EV − PV<small>+ เร็วกว่าแผน · 0 ตามแผน · − ช้ากว่าแผน</small></div>
+    <div class="formula">CV = EV − AC<small>+ ประหยัด/คุ้มค่า · 0 ตามงบ · − เกินต้นทุน</small></div>
+    <div class="formula">SPI = EV ÷ PV<small>&gt;1 เร็ว · =1 ตามแผน · &lt;1 ช้า</small></div>
+    <div class="formula">CPI = EV ÷ AC<small>&gt;1 คุ้มค่า · =1 ตามงบ · &lt;1 ใช้เงินไม่มีประสิทธิภาพ</small></div>
+    <div class="formula">EAC = BAC ÷ CPI<small>สูตรพยากรณ์ทั่วไป เมื่อประสิทธิภาพต้นทุนเดิมจะดำเนินต่อ</small></div>
+    <div class="formula">ETC = EAC − AC<br>VAC = BAC − EAC<small>VAC บวก = ต่ำกว่างบ · VAC ลบ = เกินงบ</small></div>
+  </div>
+  <div class="box memory"><div class="h5">กันสลับสูตร</div><p><b>Variance ใช้ลบ, Index ใช้หาร และ EV อยู่หน้าเสมอ</b> — Schedule เทียบ PV, Cost เทียบ AC.</p></div>
+
+  <h4>อ่านสถานะจาก CPI × SPI</h4>
+  <div class="status-grid">
+    <div class="status-card good"><div class="h5">CPI &gt; 1 · SPI &gt; 1</div><p>ใช้งบมีประสิทธิภาพและเร็วกว่าแผน — รักษาแนวทางและยกย่องทีม</p></div>
+    <div class="status-card warn"><div class="h5">CPI &gt; 1 · SPI &lt; 1</div><p>ประหยัดแต่ช้า — ตรวจ blocker เพิ่มทรัพยากร/OT อย่างมีเหตุผล และติดตามถี่ขึ้น</p></div>
+    <div class="status-card warn"><div class="h5">CPI &lt; 1 · SPI &gt; 1</div><p>เร็วแต่แพง — ตรวจค่าใช้จ่าย การจัดคน และสาเหตุที่เร่งงานแล้วต้นทุนสูง</p></div>
+    <div class="status-card bad"><div class="h5">CPI &lt; 1 · SPI &lt; 1</div><p>ทั้งช้าและเกินงบ — หารากปัญหา จัดลำดับงาน เพิ่มประสิทธิภาพ และเจรจา Stakeholders</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ตัวอย่างจากโจทย์ในสไลด์</div><p>BAC = 40 ล้านบาท, ระยะเวลา 4 เดือน, ผ่าน 2 เดือนจึงควรเสร็จ 50%, ทำจริง 75%, AC = 33 ล้านบาท<br><b>PV = 40×50% = 20 · EV = 40×75% = 30 · SV = +10 · CV = −3 · SPI = 1.50 · CPI ≈ 0.91</b><br>สรุป: งานเร็วกว่าแผนมาก แต่ใช้เงินเกินมูลค่างานที่ได้ ควรตรวจต้นทุนและการจัดสรรทรัพยากร (คำนวณโดยสมมติความก้าวหน้าเท่ากับ 75%)</p></div>
+
+  <h3>9.3 Project Communication</h3>
+  <p>การสื่อสารเชื่อมทุกส่วนของโครงการ ระบบสื่อสารไม่ดีนำไปสู่ความขัดแย้งและความผิดพลาดของแผน Communication Plan จึงต้องตอบ 4 คำถาม: <b>ใครต้องรู้ · ต้องรู้อะไร · รายละเอียดระดับไหน · เมื่อไร/บ่อยเพียงใด</b></p>
+  <p>เลือกช่องทางตามระดับความเป็นทางการ ความเร่งด่วน และแบบกลุ่ม/ส่วนตัว เช่น Face-to-face, Email, PM Software, Messenger, Video Conference และโทรศัพท์ โครงการใหญ่ที่ Stakeholders มากควรมีแผนเต็มรูปแบบ ส่วนโครงการเล็กอาจใช้รายชื่อและช่องทางติดต่อที่ชัดเจน</p>
+  <div class="cols">
+    <div><div class="h5">เอกสารติดตามระหว่าง Execution</div><ul><li>Tracking Log</li><li>Meeting Record / Minutes of Meeting</li><li>Project Status / Progress Report</li><li>รายงานจาก Gantt Chart</li></ul></div>
+    <div><div class="h5">Status Report ควรมี</div><ul><li>Project Details และ Overall Status</li><li>Risks &amp; Issues</li><li>Help Needed</li><li>Forecast</li><li>Comments / Decisions</li></ul></div>
+  </div>
+
+  <h3>9.4 Agile Monitoring &amp; Control</h3>
+  <p>Traditional Control สมมติว่า Scope คงที่ จึงวัดกับ Baseline; Agile/Scrum ยอมให้ Backlog เปลี่ยนได้ จึงวัด <b>Increment ที่ส่งมอบจริงในแต่ละ Sprint</b> และปรับลำดับงานอย่างต่อเนื่อง</p>
+  <div class="tblwrap"><table>
+    <tr><th>เครื่องมือ</th><th>อ่านอย่างไร</th><th>เหมาะตอบคำถาม</th></tr>
+    <tr><td><b>Burndown Chart</b></td><td>X = วัน, Y = Story Points ที่เหลือ; Actual เหนือ Ideal = ช้า, ใต้ = เร็ว, เส้นราบ = blocker</td><td>ใน Sprint นี้ งานที่เหลือลดตามแผนหรือไม่</td></tr>
+    <tr><td><b>Burnup Chart</b></td><td>Completed Work เพิ่มขึ้นเทียบกับ Total Scope; เส้น Scope ขยับสูงคือมีงานเพิ่ม</td><td>งานไม่ลดเพราะทีมช้า หรือเพราะ Scope Creep</td></tr>
+    <tr><td><b>Velocity</b></td><td>ค่าเฉลี่ย Story Points ที่ Done ต่อ Sprint</td><td>Backlog ที่เหลือน่าจะใช้กี่ Sprint</td></tr>
+  </table></div>
+  <div class="formula">Velocity = ผลรวม Story Points ที่เสร็จ ÷ จำนวน Sprint<small>ตัวอย่าง (18+22+20+25+21)÷5 = 21.2 SP/Sprint; เหลือ 106 SP จึงใช้ประมาณ 5 Sprints</small></div>
+  <div class="cols">
+    <div><div class="h5">Sprint Review</div><p>ดู <b>Product Increment</b>; ทีมพัฒนา + Product Owner + Stakeholders ถามว่า “สร้างสิ่งที่ถูกต้องหรือไม่?” แล้วปรับ Product Backlog จาก Feedback</p></div>
+    <div><div class="h5">Sprint Retrospective</div><p>ดู <b>กระบวนการของทีม</b>; ทีมภายในถามว่า “ทำงานดีแค่ไหน จะปรับอย่างไร?” แล้วสร้าง Action Items สำหรับ Sprint ถัดไป</p></div>
+  </div>
+  <div class="box exam"><div class="h5">Traditional vs Agile ที่ควรตอบให้ได้</div><p><b>Traditional:</b> Baseline คงที่, SPI/CPI/EAC/VAC, รายงานรายสัปดาห์/เดือน, เปลี่ยน Scope ผ่าน Formal Change Control, เหมาะ Fixed-price/Waterfall<br><b>Agile:</b> Sprint Backlog ปรับได้, Burndown/Burnup/Velocity, รายวัน/ราย Sprint, เปลี่ยนผ่าน Backlog Reprioritization, เหมาะเมื่อ Requirement เปลี่ยนบ่อย</p></div>
+</section>

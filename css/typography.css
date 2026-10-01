@@ -1,0 +1,26 @@
+/* ---------- sections ---------- */
+section{margin-bottom:62px}
+section[id]{scroll-margin-top:78px}
+.unitbar{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:8px}
+.unitno{
+  font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:12.5px;
+  background:var(--ink);color:var(--paper);padding:3px 9px;border-radius:3px;flex:0 0 auto;
+}
+h2{font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:clamp(21px,4vw,27px);margin:0;line-height:1.25}
+.subtitle{color:var(--muted);font-size:14.5px;margin:0 0 26px}
+
+h3{
+  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:19px;
+  margin:38px 0 10px;padding-left:12px;border-left:4px solid var(--amber);
+}
+h4{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:16px;margin:24px 0 6px;color:var(--maroon)}
+p{margin:0 0 13px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+li::marker{color:var(--muted)}
+
+/* ---------- inline ---------- */
+.k{color:var(--red);font-weight:600}
+.kk{color:var(--red);font-weight:600;background:var(--red-wash);padding:1px 4px;border-radius:3px}
+.en{font-family:"Bai Jamjuree",sans-serif;font-size:.94em;color:var(--teal);font-weight:500}
+abbr{text-decoration:none;border-bottom:1px dotted var(--muted)}

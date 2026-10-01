@@ -1,0 +1,108 @@
+<section id="u3">
+  <div class="unitbar"><span class="unitno">UNIT 3</span><h2>Requirements in Software Project</h2></div>
+  <p class="subtitle">ความต้องการคืออะไร มีกี่ประเภท และเก็บมาด้วยกระบวนการอะไร</p>
+
+  <h3>3.1 Needs VS Requirements</h3>
+  <div class="def">
+    <b>Requirement (ความต้องการ)</b> = สิ่งที่ต้อง<span class="k">ทำให้สำเร็จ</span> เพื่อบรรลุความต้องการ (Need) หรือเป้าหมาย (Goal)
+  </div>
+  <div class="box">
+    <div class="h5">ตัวอย่างที่อาจารย์ใช้ — ข้อไหนคือ Requirement</div>
+    <p style="margin:0">1. ความอยากดื่มน้ำ → นี่คือ <span class="kk">Need / Goal</span> (ความรู้สึกที่ต้องการให้ถูกเติมเต็ม)<br>
+    2. ความอยากหาซื้อน้ำมาดื่มเพื่อดับกระหาย → นี่คือ <span class="kk">Requirement</span> (สิ่งที่ต้องทำเพื่อให้ Need สำเร็จ)</p>
+  </div>
+
+  <h3>3.2 Type of System Requirement — 3 ประเภทหลัก</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:22%">ประเภท</th><th>นิยาม</th><th style="width:34%">ตัวอย่าง</th></tr>
+    <tr>
+      <td><span class="kk">Functional Requirement</span></td>
+      <td>หน้าที่หลัก / ส่วนการทำงานหรือบริการที่ซอฟต์แวร์ควรมี — เป็นสิ่งที่ระบบ <span class="k">"Should Do"</span> เพื่อตอบสนองผู้ใช้</td>
+      <td>ผู้ใช้ค้นหาหนังสือได้ด้วย ISBN/ชื่อ/ผู้แต่ง · Login ด้วย Username &amp; Password · ระบบออกรายงาน Export เป็น .pdf, .docx, .xlsx ได้</td>
+    </tr>
+    <tr>
+      <td><span class="kk">Non-Functional Requirement</span><br><span style="font-size:13px;color:var(--muted)">= Quality Attributes</span></td>
+      <td>ไม่เกี่ยวกับหน้าที่หลักโดยตรง แต่สนใจว่าระบบต้องมี<span class="k">คุณภาพ</span>ด้านใด</td>
+      <td>ทำงานได้ 24 ชม. · รองรับ 1 ล้าน user/วัน · ตอบสนองภายใน 2 วินาที · เก็บข้อมูลตามมาตรฐาน <span class="k">PDPA</span> · session timeout 5 นาที · รองรับ 3 ภาษา</td>
+    </tr>
+    <tr>
+      <td><span class="kk">Domain Requirement</span></td>
+      <td>เกี่ยวกับ<span class="k">งานหลักของระบบธุรกิจ</span>ที่ต้องการซอฟต์แวร์มาสนับสนุนโดยเฉพาะ อาจเป็นเงื่อนไขของฟังก์ชัน หรือเงื่อนไขที่ใช้คำนวณผลลัพธ์</td>
+      <td>สูตรคิดค่าโดยสารตามระยะทางของ Grab · เงื่อนไขการคิดค่าปรับหนังสือเกินกำหนด</td>
+    </tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px"><b>หมวดของ NFR ที่ควรจำ:</b> <span class="k">Speed, Security, Portability, Compatibility, Capacity</span> (เช่น storage), <span class="k">Reliability</span> (จำนวน/ร้อยละความล้มเหลว, เวลาระหว่างความล้มเหลว), <span class="k">Environment</span> (ตารางการทำงาน สภาพอากาศ), <span class="k">Localization</span> (ภาษา สกุลเงิน timezone)</p>
+
+  <h4>Business Requirement — ระดับที่ 0</h4>
+  <p>ความต้องการ<span class="k">เชิงธุรกิจ</span>ที่กำหนดโดย stakeholder เป็นความต้องการ<span class="k">ระดับแรกสุด</span>เมื่อเริ่มโครงการ มีจำนวนไม่มาก ถือว่าอยู่ในระดับ <span class="kk">"problem space"</span></p>
+  <p style="font-size:14.6px">ตัวอย่าง: Time to Market · Low Cost · Support a Variety of Customer Behavior · Highly Customizable · Increase Net Profit 10% · Reduce Paper Work · High Competitiveness · Build Awareness</p>
+
+  <h4>ตารางรหัสประเภทความต้องการ (Encoding)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:12%">รหัส</th><th style="width:30%">ประเภท</th><th>คำอธิบาย</th></tr>
+    <tr><td class="c"><span class="k">F</span></td><td>Functional Requirement</td><td>ฟังก์ชันของระบบที่มีปฏิสัมพันธ์กับผู้ใช้</td></tr>
+    <tr><td class="c"><span class="k">D</span></td><td>Data Requirement</td><td>ความต้องการด้านข้อมูล</td></tr>
+    <tr><td class="c"><span class="k">B</span></td><td>Behavior Requirement</td><td>ด้านพฤติกรรมหรือการตอบสนองของระบบ</td></tr>
+    <tr><td class="c"><span class="k">I</span></td><td>Interface Requirement</td><td>การเชื่อมต่อกับระบบอื่น รวมถึงส่วนติดต่อผู้ใช้</td></tr>
+    <tr><td class="c"><span class="k">P</span></td><td>Output Requirement</td><td>ผลลัพธ์ที่ได้จากระบบ</td></tr>
+  </table>
+  </div>
+
+  <h3>3.3 Requirement Engineering Process — 7 กระบวนการ</h3>
+  <div class="def">
+    <b>วิศวกรรมความต้องการ</b> = กระบวนการที่ทำให้เข้าใจและเข้าถึงความต้องการของลูกค้าได้อย่างแท้จริง ด้วยการ<span class="k">สกัด ตรวจสอบ และนิยาม</span>ความต้องการ เพื่อสร้างเป็นข้อกำหนดสำหรับพัฒนาในขั้นถัดไป <span style="font-size:13.5px;color:var(--muted)">[Jawadekar, 2004]</span>
+  </div>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:30%">กระบวนการ</th><th>สิ่งที่ทำ</th></tr>
+    <tr><td class="c">1</td><td><span class="k">การเริ่มต้นวิเคราะห์</span><br><span class="en">Inception</span></td><td>ตั้ง<span class="k">คำถามเปิด</span>เพื่อเข้าใจพื้นฐานของปัญหาและแนวทางแก้ สร้างการสื่อสารและความร่วมมือระหว่างลูกค้ากับผู้พัฒนา</td></tr>
+    <tr><td class="c">2</td><td><span class="k">การสกัดความต้องการ</span><br><span class="en">Elicitation</span></td><td>สอบถามว่าต้องการอะไร เป้าหมายของระบบคืออะไร ปัญหาที่พบ: หาขอบเขตของปัญหา, ทำความเข้าใจปัญหา, <span class="k">ความไม่แน่นอน</span></td></tr>
+    <tr><td class="c">3</td><td><span class="k">การขยายรายละเอียด</span><br><span class="en">Elaboration</span></td><td>ขยายและแจกแจงสารสนเทศจากลูกค้า → <span class="k">แบ่งกลุ่มความต้องการ</span> และ<span class="k">สร้างแบบจำลอง</span>เพื่อให้ทีมเข้าใจตรงกัน</td></tr>
+    <tr><td class="c">4</td><td><span class="k">การเจรจาต่อรอง</span><br><span class="en">Negotiation</span></td><td>กรณีลูกค้าต่อรองเกินกว่าที่ระบบจะทำได้ ต้องประสานความขัดแย้งและปรับเปลี่ยนความต้องการบางส่วนให้ทุกฝ่ายยอมรับได้</td></tr>
+    <tr><td class="c">5</td><td><span class="k">การจัดทำข้อกำหนด</span><br><span class="en">Specification</span></td><td>จัดทำเอกสารรวบรวมข้อกำหนดให้เป็นต้นแบบของโปรแกรม ระบุคุณลักษณะและความสามารถของซอฟต์แวร์</td></tr>
+    <tr><td class="c">6</td><td><span class="k">การตรวจรับ</span><br><span class="en">Validation</span></td><td>ทบทวนข้อกำหนดเพื่อให้มั่นใจว่า<span class="k">ครบถ้วนและไม่คลุมเครือ</span> โดยวิศวกรซอฟต์แวร์ ลูกค้า และผู้มีส่วนได้ส่วนเสีย</td></tr>
+    <tr><td class="c">7</td><td><span class="k">การจัดการความต้องการ</span><br><span class="en">Requirement Management</span></td><td>ความต้องการเปลี่ยนแปลงตลอดช่วงชีวิตของระบบ จึงต้องจัดการอย่างต่อเนื่อง</td></tr>
+  </table>
+  </div>
+
+  <h3>3.4 Requirement Elicitation</h3>
+  <div class="def">
+    <b>การสกัดความต้องการ</b> = <span class="k">ทักษะหลักของวิศวกรรมความต้องการ</span> เป็นกระบวนการได้มาซึ่งข้อมูลที่จำเป็นของโครงการจากผู้มีส่วนได้ส่วนเสีย ทำให้ทราบภาพรวมและขอบเขตของซอฟต์แวร์ก่อนเริ่มพัฒนา
+  </div>
+
+  <h4>เทคนิคการสกัดความต้องการ 9 เทคนิค</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><td><span class="k">Documentation Analysis</span><br>วิเคราะห์เอกสารที่มีอยู่เดิม</td><td><span class="k">Interview</span><br>สัมภาษณ์รายบุคคล</td><td><span class="k">Focus Group</span><br>สนทนากลุ่ม</td></tr>
+    <tr><td><span class="k">Brainstorm</span><br>ระดมสมอง</td><td><span class="k">Interface Analysis</span><br>วิเคราะห์การเชื่อมต่อกับระบบอื่น</td><td><span class="k">User Interface Analysis</span><br>วิเคราะห์ส่วนติดต่อผู้ใช้</td></tr>
+    <tr><td><span class="k">Prototyping</span><br>สร้างต้นแบบให้ลองใช้</td><td><span class="k">Survey and Questionnaire</span><br>สำรวจ/แบบสอบถาม</td><td><span class="k">Requirements Workshop</span><br>เวิร์กช็อปร่วมกับผู้เกี่ยวข้อง</td></tr>
+  </table>
+  </div>
+
+  <h4>4 Process of Requirement Elicitation</h4>
+  <ol>
+    <li><span class="k">ติดต่อ/ทำกิจกรรมร่วมกับผู้มีส่วนได้ส่วนเสีย</span> โดยใช้เทคนิคสกัดความต้องการต่างๆ แล้วรวบรวมไว้</li>
+    <li><span class="k">จัดโครงสร้างโดยรวม</span> — จัดกลุ่มความต้องการที่เกี่ยวข้องไว้ด้วยกัน แบ่งเป็นระบบย่อย และระบุความสัมพันธ์ระหว่างระบบย่อย</li>
+    <li><span class="k">จัดลำดับความสำคัญและความจำเป็น</span> — บางความต้องการอาจถูกตัดออก ต้องเจรจาต่อรองเมื่อเกิดความขัดแย้ง</li>
+    <li><span class="k">จัดทำเอกสารความต้องการ</span> — ได้เป็น <span class="k">URS</span> (User Requirement Specification) และ <span class="k">SRS</span> (System Requirement Specification)</li>
+  </ol>
+
+  <h4>User Requirement vs System Requirement</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:14%"></th><th>User Requirement (UR)</th><th>System Requirement (SR)</th></tr>
+    <tr><td><b>เขียนให้ใคร</b></td><td><span class="k">Written for Customers</span></td><td><span class="k">Written for Developers</span></td></tr>
+    <tr><td><b>ภาษา</b></td><td>ภาษาธรรมชาติ (Natural Language)</td><td>ระบุชัดเจนและเข้มงวด (Clearly &amp; More rigorously specified)</td></tr>
+    <tr><td><b>รายละเอียด</b></td><td><span class="k">ไม่มีรายละเอียดทางเทคนิค</span> เป็นความต้องการระดับสูงสุด</td><td>ลงรายละเอียดทั้ง Functional และ Non-functional</td></tr>
+    <tr><td><b>คำถามหลัก</b></td><td><span class="kk">ผู้ใช้ทำอะไรได้บ้าง?</span> (Actor/User performs the task)</td><td><span class="kk">ระบบ/ซอฟต์แวร์ทำอะไรได้บ้าง?</span> (System performs the task)</td></tr>
+  </table>
+  </div>
+
+  <h4>Work Product ที่ได้จากการเก็บความต้องการ</h4>
+  <p>คำรับรองความต้องการและความเป็นไปได้ · กำหนดขอบเขตของระบบและซอฟต์แวร์ · ระบุกลุ่มลูกค้า ผู้ใช้ ผู้มีส่วนได้ส่วนเสีย · เทคโนโลยีที่ต้องการ · รายการความต้องการและข้อจำกัดทางธุรกิจ · รูปแบบสถานการณ์การใช้งาน · <span class="k">ต้นแบบ (Prototype)</span></p>
+  <p style="font-size:14.6px;color:var(--muted)">กลุ่ม Work Product ก่อนเข้าสู่ Requirement Analysis: User Requirement, Business Work Flow, Problem Statement, Business Information &amp; Rules → วิเคราะห์ → ได้ <span class="k">Requirement Specification</span></p>
+  <p style="font-size:14.6px"><b>บทบาทของ SA:</b> นักวิเคราะห์ระบบทำหน้าที่เป็น<span class="k">คนกลาง ที่ปรึกษา ผู้ช่วยแก้ปัญหา และผู้ต่อรอง</span>ระหว่างลูกค้ากับทีมพัฒนา</p>
+</section>

@@ -1,0 +1,200 @@
+<section id="u6">
+  <div class="unitbar"><span class="unitno">UNIT 6</span><h2>Project Scheduling</h2></div>
+  <p class="subtitle">Gantt Chart · CPM · PERT · Flow Chart — หน่วยที่มีการคำนวณ</p>
+
+  <h3>6.1 Project Scheduling คืออะไร</h3>
+  <div class="def">
+    <b>Project Scheduling</b> = ส่วนหนึ่งของการบริหารโครงการที่เกี่ยวกับการ<span class="k">ลิสต์กิจกรรม milestones และ deliverables</span> รวมถึงวันเริ่ม–วันจบ ความยาวของโครงการ และการบริหารทรัพยากรที่ต้องใช้ในแต่ละกิจกรรม<br>
+    <span style="font-size:14.5px"><b>Objective:</b> เพื่อให้มั่นใจว่าโครงการ<span class="k">เสร็จตรงเวลา</span> และได้<span class="k">คุณภาพตามที่ต้องการ</span></span>
+  </div>
+
+  <h4>เทคนิคการกำหนดเวลา 6 กลุ่ม</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><td>1. <span class="k">Task List</span></td><td>2. <span class="k">Calendar</span></td><td>3. <span class="k">Gantt Chart</span></td></tr>
+    <tr><td>4. <span class="k">Mathematical Analysis</span><br><span style="font-size:13.5px">→ CPM, PERT</span></td><td>5. <span class="k">Duration Compression</span><br><span style="font-size:13.5px">→ Fast Tracking, Crashing, Multitasking, Dumping extra resources</span></td><td>6. <span class="k">Simulation</span><br><span style="font-size:13.5px">→ Flow Chart และอื่นๆ</span></td></tr>
+  </table>
+  </div>
+
+  <h3>6.2 Gantt Chart (แผนภูมิแกนต์)</h3>
+  <p>พัฒนาขึ้นในปี <span class="kk">ค.ศ. 1917</span> โดย <span class="kk">Henry L. Gantt</span> เพื่อวางแผนเกี่ยวกับเวลา แก้ปัญหาการจัดตารางการผลิต ควบคุมแผนงาน ตามแนวคิด<span class="k">การบริหารเชิงวิทยาศาสตร์</span></p>
+  <ul>
+    <li><span class="k">แกนนอน</span> = มาตราส่วนแสดง<span class="k">เวลา</span></li>
+    <li><span class="k">แกนตั้ง</span> = มาตราส่วนแสดง<span class="k">ขั้นตอนของกิจกรรม/งาน</span> หรืออัตรากำลังขององค์กร</li>
+    <li>แสดงระยะเวลาแต่ละกิจกรรมเป็น<span class="k">แถบหรือเส้น</span></li>
+  </ul>
+  <h4>ก่อนสร้าง Gantt Chart ต้องทำ 4 ขั้น</h4>
+  <ol>
+    <li>แยกย่อยแผนงานออกเป็น<span class="k">กิจกรรมหรืองานย่อย</span> (คือ WBS นั่นเอง)</li>
+    <li>พิจารณาว่า<span class="k">ใครควรเป็นผู้รับผิดชอบ</span>แต่ละกิจกรรม</li>
+    <li>ตกลงกันเรื่อง<span class="k">เนื้องาน ระยะเวลา และงบประมาณ</span></li>
+    <li>พิจารณา<span class="k">ภาพรวมทั้งหมดอีกครั้ง</span>ว่ายังอยู่ในกรอบที่กำหนดไว้หรือไม่</li>
+  </ol>
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดี</div>
+      <ul>
+        <li><span class="k">ง่ายในการอ่านและทำความเข้าใจ</span></li>
+        <li>ไม่ซับซ้อน จัดทำสะดวก</li>
+        <li>เหมาะกับงานที่ไม่ต้องปรับแผนบ่อยๆ</li>
+        <li>เหมาะกับงานที่มีลักษณะซ้ำๆ ยืดหยุ่นสูง</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัด</div>
+      <ul>
+        <li><span class="k">ไม่สามารถแสดงความสัมพันธ์ของงานหลายๆ งานได้</span></li>
+        <li>ไม่เหมาะกับโครงการที่มีงานมาก จะสับสน</li>
+        <li><span class="k">ไม่มีหลักเกณฑ์วิเคราะห์เวลาที่ชัดเจน</span></li>
+        <li>อาจขัดแย้งด้านลำดับงานและเงื่อนไข เพราะกำหนดวันเริ่ม–จบก่อน แล้วค่อยกำหนดช่วงเวลากิจกรรม</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.3 CPM — Critical Path Method</h3>
+  <div class="def">
+    <b>Critical Path (สายงานวิกฤต)</b> = ลำดับการทำกิจกรรมของโครงการที่<span class="k">ยาวที่สุด</span> หากกิจกรรมบนสายงานวิกฤตเปลี่ยนแปลง จะ<span class="k">กระทบจำนวนวันและวันสิ้นสุดโครงการทันที</span>
+  </div>
+  <ul>
+    <li>พัฒนาในปลายปี <span class="kk">1950</span> โดย <span class="kk">James E. Kelley</span></li>
+    <li>วัตถุประสงค์แรก: <span class="k">ลดต้นทุน</span>ที่เกิดจากการจัดตารางเวลาที่ไม่มีประสิทธิภาพ — ไม่ใช่แก้ปัญหาด้วยการใช้แรงงานเพิ่ม</li>
+    <li>เป็น<span class="k">เทคนิคเชิงปริมาณ</span>ด้านการวิเคราะห์โครงข่ายงาน (<span class="k">Network Analysis</span>)</li>
+    <li>โครงสร้าง: งาน 1 งาน = <span class="kk">โหนด (Node)</span> เขียนแทนด้วยวงกลม ใส่รหัสงานและเวลา · เส้นเชื่อม/ลูกศร = <span class="kk">Link</span> เชื่อมงานก่อนหน้าสู่งานถัดไป</li>
+    <li>เน้นด้าน<span class="k">การวางแผนและควบคุมเวลา ตลอดจนค่าใช้จ่าย</span></li>
+  </ul>
+
+  <h3>6.4 PERT — Program Evaluation and Review Technique</h3>
+  <ul>
+    <li>พัฒนาครั้งแรกปี <span class="kk">1958</span> โดย<span class="kk">สำนักงานโครงการพิเศษ กองทัพเรือสหรัฐฯ</span></li>
+    <li>ใช้เมื่อ<span class="k">เวลาในการดำเนินกิจกรรมไม่ได้กำหนดไว้หรือไม่สามารถทราบได้</span> จึงต้องใช้<span class="k">หลักสถิติและความน่าจะเป็น</span>คาดการณ์เวลาเสร็จสิ้น</li>
+    <li>PERT อาจ<span class="k">ไม่ได้สนใจการระบุงานวิกฤต</span> เพราะเป้าหมายรวมคือทำให้โครงการเสร็จตามกำหนดเวลาและงบประมาณ</li>
+  </ul>
+  <div class="formula">
+    Expected Time = (O + 4M + P) ÷ 6
+    <small><b>O</b> = Optimistic Time เร็วที่สุด &nbsp;·&nbsp; <b>M</b> = Most Likely Time เวลาประมาณการจริงกรณีไม่มีปัญหา &nbsp;·&nbsp; <b>P</b> = Pessimistic Time นานที่สุด</small>
+  </div>
+  <div class="box exam">
+    <div class="h5">ระวังสับสน O / M / P</div>
+    <p style="margin:0">ตัว <b>P</b> ใน PERT = <span class="k">Pessimistic</span> (แย่ที่สุด/นานที่สุด)<br>
+    แต่ตัว <b>P</b> ในสูตร Unit 5 = <span class="k">Probable</span> (น่าจะเป็น) ซึ่งเท่ากับ <b>M</b> ใน PERT<br>
+    สูตรเหมือนกัน: <b>ตัวที่คูณ 4 เสมอคือตัว "น่าจะเป็นมากที่สุด"</b></p>
+  </div>
+
+  <h4>CPM vs PERT — ตารางเทียบที่ต้องจำ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">ประเด็น</th><th>CPM</th><th>PERT</th></tr>
+    <tr><td>ประสบการณ์ผู้บริหาร</td><td><span class="k">เคยมีประสบการณ์มาก่อน</span></td><td><span class="k">ไม่มีประสบการณ์</span> ต้องอาศัยความน่าจะเป็นทางสถิติ</td></tr>
+    <tr><td>เวลาดำเนินกิจกรรม</td><td><span class="k">แน่นอน</span></td><td><span class="k">ไม่แน่นอน</span></td></tr>
+    <tr><td>สิ่งที่มุ่งเน้น</td><td><span class="k">Cost-Time Trade-off</span> และการลดต้นทุนเป็นสำคัญ</td><td><span class="k">เวลา</span>เป็นสำคัญ หาวิธีที่ใช้เวลาน้อยที่สุด</td></tr>
+    <tr><td>ประเภทโครงการ</td><td>โครงการที่<span class="k">เคยทำมาแล้ว</span></td><td>โครงการ<span class="k">ใหม่ที่ยังไม่เคยทำ</span></td></tr>
+    <tr><td>เหมาะกับงาน</td><td><span class="k">ธุรกิจ วิศวกรรม ก่อสร้าง</span></td><td><span class="k">การค้นคว้าวิจัยและพัฒนา (R&amp;D)</span></td></tr>
+  </table>
+  </div>
+
+  <h4>ความสัมพันธ์ของงานใน CPM</h4>
+  <p><b>แบ่งตามการขึ้นกับงานก่อนหน้า (Dependency-based)</b></p>
+  <ul>
+    <li><span class="k">Dependent task</span> — งานหนึ่งขึ้นอยู่กับอีกงานหนึ่ง เช่น งาน 2 เริ่มได้ต้องทำงาน 1 เสร็จก่อน</li>
+    <li><span class="k">Multiple successor tasks</span> — งานหลายงานขึ้นกับงานก่อนหน้าเพียงงานเดียว และเริ่มพร้อมกันได้ เรียกว่า <span class="kk">Concurrent tasks</span></li>
+    <li><span class="k">Multiple predecessor tasks</span> — งานที่ขึ้นกับงานก่อนหน้าหลายงาน เช่น งาน 9 เริ่มได้ต้องทำงาน 7 และ 8 เสร็จก่อน</li>
+  </ul>
+  <p><b>แบ่งตามกำหนดเวลา (Time-based) 4 แบบ</b></p>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:16%">รหัส</th><th style="width:26%">ชื่อเต็ม</th><th>ความหมาย</th></tr>
+    <tr><td class="c"><span class="kk">FS</span></td><td>Finish to Start</td><td>A ต้อง<span class="k">เสร็จ</span>ก่อน B จึง<span class="k">เริ่ม</span>ได้ (แบบที่พบบ่อยที่สุด)</td></tr>
+    <tr><td class="c"><span class="kk">SS</span></td><td>Start to Start</td><td>A <span class="k">เริ่ม</span>แล้ว B จึง<span class="k">เริ่ม</span>ได้ — ทำคู่ขนานกัน</td></tr>
+    <tr><td class="c"><span class="kk">FF</span></td><td>Finish to Finish</td><td>A ต้อง<span class="k">เสร็จ</span>ก่อน B จึง<span class="k">เสร็จ</span>ได้</td></tr>
+    <tr><td class="c"><span class="kk">SF</span></td><td>Start to Finish</td><td>A ต้อง<span class="k">เริ่ม</span>ก่อน B จึง<span class="k">เสร็จ</span>ได้ (พบน้อยที่สุด)</td></tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">วิธีหา Critical Path ในห้องสอบ</div>
+    <ol style="margin-bottom:0">
+      <li>ไล่<span class="k">ทุกเส้นทาง</span>ที่เป็นไปได้จากโหนดเริ่มต้นไปโหนดสิ้นสุด เขียนออกมาให้ครบ</li>
+      <li>บวกเวลาของทุกกิจกรรมในแต่ละเส้นทาง</li>
+      <li>เส้นทางที่ได้<span class="kk">ผลรวมเวลามากที่สุด</span> = <b>Critical Path</b> และเวลานั้นคือ<span class="k">ระยะเวลารวมของโครงการ</span></li>
+      <li>กิจกรรมที่อยู่บนเส้นทางนั้น = <span class="kk">Critical Activities</span> ซึ่ง<span class="k">เลื่อนไม่ได้เลย (Slack = 0)</span></li>
+    </ol>
+  </div>
+
+  <h4>ข้อดี / ข้อจำกัดของ CPM และ PERT</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดี</div>
+      <ul>
+        <li>แสดง<span class="k">ความสัมพันธ์ของงาน</span>ในโครงการได้</li>
+        <li>ระบุงานที่สำคัญที่สุด และรู้ว่างานใด<span class="k">เลื่อนเวลาได้</span></li>
+        <li>เหมาะกับ<span class="k">โครงการขนาดใหญ่ที่ซับซ้อนสูง</span></li>
+        <li>ช่วยให้<span class="k">ประเมินความเสี่ยง</span>ง่ายขึ้น</li>
+        <li>ทุกคนรู้ว่าควรทำอะไรและเมื่อใด ทำให้เสร็จเร็วขึ้น</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัด</div>
+      <ul>
+        <li>ความสัมพันธ์ระหว่างงานและเวลา<span class="k">ไม่ชัดเจน</span></li>
+        <li>ต้องมี<span class="k">คำอธิบายเพิ่มเติม</span>เกี่ยวกับลักษณะงาน</li>
+        <li><span class="k">ไม่เหมาะกับโครงการขนาดเล็ก</span>และงานง่ายๆ</li>
+        <li>แสดง<span class="k">ความคาดหวัง ไม่ใช่สถานะหรือความคืบหน้าจริง</span></li>
+        <li>ต้องดูแลระบบเพิ่มมากในระยะกำหนดขอบเขต</li>
+        <li>การประเมินเวลาสร้าง<span class="k">ความกดดัน</span> ไม่เอื้อต่องานที่ใช้ความคิดสร้างสรรค์</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.5 Flow Chart</h3>
+  <div class="cols">
+    <div>
+      <div class="h5">ผังงาน (Flow Chart)</div>
+      <p style="font-size:14.3px;margin:0">แผนผังรูปภาพที่แสดง<span class="k">แนวคิดหรือขั้นตอนการทำงานของโปรแกรม</span> ช่วยให้มองเห็นภาพรวม</p>
+    </div>
+    <div>
+      <div class="h5">ผังปฏิบัติงาน (Work Flow)</div>
+      <p style="font-size:14.3px;margin:0">รูปภาพหรือสัญลักษณ์ที่ใช้เขียนแทนขั้นตอน คำอธิบาย ข้อความ ที่ใช้ในการปฏิบัติงาน — <span class="k">"ใช้สัญลักษณ์แทนคำอธิบาย"</span></p>
+    </div>
+  </div>
+
+  <h4>ประเภทของ Flow Chart 4 แบบ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:30%">ประเภท</th><th>แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Document Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">เอกสาร</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">Data Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">ข้อมูล</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">System Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">สิ่งของและทรัพยากร</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">Program Flow Chart</span></td><td>ควบคุม<span class="k">การตัดสินใจของโปรแกรม</span>ในระบบ</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px">โครงสร้าง Flow Chart 3 แบบ: <span class="k">Sequence Structure</span> · <span class="k">Decision and Selection Structure</span> · <span class="k">Iteration Structure</span><br>
+  กฎการเขียน: ต้องเริ่มจาก<span class="k">จุดเริ่มต้น (Start)</span> และไปถึง<span class="k">จุดสิ้นสุด (Stop)</span> ได้เสมอ<br>
+  ประโยชน์หลัก: <span class="kk">"ทำให้เห็นภาพ"</span> จึงหาจุดอ่อน จุดบอด หรือ<span class="k">ปัญหาคอขวด (Bottleneck)</span> ได้</p>
+
+  <div class="box tip">
+    <div class="h5">As-is vs To-be (คู่นี้ออกสอบบ่อย)</div>
+    <p style="margin:0"><span class="kk">As-is-System</span> = ระบบงาน<span class="k">ปัจจุบัน</span>ของหน่วยงาน หรือ Flow การทำงานปกติ ซึ่งอาจใช้คอมพิวเตอร์/ไอทีช่วยหรือไม่ก็ได้<br>
+    <span class="kk">To-be-System</span> = ระบบงาน<span class="k">ใหม่</span>ที่เกิดจาก Requirements ล่าสุด ออกแบบไว้เพื่อแก้ปัญหาหรือเพิ่มประสิทธิภาพของระบบงานเดิม</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดีของ Flow Chart</div>
+      <ul>
+        <li>ช่วยลำดับขั้นตอน นำไปเขียนโปรแกรมได้ไม่สับสน</li>
+        <li>ช่วยตรวจสอบและแก้ไขโปรแกรมได้ง่ายเมื่อเกิดข้อผิดพลาด</li>
+        <li>ดัดแปลงแก้ไขได้สะดวกรวดเร็ว</li>
+        <li>ผู้อื่นศึกษาการทำงานของโปรแกรมได้ง่ายและเร็ว</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัดของ Flow Chart</div>
+      <ul>
+        <li>ไม่เหมาะกับ<span class="k">ระบบการตัดสินใจที่ซับซ้อนเกินไป</span></li>
+        <li><span class="k">บอกไม่ได้ว่าขั้นตอนใดสำคัญกว่า</span> เพราะใช้สัญลักษณ์ลักษณะเดียวกัน</li>
+        <li>โครงการใหญ่ → ผังใหญ่ตาม แก้ไขยาก</li>
+        <li>แทนคำสั่งของภาษาคอมพิวเตอร์บางคำสั่งได้ไม่ชัดเจน</li>
+      </ul>
+    </div>
+  </div>
+</section>

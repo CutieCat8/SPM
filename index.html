@@ -8,198 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#22201d;
-  --paper:#fcfbf8;
-  --panel:#ffffff;
-  --red:#c1272d;
-  --red-wash:#fdeceb;
-  --amber:#f2a61c;
-  --amber-wash:#fff6e2;
-  --maroon:#7a1f24;
-  --muted:#6d6a63;
-  --rule:#e4e0d7;
-  --teal:#1f6b63;
-  --teal-wash:#e8f2f0;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:78px}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
-  font-size:16.5px;
-  line-height:1.72;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{max-width:940px;margin:0 auto;padding:0 28px 120px}
-
-/* ---------- nav ---------- */
-nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(252,251,248,.94);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--rule);
-}
-.navin{max-width:1180px;margin:0 auto;padding:9px 22px;display:grid;grid-template-columns:minmax(0,1fr) 238px;gap:10px;align-items:center}
-.navlinks{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;min-width:0;padding-bottom:2px}
-.navin a{
-  flex:0 0 auto;text-decoration:none;color:var(--muted);
-  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:13.5px;
-  padding:5px 11px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
-}
-.navin a:hover,.navin a:focus-visible{color:var(--ink);border-color:var(--rule);background:#fff}
-.navin a.active{color:#fff;background:var(--ink);border-color:var(--ink)}
-.navtools{position:relative}
-.navtools input{width:100%;border:1px solid var(--rule);border-radius:999px;background:#fff;padding:7px 34px 7px 13px;font:500 13px "IBM Plex Sans Thai",sans-serif;color:var(--ink)}
-.navtools input:focus{border-color:var(--red);outline:2px solid rgba(193,39,45,.14)}
-.navtools::after{content:"⌕";position:absolute;right:12px;top:3px;color:var(--muted);font-size:20px;pointer-events:none}
-.search-results{display:none;position:fixed;z-index:80;top:58px;right:max(22px,calc((100vw - 1180px)/2 + 22px));width:min(420px,calc(100vw - 44px));max-height:56vh;overflow:auto;background:#fff;border:1px solid var(--rule);box-shadow:0 16px 46px rgba(34,32,29,.16);border-radius:10px;padding:7px}
-.search-results.show{display:block}
-.search-results a{display:block;text-decoration:none;color:var(--ink);padding:9px 11px;border-radius:6px;font-size:14px;line-height:1.45}
-.search-results a:hover,.search-results a:focus-visible{background:var(--amber-wash)}
-.search-results small{display:block;color:var(--red);font-family:"Bai Jamjuree",sans-serif;font-weight:600}
-.reading-progress{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--amber));transition:width .1s linear}
-
-/* ---------- hero ---------- */
-header{padding:48px 0 32px;border-bottom:3px double var(--rule);margin-bottom:44px}
-.code{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:14px;color:var(--maroon);letter-spacing:.04em}
-h1{
-  font-family:"Bai Jamjuree",sans-serif;font-weight:700;
-  font-size:clamp(30px,6vw,46px);line-height:1.14;margin:10px 0 14px;letter-spacing:-.01em;
-}
-.lede{font-size:17px;color:var(--muted);max-width:62ch;margin:0}
-.heromap{
-  margin-top:26px;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px;
-}
-.heromap a{
-  background:var(--panel);border:1px solid var(--rule);padding:11px 13px;text-decoration:none;color:var(--ink);display:block;
-}
-.heromap a:hover{background:var(--amber-wash)}
-.heromap b{display:block;font-family:"Bai Jamjuree",sans-serif;font-size:12px;color:var(--red);font-weight:600}
-.heromap span{font-size:14px;line-height:1.4;display:block}
-.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.hero-meta span{font-family:"Bai Jamjuree",sans-serif;font-size:12px;font-weight:600;padding:5px 9px;border:1px solid var(--rule);background:#fff;border-radius:999px;color:var(--muted)}
-
-/* ---------- sections ---------- */
-section{margin-bottom:62px}
-section[id]{scroll-margin-top:78px}
-.unitbar{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:8px}
-.unitno{
-  font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:12.5px;
-  background:var(--ink);color:var(--paper);padding:3px 9px;border-radius:3px;flex:0 0 auto;
-}
-h2{font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:clamp(21px,4vw,27px);margin:0;line-height:1.25}
-.subtitle{color:var(--muted);font-size:14.5px;margin:0 0 26px}
-
-h3{
-  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:19px;
-  margin:38px 0 10px;padding-left:12px;border-left:4px solid var(--amber);
-}
-h4{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:16px;margin:24px 0 6px;color:var(--maroon)}
-p{margin:0 0 13px}
-ul,ol{margin:0 0 14px;padding-left:22px}
-li{margin-bottom:6px}
-li::marker{color:var(--muted)}
-
-/* ---------- inline ---------- */
-.k{color:var(--red);font-weight:600}
-.kk{color:var(--red);font-weight:600;background:var(--red-wash);padding:1px 4px;border-radius:3px}
-.en{font-family:"Bai Jamjuree",sans-serif;font-size:.94em;color:var(--teal);font-weight:500}
-abbr{text-decoration:none;border-bottom:1px dotted var(--muted)}
-
-/* ---------- blocks ---------- */
-.box{
-  background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--red);
-  padding:16px 18px;margin:20px 0;
-}
-.box .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:14px;font-weight:700;color:var(--red)}
-.box.tip{border-left-color:var(--teal)}
-.box.tip .h5{color:var(--teal)}
-.box.exam{border-left-color:var(--amber);background:var(--amber-wash);border-color:#f0e2bf}
-.box.exam .h5{color:#795000}
-.box :last-child{margin-bottom:0}
-.box.memory{border-left-color:var(--maroon);background:#fff8f4}
-.box.memory .h5{color:var(--maroon)}
-
-.def{background:var(--teal-wash);border:1px solid #cfe2de;padding:14px 17px;margin:16px 0;font-size:16px}
-.def b{color:var(--teal)}
-
-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.6px;background:var(--panel)}
-th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
-th{background:#f3f1ec;font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:14px}
-td.c,th.c{text-align:center}
-.tblwrap{overflow-x:auto;margin:18px 0}
-.tblwrap table{margin:0;min-width:520px}
-
-.flow{
-  display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:18px 0;
-}
-.flow .step{
-  flex:1 1 132px;background:var(--panel);border:1px solid var(--rule);
-  border-top:3px solid var(--amber);padding:10px 12px;font-size:14px;
-}
-.flow .step b{display:block;font-family:"Bai Jamjuree",sans-serif;font-size:12px;color:var(--red);margin-bottom:3px}
-
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
-.cols>div{background:var(--panel);border:1px solid var(--rule);padding:14px 16px}
-.cols .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:15px;font-weight:700}
-.cols ul{margin:0;padding-left:18px;font-size:14.6px}
-@media(max-width:620px){.cols{grid-template-columns:1fr}}
-
-.formula{
-  font-family:"Bai Jamjuree",sans-serif;font-size:19px;text-align:center;
-  background:var(--panel);border:1px dashed var(--red);padding:16px;margin:18px 0;color:var(--red);font-weight:600;
-}
-.formula small{display:block;font-family:"IBM Plex Sans Thai",sans-serif;font-size:13px;color:var(--muted);font-weight:400;margin-top:6px}
-
-.tree{font-family:"Bai Jamjuree",sans-serif;font-size:13.5px;line-height:1.85;background:var(--panel);
-  border:1px solid var(--rule);padding:14px 16px;margin:16px 0;white-space:pre;overflow-x:auto;color:#3d3a35}
-.badge{display:inline-block;font:600 12px "Bai Jamjuree",sans-serif;padding:2px 7px;border-radius:999px;background:var(--teal-wash);color:var(--teal);white-space:nowrap}
-.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
-.formula-grid .formula{margin:0;font-size:17px}
-.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
-.status-card{border:1px solid var(--rule);background:#fff;padding:13px 15px}
-.status-card.good{border-top:4px solid var(--teal)}
-.status-card.warn{border-top:4px solid var(--amber)}
-.status-card.bad{border-top:4px solid var(--red)}
-.status-card .h5{margin:0 0 5px;font:700 14px "Bai Jamjuree",sans-serif}
-.status-card p{font-size:14px;margin:0}
-.source-note{font-size:13px;color:var(--muted);border-top:1px dotted var(--rule);padding-top:8px;margin-top:22px}
-.backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border:1px solid var(--rule);border-radius:50%;background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 6px 22px rgba(34,32,29,.12);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
-.backtop.show{opacity:1;pointer-events:auto;transform:none}
-.backtop:hover{background:var(--ink);color:#fff}
-
-/* ---------- quiz ---------- */
-details{background:var(--panel);border:1px solid var(--rule);margin:10px 0;padding:0}
-summary{
-  cursor:pointer;padding:12px 15px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start;
-}
-summary::-webkit-details-marker{display:none}
-summary::before{content:"?";font-family:"Bai Jamjuree",sans-serif;font-weight:700;color:var(--red);flex:0 0 auto}
-summary:hover{background:#faf8f3}
-details[open] summary{border-bottom:1px solid var(--rule);background:#faf8f3}
-.ans{padding:12px 15px 14px 15px;font-size:15.3px;background:var(--red-wash)}
-.ans :last-child{margin-bottom:0}
-
-footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font-size:14px}
-:focus-visible{outline:2px solid var(--red);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media(max-width:760px){
-  .wrap{padding-left:18px;padding-right:18px}
-  .navin{padding-left:14px;padding-right:14px;grid-template-columns:minmax(0,1fr) 190px}
-  .formula-grid,.status-grid{grid-template-columns:1fr}
-  header{padding-top:34px}
-}
-@media(max-width:520px){.navin{grid-template-columns:1fr}.navtools{display:none}.heromap{grid-template-columns:repeat(2,minmax(0,1fr))}.heromap a{padding:9px 10px;overflow-wrap:anywhere}}
-@media print{
-  nav,.backtop{display:none!important}.wrap{max-width:none;padding:0}body{font-size:11pt;background:#fff}
-  section{break-before:page;margin-bottom:28px}header{break-before:auto}.box,table,.cols,.formula-grid{break-inside:avoid}
-  details{break-inside:avoid}details>.ans{display:block!important}
-}
-</style>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/typography.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/quiz.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/print.css">
 </head>
 <body>
 
@@ -255,6 +71,7 @@ footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font
 </header>
 
 <!-- =============== UNIT 1 =============== -->
+
 <section id="u1">
   <div class="unitbar"><span class="unitno">UNIT 1</span><h2>Overview of PM and SPM in Digital Industry</h2></div>
   <p class="subtitle">โครงการคืออะไร ทำไมต้องบริหาร และบริหารซอฟต์แวร์ต่างจากบริหารทั่วไปตรงไหน</p>
@@ -392,7 +209,6 @@ footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font
   </ul>
 </section>
 
-<!-- =============== UNIT 2 =============== -->
 <section id="u2">
   <div class="unitbar"><span class="unitno">UNIT 2</span><h2>SPM Process and Methodology</h2></div>
   <p class="subtitle">วงจรโครงการ (PLC) วงจรพัฒนาซอฟต์แวร์ (SDLC) และวิธีการบริหารแบบต่างๆ</p>
@@ -558,7 +374,6 @@ footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font
   <p style="font-size:14.6px;color:var(--muted)">สถิติจาก Hubstaff (2021): <span class="k">39%</span> ขององค์กรที่สำรวจใช้ <span class="k">hybrid project management practices</span></p>
 </section>
 
-<!-- =============== UNIT 3 =============== -->
 <section id="u3">
   <div class="unitbar"><span class="unitno">UNIT 3</span><h2>Requirements in Software Project</h2></div>
   <p class="subtitle">ความต้องการคืออะไร มีกี่ประเภท และเก็บมาด้วยกระบวนการอะไร</p>
@@ -668,7 +483,6 @@ footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font
   <p style="font-size:14.6px"><b>บทบาทของ SA:</b> นักวิเคราะห์ระบบทำหน้าที่เป็น<span class="k">คนกลาง ที่ปรึกษา ผู้ช่วยแก้ปัญหา และผู้ต่อรอง</span>ระหว่างลูกค้ากับทีมพัฒนา</p>
 </section>
 
-<!-- =============== UNIT 4 =============== -->
 <section id="u4">
   <div class="unitbar"><span class="unitno">UNIT 4</span><h2>Project Identification &amp; Selection</h2></div>
   <p class="subtitle">ก่อน Initiation — หาโครงการ ศึกษาความเป็นไปได้ และคัดเลือก</p>
@@ -800,7 +614,6 @@ footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font
   </div>
 </section>
 
-<!-- =============== UNIT 5 =============== -->
 <section id="u5">
   <div class="unitbar"><span class="unitno">UNIT 5</span><h2>Project Initiation &amp; Planning</h2></div>
   <p class="subtitle">เขียนโครงการ วางแผน กำหนดขอบเขต และแตกงานเป็น WBS</p>
@@ -1015,7 +828,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   </ol>
 </section>
 
-<!-- =============== UNIT 6 =============== -->
 <section id="u6">
   <div class="unitbar"><span class="unitno">UNIT 6</span><h2>Project Scheduling</h2></div>
   <p class="subtitle">Gantt Chart · CPM · PERT · Flow Chart — หน่วยที่มีการคำนวณ</p>
@@ -1217,7 +1029,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   </div>
 </section>
 
-<!-- =============== UNIT 7 =============== -->
 <section id="u7">
   <div class="unitbar"><span class="unitno">UNIT 7</span><h2>Team Management &amp; Resource Planning</h2></div>
   <p class="subtitle">ผู้นำ โครงสร้างองค์กรโครงการ และซอฟต์แวร์บริหารโครงการ</p>
@@ -1331,7 +1142,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <p>เพิ่มประสิทธิภาพการสื่อสาร · ผู้นำเห็นโครงการใน<span class="k">ระดับมหภาค</span> · ช่วยทีมจัดลำดับความสำคัญของงาน · ควบคุมต้นทุนและบริหารงบประมาณ · <span class="k">จัดสรรทรัพยากร</span> · เอื้อต่อการทำงานร่วมกันแบบ remote</p>
 </section>
 
-<!-- =============== RA =============== -->
 <section id="ra">
   <div class="unitbar"><span class="unitno">เสริม</span><h2>Requirements Analysis &amp; System Modeling</h2></div>
   <p class="subtitle">URS/SRS · UML · Use Case Diagram · Activity Diagram</p>
@@ -1451,7 +1261,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   </div>
 </section>
 
-<!-- =============== UNIT 8 =============== -->
 <section id="u8">
   <div class="unitbar"><span class="unitno">UNIT 8</span><h2>Project Cost Planning</h2></div>
   <p class="subtitle">วางแผนทรัพยากร → ประมาณต้นทุน → จัดงบประมาณ → สร้าง Cost Baseline → ควบคุมต้นทุน</p>
@@ -1514,7 +1323,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <p>ประกอบด้วยการติดตามเงินที่ใช้ ทบทวนการเปลี่ยนแปลง และแจ้ง Stakeholders เมื่อสิ่งที่เปลี่ยนกระทบค่าใช้จ่าย ข้อมูลนำเข้าหลักคือ <b>Cost Baseline, Performance Report, Change Request และ Cost Management Plan</b> ผลลัพธ์คือประมาณการและงบที่ทบทวนแก้ไขแล้ว โดย Unit 9 จะใช้ Earned Value Analysis วัดผลอย่างเป็นตัวเลข</p>
 </section>
 
-<!-- =============== UNIT 9 =============== -->
 <section id="u9">
   <div class="unitbar"><span class="unitno">UNIT 9</span><h2>Project Monitoring &amp; Control</h2></div>
   <p class="subtitle">วัดผลงานจริงเทียบแผนฐาน แปลค่า EVA สื่อสารสถานะ และควบคุมงานแบบ Agile</p>
@@ -1595,7 +1403,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <div class="box exam"><div class="h5">Traditional vs Agile ที่ควรตอบให้ได้</div><p><b>Traditional:</b> Baseline คงที่, SPI/CPI/EAC/VAC, รายงานรายสัปดาห์/เดือน, เปลี่ยน Scope ผ่าน Formal Change Control, เหมาะ Fixed-price/Waterfall<br><b>Agile:</b> Sprint Backlog ปรับได้, Burndown/Burnup/Velocity, รายวัน/ราย Sprint, เปลี่ยนผ่าน Backlog Reprioritization, เหมาะเมื่อ Requirement เปลี่ยนบ่อย</p></div>
 </section>
 
-<!-- =============== UML =============== -->
 <section id="uml">
   <div class="unitbar"><span class="unitno">UML</span><h2>UML for Software Project</h2></div>
   <p class="subtitle">แบบจำลองข้อมูล โครงสร้างเชิงวัตถุ และลำดับการสื่อสารของระบบ</p>
@@ -1667,7 +1474,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <div class="box exam"><div class="h5">ลำดับระบบจองตั๋วหนังจากกิจกรรม</div><p>Customer → TicketBookingSystem: requestTicket() → PaymentGateway: processPayment() → ระบบรับ paymentConfirmation() → EmailService: sendConfirmationEmail() → Customer ได้อีเมลยืนยัน ควรวาด Lifeline และ Activation ตามลำดับนี้</p></div>
 </section>
 
-<!-- =============== UNIT 10 =============== -->
 <section id="u10">
   <div class="unitbar"><span class="unitno">UNIT 10</span><h2>Project Risk Management</h2></div>
   <p class="subtitle">ระบุ วิเคราะห์ จัดลำดับ วางแผนตอบสนอง และติดตามความไม่แน่นอนอย่างเป็นระบบ</p>
@@ -1730,7 +1536,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <p>เมื่อโครงการคืบหน้า <b>ความเสี่ยงและความไม่แน่นอนมักลดลง แต่ต้นทุนในการเปลี่ยนแปลงสูงขึ้น</b> จึงควรบริหารแบบเชิงรุก ปรับ Risk Register ให้ทันสมัย ตรวจซ้ำสม่ำเสมอ เก็บเอกสารในระบบที่สอบกลับได้ ฝึกอบรมคน และมีแรงสนับสนุนจากผู้บริหาร</p>
 </section>
 
-<!-- =============== UNIT 11 =============== -->
 <section id="u11">
   <div class="unitbar"><span class="unitno">UNIT 11</span><h2>Project Change Management</h2></div>
   <p class="subtitle">ช่วยให้คนปรับตัว พร้อมควบคุมคำขอเปลี่ยนแปลงไม่ให้ Baseline ถูกแก้โดยไร้การอนุมัติ</p>
@@ -1794,7 +1599,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <div class="box memory"><div class="h5">จำสั้น ๆ</div><p><b>Change Management ดูแล “คน” · Change Control ดูแล “คำขอ เอกสาร กระบวนการ และ Baseline”</b> สองส่วนต้องทำงานร่วมกันจึงเปลี่ยนได้จริงและยังควบคุมโครงการได้</p></div>
 </section>
 
-<!-- =============== UNIT 12 =============== -->
 <section id="u12">
   <div class="unitbar"><span class="unitno">UNIT 12</span><h2>Project Closure</h2></div>
   <p class="subtitle">ยืนยันการยอมรับ ส่งมอบความเป็นเจ้าของ ปิดงานธุรการ เก็บบทเรียน และวางระบบดูแลหลัง Go-live</p>
@@ -1863,7 +1667,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
   <p><b>กรณีจากสไลด์:</b> UAT 45/50 โดย Pass 45, Fail 3, Pending 2 และเอกสารเสร็จ 80% ยังไม่ควร Sign-off แบบไม่มีเงื่อนไข ควรประเมิน Severity ของ 3 Fail, ปิด 2 Pending, ทำเอกสาร/Handover ให้ครบก่อน Developer หลักย้าย และหากจำเป็นต้อง Go-live ตามวันเดิม ให้ใช้ Conditional Sign-off ที่ระบุ Known Issues, Owner, Due Date, Acceptance Risk และ Warranty Support อย่างชัดเจน</p>
 </section>
 
-<!-- =============== QUIZ =============== -->
 <section id="quiz">
   <div class="unitbar"><span class="unitno">ซ้อมมือ</span><h2>ข้อสอบซ้อมมือ 40 ข้อ</h2></div>
   <p class="subtitle">ลองตอบในใจก่อน แล้วค่อยกดเปิดเฉลย</p>
@@ -2000,7 +1803,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
     <div class="ans"><p><b>Warranty</b> เริ่มหลัง Sign-off ระยะตามสัญญา (ทั่วไป 60–90 วัน) แก้ defect จากการพัฒนาโดยไม่คิดเพิ่ม แต่ไม่รวม requirement ใหม่ · หลังหมด Warranty ใช้ <b>Maintenance/Support Contract</b> แยก มีค่าใช้จ่ายและ SLA ตามข้อตกลง</p></div></details>
 </section>
 
-<!-- =============== CHEAT =============== -->
 <section id="cheat">
   <div class="unitbar"><span class="unitno">สรุปท้าย</span><h2>ตัวเลขและคู่คำที่ต้องจำก่อนเข้าห้องสอบ</h2></div>
 
@@ -2077,68 +1879,6 @@ Level 3      │      │      └── Work Package  ← ระดับล่
 
 </main>
 <button class="backtop" id="backtop" type="button" aria-label="กลับขึ้นด้านบน">↑</button>
-<script>
-(() => {
-  const progress = document.getElementById('reading-progress');
-  const backtop = document.getElementById('backtop');
-  const search = document.getElementById('topic-search');
-  const results = document.getElementById('search-results');
-  const navLinks = [...document.querySelectorAll('.navin a[href^="#"]')];
-  const sections = [...document.querySelectorAll('section[id]')];
-  const headings = [...document.querySelectorAll('section h2, section h3, section h4')];
-
-  headings.forEach((heading, index) => {
-    if (!heading.id) heading.id = `${heading.closest('section').id}-topic-${index + 1}`;
-  });
-
-  const updateScrollUI = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    progress.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
-    backtop.classList.toggle('show', scrollY > 650);
-    let current = sections[0]?.id;
-    sections.forEach(section => { if (section.getBoundingClientRect().top <= 120) current = section.id; });
-    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
-  };
-  addEventListener('scroll', updateScrollUI, {passive:true});
-  addEventListener('resize', updateScrollUI);
-  updateScrollUI();
-  backtop.addEventListener('click', () => scrollTo({top:0, behavior:'smooth'}));
-
-  const closeResults = () => { results.classList.remove('show'); results.replaceChildren(); };
-  const runSearch = () => {
-    const query = search.value.trim().toLocaleLowerCase('th');
-    results.replaceChildren();
-    if (query.length < 2) return closeResults();
-    const matches = headings.filter(h => h.textContent.toLocaleLowerCase('th').includes(query)).slice(0, 14);
-    if (!matches.length) {
-      const empty = document.createElement('a'); empty.textContent = 'ไม่พบหัวข้อ ลองใช้คำที่สั้นลง'; results.append(empty);
-    } else {
-      matches.forEach(heading => {
-        const link = document.createElement('a');
-        link.href = `#${heading.id}`;
-        const label = document.createElement('small');
-        label.textContent = heading.closest('section').querySelector('h2')?.textContent || 'หัวข้อ';
-        link.append(label, document.createTextNode(heading.textContent));
-        link.addEventListener('click', () => { closeResults(); search.value = ''; });
-        results.append(link);
-      });
-    }
-    results.classList.add('show');
-  };
-  search?.addEventListener('input', runSearch);
-  search?.addEventListener('keydown', event => { if (event.key === 'Escape') { search.value = ''; closeResults(); search.blur(); } });
-  document.addEventListener('click', event => { if (!results.contains(event.target) && event.target !== search) closeResults(); });
-  document.addEventListener('keydown', event => {
-    if (event.key === '/' && document.activeElement !== search) { event.preventDefault(); search?.focus(); }
-  });
-
-  let openedForPrint = [];
-  addEventListener('beforeprint', () => {
-    openedForPrint = [...document.querySelectorAll('details:not([open])')];
-    openedForPrint.forEach(item => item.open = true);
-  });
-  addEventListener('afterprint', () => openedForPrint.forEach(item => item.open = false));
-})();
-</script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

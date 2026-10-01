@@ -1,0 +1,70 @@
+<section id="uml">
+  <div class="unitbar"><span class="unitno">UML</span><h2>UML for Software Project</h2></div>
+  <p class="subtitle">แบบจำลองข้อมูล โครงสร้างเชิงวัตถุ และลำดับการสื่อสารของระบบ</p>
+
+  <h3>UML และ Analysis Model มองระบบอย่างไร</h3>
+  <p>แผนภาพช่วยเปลี่ยน Requirements ให้เป็นภาพร่วมระหว่างผู้ใช้ นักวิเคราะห์ และนักพัฒนา โดยบทนี้เน้น 3 แบบ: <b>ER Diagram</b> มองข้อมูล, <b>Class Diagram</b> มองโครงสร้างเชิงวัตถุ และ <b>Sequence Diagram</b> มองพฤติกรรมตามเวลา</p>
+  <div class="tblwrap"><table>
+    <tr><th>Diagram</th><th>คำถามหลัก</th><th>สิ่งที่เห็น</th></tr>
+    <tr><td><b>ER Diagram</b></td><td>ข้อมูลอะไรสัมพันธ์กับอะไร</td><td>Entity, Attribute, Key, Relationship, Cardinality</td></tr>
+    <tr><td><b>Class Diagram</b></td><td>ระบบประกอบด้วยวัตถุแบบใด</td><td>Class, Attribute, Method, Visibility, Class Relationship</td></tr>
+    <tr><td><b>Sequence Diagram</b></td><td>ใครเรียกใคร ตามลำดับเวลาอย่างไร</td><td>Object, Lifeline, Message, Activation และ Fragment</td></tr>
+  </table></div>
+
+  <h3>UML.1 Entity Relationship Diagram (ERD)</h3>
+  <div class="def"><b>ER Diagram</b> คือแผนภาพโครงสร้างและความสัมพันธ์ของข้อมูลในฐานข้อมูล ใช้อธิบายองค์ประกอบและข้อกำหนดของฐานข้อมูล และเป็นสื่อกลางระหว่างผู้ใช้กับนักพัฒนา</div>
+  <ul>
+    <li><b>Entity</b> — กลุ่มสิ่งที่ต้องเก็บข้อมูล อาจเป็นบุคคล สถานที่ การกระทำ หรือกิจกรรม; สัญลักษณ์สี่เหลี่ยมผืนผ้า</li>
+    <li><b>Attribute</b> — คุณลักษณะที่อธิบาย Entity/Relationship; สัญลักษณ์วงรี มีแบบธรรมดา, Primary Key, Multi-valued, Composite และ Derived</li>
+    <li><b>Relationship</b> — ความสัมพันธ์ระหว่าง Entity; สัญลักษณ์สี่เหลี่ยมข้าวหลามตัด Entity หนึ่งมีหลายความสัมพันธ์หรือสัมพันธ์กับตัวเองแบบ Recursive ได้</li>
+  </ul>
+  <p><b>Key ที่ต้องรู้:</b> Primary Key ระบุระเบียนไม่ซ้ำ · Foreign Key อ้างอิง Primary Key ของอีกตาราง · Composite Key ใช้หลาย Attribute ร่วมกันเป็นกุญแจ</p>
+  <div class="tblwrap"><table>
+    <tr><th>Cardinality</th><th>ความหมาย</th><th>แนวแปลงเป็นตาราง</th></tr>
+    <tr><td><b>1 : 1</b></td><td>A หนึ่งรายการสัมพันธ์กับ B ได้หนึ่งรายการ</td><td>วาง FK ในฝั่งที่เหมาะสม/บังคับมากกว่า และกำหนด Unique</td></tr>
+    <tr><td><b>1 : N</b></td><td>A หนึ่งรายการสัมพันธ์กับ B ได้หลายรายการ</td><td>วาง FK ของฝั่ง 1 ไว้ในตารางฝั่ง N</td></tr>
+    <tr><td><b>M : N</b></td><td>ทั้งสองฝั่งสัมพันธ์กันได้หลายรายการ</td><td>สร้าง Associative/Junction Table คั่นกลาง มี FK ไปทั้งสองฝั่ง</td></tr>
+  </table></div>
+  <div class="box exam"><div class="h5">ตัวอย่าง Gym จากกิจกรรม</div><p>Member จอง ClassSession ซึ่งแต่ละ Session มี Trainer, Schedule และ Room: ความสัมพันธ์ Member ↔ ClassSession เป็น M:N จึงควรมี Booking เป็นตารางกลาง; Trainer 1:N ClassSession และ Room 1:N ClassSession</p></div>
+
+  <h3>UML.2 Class Diagram</h3>
+  <p>Class Diagram แสดงโครงสร้างระบบเชิงวัตถุในระดับสูง ทั้งคุณลักษณะ การดำเนินงาน ข้อจำกัด และความสัมพันธ์ <b>Class เป็นแม่แบบ ส่วน Object เป็น instance ที่สร้างจากแม่แบบนั้น</b></p>
+  <div class="tree">┌──────────────────────────┐
+│ ClassName                │  ← ชื่อคลาส
+├──────────────────────────┤
+│ -attribute: DataType     │  ← Attributes / Fields
+├──────────────────────────┤
+│ +method(param): Return   │  ← Methods / Operations
+└──────────────────────────┘</div>
+  <p><b>Visibility:</b> <span class="kk">+</span> Public เรียกจากภายนอกได้ · <span class="kk">−</span> Private เข้าถึงเฉพาะในคลาส · <span class="kk">#</span> Protected เข้าถึงได้ในคลาสและ subclass</p>
+  <div class="tblwrap"><table>
+    <tr><th>ความสัมพันธ์</th><th>ความหมาย</th><th>ตัวอย่างจำ</th></tr>
+    <tr><td><b>Association</b></td><td>ความเชื่อมโยงทั่วไป</td><td>Customer ทำ Order</td></tr>
+    <tr><td><b>Inheritance</b></td><td>Subclass สืบทอดคุณสมบัติ/พฤติกรรมจาก Superclass</td><td>Dog เป็น Animal</td></tr>
+    <tr><td><b>Aggregation</b></td><td>Whole–part แบบหลวม; Part อยู่ได้เองเมื่อแยกจาก Whole</td><td>Pond มี Duck; เอา Duck ออก Pond ยังเป็น Pond</td></tr>
+    <tr><td><b>Composition</b></td><td>Whole–part แบบแน่น; Part ผูกกับวงจรชีวิตของ Whole</td><td>Electric Car กับ Battery ตามตัวอย่างในสไลด์</td></tr>
+    <tr><td><b>Unidirectional Association</b></td><td>A รู้จัก/เรียก B แต่ B ไม่จำเป็นต้องรู้จัก A</td><td>Booking เข้าถึง Seat ฝ่ายเดียว</td></tr>
+  </table></div>
+  <div class="box memory"><div class="h5">Aggregation vs Composition</div><p>ถามว่า “ถ้า Whole หาย Part ยังอยู่ได้ไหม?” — <b>อยู่ได้ = Aggregation (เพชรโปร่ง)</b> · <b>อยู่ไม่ได้/วงจรชีวิตผูกกัน = Composition (เพชรทึบ)</b></p></div>
+  <h4>ขั้นวาด Class Diagram 7 ขั้น</h4>
+  <ol><li>Identify Classes</li><li>List Attributes and Methods พร้อม Data Type/Visibility</li><li>Identify Relationships</li><li>Create Class Boxes</li><li>Add Attributes and Methods</li><li>Draw Relationships ด้วยเส้น/ลูกศรที่ถูกชนิดและทิศ</li><li>Review and Refine ให้ตรงทั้งธุรกิจและเทคนิค</li></ol>
+
+  <h3>UML.3 Sequence Diagram</h3>
+  <p>แสดงการส่ง Message ระหว่าง Object/Class <b>ตามลำดับเวลา</b> เพื่ออธิบายภาพรวมการทำงานและการสื่อสาร องค์ประกอบหลักคือ <b>Objects, Lifelines, Messages และ Activation Bars</b> โดยอ่านเวลาจากบนลงล่าง</p>
+  <div class="tblwrap"><table>
+    <tr><th>Message</th><th>ความหมาย</th></tr>
+    <tr><td><b>Synchronous</b></td><td>ผู้ส่งรอผู้รับประมวลผลและ Return ก่อนทำข้อความถัดไป; หัวลูกศรทึบ</td></tr>
+    <tr><td><b>Asynchronous</b></td><td>ผู้ส่งไม่รอผลตอบกลับ สามารถส่งข้อความถัดไปได้; หัวลูกศรเส้น</td></tr>
+    <tr><td><b>Return</b></td><td>ส่งผลกลับหลังประมวลผล จะละเส้นก็ได้เพราะ Synchronous สื่อ Return โดยนัย</td></tr>
+    <tr><td><b>Reflexive</b></td><td>Object ส่ง Message หาตัวเอง ลูกศรเริ่มและจบบน Lifeline เดียวกัน</td></tr>
+    <tr><td><b>Creation / Destruction</b></td><td>สร้าง Participant ระหว่างลำดับงาน / จบ Lifeline ด้วยเครื่องหมาย X</td></tr>
+  </table></div>
+  <h4>Sequence Fragment</h4>
+  <div class="cols">
+    <div><div class="h5">alt = if / else</div><p>มีตั้งแต่ 2 ทางเลือก แบ่ง Interaction Operand ด้วยเส้นประ แต่ละส่วนมี Guard และทำเพียงทางเลือกที่เงื่อนไขจริง</p></div>
+    <div><div class="h5">opt = if</div><p>เหตุการณ์ทางเลือกเดียว เกิดเมื่อ Guard จริง; ไม่แบ่งหลาย Operand</p></div>
+    <div><div class="h5">loop = ทำซ้ำ</div><p>ทำจน Guard เป็น false; ระบุ minint และ maxint เพื่อจำกัดรอบต่ำสุด/สูงสุดได้</p></div>
+    <div><div class="h5">ref = อ้างแผนภาพอื่น</div><p>แยกส่วนของ Sequence ขนาดใหญ่ออกไปใช้ซ้ำ ระบุชื่อ Diagram ที่อ้างในกรอบ ref</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ลำดับระบบจองตั๋วหนังจากกิจกรรม</div><p>Customer → TicketBookingSystem: requestTicket() → PaymentGateway: processPayment() → ระบบรับ paymentConfirmation() → EmailService: sendConfirmationEmail() → Customer ได้อีเมลยืนยัน ควรวาด Lifeline และ Activation ตามลำดับนี้</p></div>
+</section>

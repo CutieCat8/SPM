@@ -1,0 +1,164 @@
+<section id="u2">
+  <div class="unitbar"><span class="unitno">UNIT 2</span><h2>SPM Process and Methodology</h2></div>
+  <p class="subtitle">วงจรโครงการ (PLC) วงจรพัฒนาซอฟต์แวร์ (SDLC) และวิธีการบริหารแบบต่างๆ</p>
+
+  <h3>2.1 Project Life Cycles (PLC) — 5 ขั้นตอน</h3>
+  <div class="flow">
+    <div class="step"><b>1 INITIATION</b>การกำหนดค่าเริ่มต้น</div>
+    <div class="step"><b>2 PLANNING</b>การวางแผน</div>
+    <div class="step"><b>3 EXECUTION</b>การดำเนินการ</div>
+    <div class="step"><b>4 MONITORING &amp; CONTROL</b>ตรวจสอบและควบคุม</div>
+    <div class="step"><b>5 CLOSURE</b>การปิดโครงการ</div>
+  </div>
+
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">เฟส</th><th>กิจกรรมหลักที่ต้องจำ</th></tr>
+    <tr>
+      <td><span class="k">Initiation</span><br>การเริ่มต้นโครงการ</td>
+      <td>นิยามโครงการและกำหนดเป้าหมาย · <span class="k">ศึกษาความเป็นไปได้</span> · กำหนดขอบเขตเบื้องต้น · <span class="k">ประเมินมูลค่าโครงการ</span> · กำหนดผู้มีส่วนได้ส่วนเสีย · พัฒนาเอกสารสิทธิ์ของโครงการ</td>
+    </tr>
+    <tr>
+      <td><span class="k">Planning</span><br>การวางแผน</td>
+      <td>กำหนดขอบเขตโครงการ · สร้างแผนโครงการ · วางแผนงบประมาณ · กำหนดบทบาทหน้าที่และความรับผิดชอบ</td>
+    </tr>
+    <tr>
+      <td><span class="k">Execution</span><br>การดำเนินโครงการ</td>
+      <td>จัดสรรและจัดการทรัพยากร · สร้างผลิตภัณฑ์หรือบริการ · พบปะพูดคุยเพื่อแก้ปัญหา</td>
+    </tr>
+    <tr>
+      <td><span class="k">Monitoring &amp; Control</span><br>ตรวจสอบและควบคุม</td>
+      <td>ติดตามความคืบหน้า · ติดตามการใช้ทรัพยากรและต้นทุน · ตรวจสอบความสอดคล้องกับแผน · ตอบสนองต่อการเปลี่ยนแปลงและป้องกันการหยุดชะงัก</td>
+    </tr>
+    <tr>
+      <td><span class="k">Closure</span><br>การปิดโครงการ</td>
+      <td>ส่งมอบผลิตภัณฑ์/บริการ · ทบทวนผลงานโครงการ · จัดทำเอกสารรายงานผลสำเร็จ</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">ประเด็นที่ชอบถาม</div>
+    <ul style="margin-bottom:0">
+      <li>การอนุมัติเอกสารสิทธิ์โครงการในเฟส Initiation มีผลได้ <span class="kk">3 กรณี</span> คือ <b>ให้ดำเนินการต่อ</b> / <b>ให้ชะลอไว้ก่อน</b> / <b>ปฏิเสธโครงการ</b></li>
+      <li>ทั้ง 5 เฟส<span class="k">ทำงานอย่างสัมพันธ์กันและคาบเกี่ยวกัน</span> ไม่ได้จบเฟสหนึ่งแล้วค่อยเริ่มอีกเฟส — จุดเริ่มต้นและสิ้นสุดของเนื้องานแต่ละกระบวนการจะ<span class="k">ทับซ้อน</span>กัน</li>
+      <li>ถ้าดูกราฟ Activity Volume: <span class="k">Execution มี activity volume สูงสุด</span> ส่วน Closure จะพุ่งสั้นๆ ตอนท้าย</li>
+      <li>กิจกรรมในเฟส Planning ที่ถามบ่อย: Scope Definition and Planning, <span class="k">Activity Definition</span>, <span class="k">Work Breakdown Structure</span>, Activity Sequence, Activity Duration Estimation, Activity Resource Estimation, Schedule Development, Cost Estimation, Cost Budgeting, Quality Planning, HR Planning, Communication Planning, Risk Management Planning, Purchase Plan, Contracting</li>
+      <li>ในเฟส Closure กรณีซอฟต์แวร์ หลักฐานการยอมรับจากลูกค้ามักเป็น <span class="kk">User Acceptance Test (UAT)</span></li>
+    </ul>
+  </div>
+
+  <h4>วัฏจักรโครงการ: เอกชน vs ภาครัฐ</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">องค์กรภาคเอกชน</div>
+      <p style="font-size:14.6px;margin:0">กำหนดแนวคิดโครงการ (Project Ideas) → วางแผนศึกษาและวิเคราะห์ความเป็นไปได้ (<span class="k">Feasibility Studies Report</span>) → ดำเนินงานโครงการ (ทำเองหรือจ้างเหมา ผ่าน <span class="k">TOR</span>) → ยุติและส่งมอบ</p>
+    </div>
+    <div>
+      <div class="h5">องค์กรภาครัฐ (4 ขั้นวน)</div>
+      <p style="font-size:14.6px;margin:0">1) วางแผน ประเมินผล และออกแบบ → 2) คัดเลือก อนุมัติ เตรียมการ → 3) ดำเนินงาน ควบคุม ส่งมอบ → 4) <span class="k">ประเมินผลและกลั่นกรอง</span> (ปรับนโยบายและแผน) แล้ววนกลับเข้าสู่ยุทธศาสตร์</p>
+    </div>
+  </div>
+
+  <h3>2.2 Software Development Life Cycles (SDLC) — 7 ขั้นตอน</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:5%" class="c">#</th><th style="width:27%">ขั้นตอน</th><th>สาระสำคัญ / ผลลัพธ์</th></tr>
+    <tr><td class="c">1</td><td><span class="k">Ideation / Planning</span></td><td>กำหนด Objective, Expected Outcome, Time, Scope, Resource, Stakeholders — ข้อมูลยิ่งละเอียด ยิ่งลดความเสี่ยง</td></tr>
+    <tr><td class="c">2</td><td><span class="k">Analysis / Defining Requirements</span></td><td>PM + <span class="k">System Analyst</span> + <span class="k">Product Owner</span> เก็บและวิเคราะห์ความต้องการ แบ่งเป็น Domain / Functional / Non-functional</td></tr>
+    <tr><td class="c">3</td><td><span class="k">Design &amp; Prototyping</span></td><td>Architecture, UX/UI, เลือกภาษา, Database, Communication &amp; Security → ได้ <span class="k">System Design Specification</span></td></tr>
+    <tr><td class="c">4</td><td><span class="k">Development / Implementation</span></td><td>Coding, Compile Code, Finding &amp; Fixing Errors, <span class="k">Source Code Management</span> (เวอร์ชัน)</td></tr>
+    <tr><td class="c">5</td><td><span class="k">Testing</span></td><td>สร้าง <span class="k">Test case</span> — Unit Test, Integration Test, Functional Test, Acceptance Test</td></tr>
+    <tr><td class="c">6</td><td><span class="k">Deployment</span></td><td>Installation / Release to market, Setting up in real environment, <span class="k">Training</span>, คู่มือ, แผน Support</td></tr>
+    <tr><td class="c">7</td><td><span class="k">Operation &amp; Maintenance</span></td><td><span class="k">Correction</span> (แก้ข้อผิดพลาด), <span class="k">Prevention</span> (ป้องกันล่วงหน้า), <span class="k">Investigation</span> (ติดตามประเมิน), <span class="k">Improvement</span> (รวบรวมคำร้องขอปรับปรุง)</td></tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">คำถามคลาสสิก: PLC ต่างจาก SDLC อย่างไร</div>
+    <p><span class="kk">PLC</span> คือวงจรการ<b>บริหารโครงการ</b> ครอบคลุมทุกประเภทโครงการ เน้นการจัดการคน เวลา งบประมาณ ขอบเขต (Initiation → Closure)</p>
+    <p><span class="kk">SDLC</span> คือวงจรการ<b>ผลิต/พัฒนาตัวซอฟต์แวร์</b> เน้นกิจกรรมทางเทคนิค (วิเคราะห์ → ออกแบบ → เขียนโปรแกรม → ทดสอบ → ติดตั้ง → บำรุงรักษา)</p>
+    <p style="margin-bottom:0">ความสัมพันธ์: <b>SDLC ฝังอยู่ภายใน PLC</b> โดยเฉพาะช่วง Execution — พูดง่ายๆ PLC คือ "บริหารโครงการ" ส่วน SDLC คือ "สร้างของ"</p>
+  </div>
+
+  <h3>2.3 Project Management Methodologies</h3>
+
+  <h4>Waterfall Model <span style="font-weight:400;color:var(--muted);font-size:14px">— แบบดั้งเดิม, ทิศทางเดียว</span></h4>
+  <p>Requirements → Design → Development → Testing → Deployment → Maintenance โดย<span class="k">แต่ละขั้นต้องเสร็จก่อนเริ่มขั้นถัดไป</span></p>
+  <div class="cols">
+    <div>
+      <div class="h5">เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่มั่นใจว่า Requirement <span class="k">จะไม่เปลี่ยน</span>ระหว่างทาง</li>
+        <li>ผู้เกี่ยวข้องทราบภาพรวมว่าต้องการอะไร</li>
+        <li>คาดการณ์<span class="k">ผลลัพธ์ที่แน่นอน</span>ได้</li>
+        <li>องค์กรที่มีระบบแบบแผน ติดตามงานเอกสารเป็นระบบ</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ไม่เหมาะกับ / ข้อสังเกต</div>
+      <ul>
+        <li>โครงการที่<span class="k">เปลี่ยนแปลงอยู่เสมอ</span></li>
+        <li>โครงการที่ยังไม่เห็นภาพผลลัพธ์สุดท้าย</li>
+        <li>วางแผนตั้งแต่ต้นจนจบให้แม่นยำได้ยาก</li>
+        <li>ผิดพลาดขั้นหนึ่ง <span class="k">ย้อนกลับไปแก้ยาก</span> และกระทบทั้งระบบ</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Agile Methodology <span style="font-weight:400;color:var(--muted);font-size:14px">— Iterative model</span></h4>
+  <p>ทำงาน<span class="k">หมุนวน ทวนซ้ำกระบวนการ</span> รอบละสั้นๆ (มักราว 2–3 เดือนต่อ iteration) ทีมตรวจสอบและให้ feedback ระหว่างทางโดย<span class="k">ไม่ต้องรอขั้นตอนก่อนหน้าเสร็จ</span></p>
+  <p>หลักการทำงาน 3 ส่วน: <span class="kk">Collaboration</span> (ทำงานแบบมีส่วนร่วม) · <span class="kk">Speed</span> (รวดเร็ว) · <span class="kk">Open to Data-driven Change</span> (ขับเคลื่อนด้วยการเปลี่ยนแปลงข้อมูล)</p>
+  <div class="cols">
+    <div>
+      <div class="h5">เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่เปลี่ยนแปลงบ่อย</li>
+        <li>ยังไม่เห็นภาพผลลัพธ์สุดท้ายชัดเจน</li>
+        <li>มีเวลาดำเนินการจำกัด</li>
+        <li>Stakeholder ต้องการมีส่วนร่วมทุกขั้นตอน — <span class="k">มุ่งเน้นทีมงานมากกว่ากระบวนการ</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ไม่เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่มี<span class="k">งานเอกสารจำนวนมาก</span></li>
+        <li>โครงการที่กำหนดสิ่งที่ต้องส่งมอบไว้ชัดเจนแล้ว</li>
+        <li>ทีมงานไม่มีแรงจูงใจมากพอ</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Scrum Framework <span style="font-weight:400;color:var(--muted);font-size:14px">— Incremental model</span></h4>
+  <p>เครื่องมือบริหารแบบ Agile ที่ให้<span class="k">ทีมช่วยกันรุมงาน</span> <span class="k">ไม่มีผู้บริหารโครงการ นักออกแบบ/วิเคราะห์ระบบ หรือนักทดสอบแยกตำแหน่ง</span> แต่มี 3 บทบาทคือ</p>
+  <ul>
+    <li><span class="kk">Product Owner</span> — ประเมินคุณค่าและจัดลำดับความสำคัญของงานให้ทีม</li>
+    <li><span class="kk">Scrum Master</span> — ควบคุมดูแลและกำจัดอุปสรรคที่ขัดขวางการทำงานของทีม</li>
+    <li><span class="kk">Team</span> — ทำงานแบบ Self-management ประกอบด้วย <span class="k">3–9 คน</span> รวมทุกตำแหน่งเข้าด้วยกัน เพื่อให้ทำงานได้จนจบโดยไม่ต้องข้ามแผนก</li>
+  </ul>
+  <p>ทฤษฎีสกรัม 3 เสา: <span class="kk">Transparency</span> · <span class="kk">Inspection</span> · <span class="kk">Adoption</span><br>
+  วงจร: Product Vision → User Stories → Product Backlog → Planning meeting → <span class="k">Sprint Backlog</span> → Sprint (2–4 สัปดาห์) + <span class="k">Daily Stand Up</span> → Deployment → <span class="k">Sprint Review + Sprint Retrospective</span></p>
+  <p style="font-size:14.6px"><b>เหมาะกับ:</b> โครงการที่ต้องการผลลัพธ์รวดเร็วและติดตามสม่ำเสมอ, งานพัฒนาเทคโนโลยี/ซอฟต์แวร์, องค์กรแบบ <span class="k">Flat Organization</span><br>
+  <b>ไม่เหมาะกับ:</b> ทีมข้ามหลายแผนกในองค์กรใหญ่, โครงการที่กำหนด deliverable ชัดเจนแล้ว, ทีมไม่มีแรงจูงใจ, องค์กรแบบ <span class="k">High-hierarchical Structure</span></p>
+
+  <h4>Kanban Method <span style="font-weight:400;color:var(--muted);font-size:14px">— "คัมบัง" = ป้ายแสดงสัญลักษณ์</span></h4>
+  <p>เครื่องมือ Agile ที่ใช้<span class="k">กระดานและการ์ด</span> คิดค้นเพื่อบริหารอุตสาหกรรมการผลิตแบบ <span class="kk">Just-in-Time (JIT)</span> กระดานออกแบบให้เห็น <span class="k">Workflow ทั้งหมด</span> และแบ่งงานตาม <span class="k">Status</span> (Backlog → Stories → To Do → In Progress → To Verify → Done)</p>
+  <p style="font-size:14.6px"><b>เหมาะกับ:</b> หลายประเภทงาน, ต้องการเห็นสถานะเชิงประจักษ์และหา<span class="k">คอขวด (Bottleneck)</span>ได้ง่าย, เน้นการสื่อสารระหว่างทีม<br>
+  <b>ไม่เหมาะกับ:</b> โครงการซับซ้อนสูงมีขั้นตอนเยอะ, โครงการแบบ <span class="k">Push system</span><br>
+  <b>ข้อสังเกต:</b> บอร์ดอาจดูยาก, เสี่ยงต่อการไม่อัพเดทงานบนบอร์ด, จัดการเวลา (Timing) ได้ยาก</p>
+  <div class="box tip">
+    <div class="h5">จำสมการนี้ไว้</div>
+    <p style="margin:0"><span class="kk">Scrum + Kanban = Scrumban Methodology</span> — จำกัด work in progress แบบ Kanban แต่มี daily stand up แบบ Scrum</p>
+  </div>
+
+  <h3>2.4 Choosing the Right Method — ปัจจัยในการเลือก 6 ข้อ</h3>
+  <ol>
+    <li><span class="kk">Team size &amp; Company Structure</span> — จำนวนสมาชิก และโครงสร้างองค์กรสนับสนุนแบบใด</li>
+    <li><span class="kk">Cost &amp; Budget</span> — ขนาดเงินลงทุน แหล่งทุน เงินสำรอง</li>
+    <li><span class="kk">Client &amp; Stakeholders Collaboration</span> — ลูกค้าเข้ามามีส่วนร่วมมากน้อยแค่ไหน</li>
+    <li><span class="kk">Ability to take risks</span> — ยอมรับและจัดการความเสี่ยงได้แค่ไหน (พิจารณาร่วมกับขนาดโครงการ)</li>
+    <li><span class="kk">Flexibility</span> — มีพื้นที่ปรับขอบเขตงานระหว่างดำเนินงานหรือไม่</li>
+    <li><span class="kk">Timeline</span> — ระยะเวลาจนถึงกำหนดส่งมอบ</li>
+  </ol>
+  <p style="font-size:14.6px;color:var(--muted)">สถิติจาก Hubstaff (2021): <span class="k">39%</span> ขององค์กรที่สำรวจใช้ <span class="k">hybrid project management practices</span></p>
+</section>

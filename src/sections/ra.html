@@ -1,0 +1,118 @@
+<section id="ra">
+  <div class="unitbar"><span class="unitno">เสริม</span><h2>Requirements Analysis &amp; System Modeling</h2></div>
+  <p class="subtitle">URS/SRS · UML · Use Case Diagram · Activity Diagram</p>
+
+  <h3>เสริม 1 · Requirements Analysis</h3>
+  <div class="def">
+    <b>การวิเคราะห์ความต้องการ</b> = การศึกษาแนวทางหรือการดำเนินงาน เพื่อนำ<span class="k">ข้อมูลที่สกัด</span>ไปใช้ในการ<span class="k">ออกแบบและพัฒนาซอฟต์แวร์</span>
+  </div>
+  <p><b>บทบาท SA (System Analyst / นักวิเคราะห์ระบบ):</b> สกัดความต้องการ → วิเคราะห์ → ออกแบบระบบ → ส่งต่อทีมพัฒนา → จัดทำเอกสารด้านซอฟต์แวร์<br>
+  ความสามารถที่ต้องมี: <span class="k">ความรู้ด้านเทคนิค · ทักษะการวิเคราะห์ · การสื่อสาร · การจัดการ</span></p>
+
+  <h4>ขั้นตอนการระบุข้อกำหนดความต้องการ (Requirement Specification)</h4>
+  <div class="flow">
+    <div class="step"><b>ขั้นที่ 1</b>สกัด และรวบรวม<br><span style="font-size:12.5px;color:var(--muted)">ศึกษาข้อมูลที่เกี่ยวข้อง · ศึกษาปัญหา · ศึกษาความเป็นไปได้ · สกัดความต้องการ</span></div>
+    <div class="step"><b>ขั้นที่ 2</b>วิเคราะห์<br><span style="font-size:12.5px;color:var(--muted)">แยกแยะ · จัดหมวดหมู่ · แบ่งประเภท · URS &amp; SRS</span></div>
+    <div class="step"><b>ขั้นที่ 3</b>ออกแบบระบบ<br><span style="font-size:12.5px;color:var(--muted)">Process Model · Data Model · System Architecture · User Interface</span></div>
+    <div class="step"><b>ขั้นที่ 4</b>จัดทำเอกสาร<br><span style="font-size:12.5px;color:var(--muted)">การวิเคราะห์ระบบ · การออกแบบระบบ</span></div>
+  </div>
+
+  <h4>UR → URS → SRS</h4>
+  <p>เริ่มจากถามว่า <span class="k">"ใครใช้ระบบบ้าง?"</span> แล้วแจกแจงความต้องการตามกลุ่มผู้ใช้ด้วยคำถาม</p>
+  <ul>
+    <li><span class="kk">Who</span> — บทบาทของผู้ใช้ เช่น ผู้ปฏิบัติงาน หัวหน้า ผู้ดูแลระบบ</li>
+    <li><span class="kk">What</span> — สิ่งที่ผู้ใช้จะทำกับระบบ หรือคาดหวังให้ระบบทำอะไร</li>
+    <li><span class="kk">How</span> — ผู้ใช้อยากให้ระบบทำอย่างไร หรือทำไมอยากใช้ระบบ เพื่ออะไร</li>
+  </ul>
+  <div class="box">
+    <div class="h5">ตัวอย่างการเขียนที่ต้องทำเป็น (มักออกเป็นข้อเขียน)</div>
+    <p style="margin:0 0 6px"><b>URS</b> = จัดกลุ่มความต้องการ หรือจัดทำเป็นโมดูล</p>
+    <p style="font-size:14.6px;margin:0 0 10px;padding-left:12px;border-left:2px solid var(--rule)">
+      <span class="k">URS-01</span> ผู้ใช้สามารถเข้าใช้งานด้วยการลงชื่อเข้าใช้ (Login) ตามระดับสิทธิ์การใช้งาน ได้แก่ ผู้ปฏิบัติงาน, หัวหน้า, ผู้ดูแลระบบ
+    </p>
+    <p style="margin:0 0 6px"><b>SRS</b> = ระบุ<span class="k">ฟังก์ชันงานของซอฟต์แวร์</span> ให้บรรลุความต้องการของผู้ใช้ ประกอบด้วย System Functional · Operational Constraint · Services</p>
+    <p style="font-size:14.6px;margin:0;padding-left:12px;border-left:2px solid var(--rule)">
+      <span class="k">SRS-01</span> ระบบสามารถรองรับการ login ได้ด้วย username และ password<br>
+      <span class="k">SRS-02</span> ระบบสามารถตรวจสอบระดับสิทธิ์ผู้ใช้งานที่ login ได้ดังนี้ ผู้ปฏิบัติงาน, หัวหน้า, ผู้ดูแลระบบ
+    </p>
+    <p style="margin:10px 0 0;font-size:14.3px;color:var(--muted)">โครงสร้างคือ <b>1 URS มีได้หลาย SRS อยู่ข้างใต้</b> — URS ขึ้นต้นด้วย "ผู้ใช้/หัวหน้า/แอดมิน สามารถ…" ส่วน SRS ขึ้นต้นด้วย "ระบบสามารถ…"</p>
+  </div>
+
+  <h3>เสริม 2 · Analysis Model &amp; UML</h3>
+  <div class="def">
+    <b>แบบจำลอง (Model)</b> = แผนภาพที่แสดงข้อเท็จจริงหรือกิจกรรมที่เกิดขึ้นในระบบ ด้วยการ<span class="k">ใช้สัญลักษณ์แทนการอธิบายด้วยตัวหนังสือ</span> ซึ่งชัดเจน เข้าใจง่าย และไม่ซับซ้อน<br>
+    <b>แบบจำลองการวิเคราะห์</b> = แบบจำลองที่เขียนขึ้นจาก<span class="k">ข้อกำหนดความต้องการของระบบ</span> สะท้อนหน้าที่การทำงานของระบบ และนำไปใช้ออกแบบต่อ
+  </div>
+  <div class="cols">
+    <div>
+      <div class="h5">1. Behavioral UML Diagram<br><span style="font-weight:400;font-size:13.5px;color:var(--muted)">เชิงลักษณะการทำงาน</span></div>
+      <ul>
+        <li><span class="k">Activity Diagram</span></li>
+        <li><span class="k">Use Case Diagram</span></li>
+        <li><span class="k">Sequence Diagram</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">2. Structural UML Diagram<br><span style="font-weight:400;font-size:13.5px;color:var(--muted)">เชิงโครงสร้าง</span></div>
+      <ul>
+        <li><span class="k">Class Diagram</span></li>
+        <li><span class="k">Entity Relationship Diagram</span></li>
+        <li><span class="k">Data-flow Diagram</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:14.6px"><b>นิยามสั้นที่ต้องท่องได้:</b><br>
+  <span class="k">Use Case Diagram</span> — แผนภาพที่ใช้แสดง<span class="k">ปฏิสัมพันธ์ระหว่างระบบงานภายในและผู้ใช้งาน</span><br>
+  <span class="k">Activity Diagram</span> — แผนภาพการทำงานของระบบ แสดง<span class="k">ขั้นตอนและเงื่อนไข</span>การทำงานแต่ละงาน<br>
+  <span class="k">Sequence Diagram</span> — แผนภาพแสดงปฏิสัมพันธ์ระหว่าง <span class="k">Object</span> โดยเฉพาะการส่ง <span class="k">Message ตามลำดับเวลา</span></p>
+
+  <h4>Use Case Diagram Symbols</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">สัญลักษณ์</th><th>ใช้แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Actor</span><br><span style="font-size:13px;color:var(--muted)">รูปคนก้างปลา</span></td><td>แทน<span class="k">ผู้ใช้งาน กลุ่มผู้ใช้ หรือองค์กร</span>ที่ใช้งาน</td></tr>
+    <tr><td><span class="kk">Use case</span><br><span style="font-size:13px;color:var(--muted)">วงรี</span></td><td><span class="k">ฟังก์ชันงานหรือกระบวนงาน</span> — มัก<span class="k">ขึ้นต้นด้วยคำกริยา</span></td></tr>
+    <tr><td><span class="kk">System</span><br><span style="font-size:13px;color:var(--muted)">กรอบสี่เหลี่ยม</span></td><td>แสดง<span class="k">ขอบเขตของ Use case</span></td></tr>
+    <tr><td><span class="kk">Package</span></td><td>แสดง<span class="k">การจัดกลุ่ม Use case</span> เข้าด้วยกัน มีประโยชน์มากเมื่อแผนภาพซับซ้อน เป็นองค์ประกอบที่<span class="k">ละเว้นได้</span></td></tr>
+    <tr><td><span class="kk">Association</span><br><span style="font-size:13px;color:var(--muted)">เส้น / ลูกศรประ</span></td><td>ความสัมพันธ์ระหว่าง Actor กับ Use case และระหว่าง Use case ด้วยกัน เช่น include/uses, extends</td></tr>
+  </table>
+  </div>
+  <div class="box exam">
+    <div class="h5">include vs extend — ถามแทบทุกครั้ง</div>
+    <p style="margin:0"><span class="kk">&lt;&lt;include&gt;&gt; / uses</span> : The use case is <b>mandatory</b> — ตัวที่ถูก include คือ<span class="k">สิ่งที่ต้องเกิดเสมอ</span><br>
+    <span class="kk">&lt;&lt;extend&gt;&gt;</span> : The use case is <b>optional</b> — scenario สมบูรณ์ได้<span class="k">แม้ไม่มี</span> use case ที่ extend มา<br>
+    <span style="font-size:14.3px;color:var(--muted)">ตัวอย่างจากสไลด์: "จองที่จอดรถ" &lt;&lt;include&gt;&gt; "ออก QR ที่จอด" (ต้องออกเสมอ) / "จ่ายค่าที่จอด" &lt;&lt;extend&gt;&gt; "ใช้ส่วนลด/คูปอง" (จะใช้หรือไม่ใช้ก็ได้)</span></p>
+  </div>
+
+  <h4>Activity Diagram Symbols</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:26%">สัญลักษณ์</th><th>ใช้แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Start Node</span> <span style="font-size:13px;color:var(--muted)">(วงกลมทึบ)</span></td><td>จุดเริ่มต้นของโปรแกรม/กระบวนงาน</td></tr>
+    <tr><td><span class="kk">Action State</span> <span style="font-size:13px;color:var(--muted)">(สี่เหลี่ยมมุมมน)</span></td><td>การทำงานของระบบหรือขั้นตอนการทำงาน มัก<span class="k">ขึ้นต้นด้วยคำกริยา</span></td></tr>
+    <tr><td><span class="kk">Control Flow</span> <span style="font-size:13px;color:var(--muted)">(ลูกศร)</span></td><td>การเชื่อมต่อของระบบไปยังขั้นตอนต่างๆ</td></tr>
+    <tr><td><span class="kk">Decision Node</span> <span style="font-size:13px;color:var(--muted)">(สี่เหลี่ยมข้าวหลามตัด)</span></td><td><span class="k">เงื่อนไข</span>หรือการตัดสินใจ</td></tr>
+    <tr><td><span class="kk">Fork</span></td><td>จุดเชื่อมต่อที่<span class="k">แยกการทำงานเป็นคู่ขนาน</span>ไปยังขั้นตอนถัดไป</td></tr>
+    <tr><td><span class="kk">Join</span></td><td>จุดเชื่อมต่อที่<span class="k">รวมการทำงานก่อนหน้ามากกว่า 1 งาน</span>ไปยังงานถัดไปงานเดียว</td></tr>
+    <tr><td><span class="kk">End State</span> <span style="font-size:13px;color:var(--muted)">(วงกลมทึบมีขอบ)</span></td><td>จุดสิ้นสุดของโปรแกรม/กระบวนงาน</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">องค์ประกอบอื่นที่เห็นในสไลด์: <span class="k">Initial Node</span> · <span class="k">Action</span> · <span class="k">Control Flow</span> · <span class="k">Activity Final Node</span> และการแบ่ง <span class="k">Swimlane</span> ตามผู้รับผิดชอบ (เช่น Author / Moderator)</p>
+
+  <h4>รูปแบบ Activity Diagram 5 แบบ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:22%">รูปแบบ</th><th>ลักษณะการทำงาน</th></tr>
+    <tr><td class="c">1</td><td><span class="kk">Sequence</span></td><td>การทำงาน<span class="k">ตามลำดับ</span> เขียนเป็นลำดับขั้นตอนการทำงาน</td></tr>
+    <tr><td class="c">2</td><td><span class="kk">Selection</span></td><td>เลือกกระทำตามเงื่อนไข มี 2 กระบวนการ: <span class="k">จริงทำอย่างหนึ่ง เท็จทำอีกอย่างหนึ่ง</span></td></tr>
+    <tr><td class="c">3</td><td><span class="kk">Iteration</span></td><td>การทำซ้ำ <span class="k">วน Loop ในขั้นตอนเดิมจนกว่าจะเป็นไปตามเงื่อนไข</span></td></tr>
+    <tr><td class="c">4</td><td><span class="kk">Do while</span></td><td><span class="k">ตรวจสอบเงื่อนไขก่อน</span> ถ้าจริงจึงทำตามคำสั่ง แล้ววนกลับจนกว่าเงื่อนไขเป็นเท็จ</td></tr>
+    <tr><td class="c">5</td><td><span class="kk">Do until</span></td><td><span class="k">ทำคำสั่งก่อน 1 ครั้ง</span> แล้วตรวจสอบเงื่อนไข ถ้าเท็จกลับไปทำซ้ำจนกว่าเงื่อนไขเป็นจริง</td></tr>
+  </table>
+  </div>
+  <div class="box tip">
+    <div class="h5">จุดต่างของ Do while กับ Do until</div>
+    <p style="margin:0"><b>ลำดับ:</b> Do while <span class="k">ตรวจก่อน–ทำทีหลัง</span> (อาจไม่ได้ทำเลย) · Do until <span class="k">ทำก่อน–ตรวจทีหลัง</span> (ทำอย่างน้อย 1 ครั้งแน่นอน)<br>
+    <b>เงื่อนไขออกจาก loop:</b> Do while ออกเมื่อ<span class="k">เท็จ</span> · Do until ออกเมื่อ<span class="k">จริง</span></p>
+  </div>
+</section>

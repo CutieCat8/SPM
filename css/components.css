@@ -1,0 +1,61 @@
+/* ---------- blocks ---------- */
+.box{
+  background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--red);
+  padding:16px 18px;margin:20px 0;
+}
+.box .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:14px;font-weight:700;color:var(--red)}
+.box.tip{border-left-color:var(--teal)}
+.box.tip .h5{color:var(--teal)}
+.box.exam{border-left-color:var(--amber);background:var(--amber-wash);border-color:#f0e2bf}
+.box.exam .h5{color:#795000}
+.box :last-child{margin-bottom:0}
+.box.memory{border-left-color:var(--maroon);background:#fff8f4}
+.box.memory .h5{color:var(--maroon)}
+
+.def{background:var(--teal-wash);border:1px solid #cfe2de;padding:14px 17px;margin:16px 0;font-size:16px}
+.def b{color:var(--teal)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.6px;background:var(--panel)}
+th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#f3f1ec;font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:14px}
+td.c,th.c{text-align:center}
+.tblwrap{overflow-x:auto;margin:18px 0}
+.tblwrap table{margin:0;min-width:520px}
+
+.flow{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:18px 0;
+}
+.flow .step{
+  flex:1 1 132px;background:var(--panel);border:1px solid var(--rule);
+  border-top:3px solid var(--amber);padding:10px 12px;font-size:14px;
+}
+.flow .step b{display:block;font-family:"Bai Jamjuree",sans-serif;font-size:12px;color:var(--red);margin-bottom:3px}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.cols>div{background:var(--panel);border:1px solid var(--rule);padding:14px 16px}
+.cols .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:15px;font-weight:700}
+.cols ul{margin:0;padding-left:18px;font-size:14.6px}
+@media(max-width:620px){.cols{grid-template-columns:1fr}}
+
+.formula{
+  font-family:"Bai Jamjuree",sans-serif;font-size:19px;text-align:center;
+  background:var(--panel);border:1px dashed var(--red);padding:16px;margin:18px 0;color:var(--red);font-weight:600;
+}
+.formula small{display:block;font-family:"IBM Plex Sans Thai",sans-serif;font-size:13px;color:var(--muted);font-weight:400;margin-top:6px}
+
+.tree{font-family:"Bai Jamjuree",sans-serif;font-size:13.5px;line-height:1.85;background:var(--panel);
+  border:1px solid var(--rule);padding:14px 16px;margin:16px 0;white-space:pre;overflow-x:auto;color:#3d3a35}
+.badge{display:inline-block;font:600 12px "Bai Jamjuree",sans-serif;padding:2px 7px;border-radius:999px;background:var(--teal-wash);color:var(--teal);white-space:nowrap}
+.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.formula-grid .formula{margin:0;font-size:17px}
+.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.status-card{border:1px solid var(--rule);background:#fff;padding:13px 15px}
+.status-card.good{border-top:4px solid var(--teal)}
+.status-card.warn{border-top:4px solid var(--amber)}
+.status-card.bad{border-top:4px solid var(--red)}
+.status-card .h5{margin:0 0 5px;font:700 14px "Bai Jamjuree",sans-serif}
+.status-card p{font-size:14px;margin:0}
+.source-note{font-size:13px;color:var(--muted);border-top:1px dotted var(--rule);padding-top:8px;margin-top:22px}
+.backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border:1px solid var(--rule);border-radius:50%;background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 6px 22px rgba(34,32,29,.12);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+.backtop.show{opacity:1;pointer-events:auto;transform:none}
+.backtop:hover{background:var(--ink);color:#fff}

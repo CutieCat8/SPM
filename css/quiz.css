@@ -1,0 +1,11 @@
+/* ---------- quiz ---------- */
+details{background:var(--panel);border:1px solid var(--rule);margin:10px 0;padding:0}
+summary{
+  cursor:pointer;padding:12px 15px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"?";font-family:"Bai Jamjuree",sans-serif;font-weight:700;color:var(--red);flex:0 0 auto}
+summary:hover{background:#faf8f3}
+details[open] summary{border-bottom:1px solid var(--rule);background:#faf8f3}
+.ans{padding:12px 15px 14px 15px;font-size:15.3px;background:var(--red-wash)}
+.ans :last-child{margin-bottom:0}

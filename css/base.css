@@ -1,0 +1,30 @@
+:root{
+  --ink:#22201d;
+  --paper:#fcfbf8;
+  --panel:#ffffff;
+  --red:#c1272d;
+  --red-wash:#fdeceb;
+  --amber:#f2a61c;
+  --amber-wash:#fff6e2;
+  --maroon:#7a1f24;
+  --muted:#6d6a63;
+  --rule:#e4e0d7;
+  --teal:#1f6b63;
+  --teal-wash:#e8f2f0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
+  font-size:16.5px;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 28px 120px}
+
+
+footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font-size:14px}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
