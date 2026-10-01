@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ชีทติวสอบวิชา 960200 Software Project Management สรุป Unit 1–12, UML, สูตร EVA และข้อสอบทบทวน">
+<title>ชีทติวสอบ 960200 Software Project Management for DII</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#22201d;
+  --paper:#fcfbf8;
+  --panel:#ffffff;
+  --red:#c1272d;
+  --red-wash:#fdeceb;
+  --amber:#f2a61c;
+  --amber-wash:#fff6e2;
+  --maroon:#7a1f24;
+  --muted:#6d6a63;
+  --rule:#e4e0d7;
+  --teal:#1f6b63;
+  --teal-wash:#e8f2f0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
+  font-size:16.5px;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 28px 120px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(252,251,248,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.navin{max-width:1180px;margin:0 auto;padding:9px 22px;display:grid;grid-template-columns:minmax(0,1fr) 238px;gap:10px;align-items:center}
+.navlinks{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;min-width:0;padding-bottom:2px}
+.navin a{
+  flex:0 0 auto;text-decoration:none;color:var(--muted);
+  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:13.5px;
+  padding:5px 11px;border-radius:999px;border:1px solid transparent;white-space:nowrap;
+}
+.navin a:hover,.navin a:focus-visible{color:var(--ink);border-color:var(--rule);background:#fff}
+.navin a.active{color:#fff;background:var(--ink);border-color:var(--ink)}
+.navtools{position:relative}
+.navtools input{width:100%;border:1px solid var(--rule);border-radius:999px;background:#fff;padding:7px 34px 7px 13px;font:500 13px "IBM Plex Sans Thai",sans-serif;color:var(--ink)}
+.navtools input:focus{border-color:var(--red);outline:2px solid rgba(193,39,45,.14)}
+.navtools::after{content:"⌕";position:absolute;right:12px;top:3px;color:var(--muted);font-size:20px;pointer-events:none}
+.search-results{display:none;position:fixed;z-index:80;top:58px;right:max(22px,calc((100vw - 1180px)/2 + 22px));width:min(420px,calc(100vw - 44px));max-height:56vh;overflow:auto;background:#fff;border:1px solid var(--rule);box-shadow:0 16px 46px rgba(34,32,29,.16);border-radius:10px;padding:7px}
+.search-results.show{display:block}
+.search-results a{display:block;text-decoration:none;color:var(--ink);padding:9px 11px;border-radius:6px;font-size:14px;line-height:1.45}
+.search-results a:hover,.search-results a:focus-visible{background:var(--amber-wash)}
+.search-results small{display:block;color:var(--red);font-family:"Bai Jamjuree",sans-serif;font-weight:600}
+.reading-progress{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--amber));transition:width .1s linear}
+
+/* ---------- hero ---------- */
+header{padding:48px 0 32px;border-bottom:3px double var(--rule);margin-bottom:44px}
+.code{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:14px;color:var(--maroon);letter-spacing:.04em}
+h1{
+  font-family:"Bai Jamjuree",sans-serif;font-weight:700;
+  font-size:clamp(30px,6vw,46px);line-height:1.14;margin:10px 0 14px;letter-spacing:-.01em;
+}
+.lede{font-size:17px;color:var(--muted);max-width:62ch;margin:0}
+.heromap{
+  margin-top:26px;display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px;
+}
+.heromap a{
+  background:var(--panel);border:1px solid var(--rule);padding:11px 13px;text-decoration:none;color:var(--ink);display:block;
+}
+.heromap a:hover{background:var(--amber-wash)}
+.heromap b{display:block;font-family:"Bai Jamjuree",sans-serif;font-size:12px;color:var(--red);font-weight:600}
+.heromap span{font-size:14px;line-height:1.4;display:block}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero-meta span{font-family:"Bai Jamjuree",sans-serif;font-size:12px;font-weight:600;padding:5px 9px;border:1px solid var(--rule);background:#fff;border-radius:999px;color:var(--muted)}
+
+/* ---------- sections ---------- */
+section{margin-bottom:62px}
+section[id]{scroll-margin-top:78px}
+.unitbar{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:8px}
+.unitno{
+  font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:12.5px;
+  background:var(--ink);color:var(--paper);padding:3px 9px;border-radius:3px;flex:0 0 auto;
+}
+h2{font-family:"Bai Jamjuree",sans-serif;font-weight:700;font-size:clamp(21px,4vw,27px);margin:0;line-height:1.25}
+.subtitle{color:var(--muted);font-size:14.5px;margin:0 0 26px}
+
+h3{
+  font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:19px;
+  margin:38px 0 10px;padding-left:12px;border-left:4px solid var(--amber);
+}
+h4{font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:16px;margin:24px 0 6px;color:var(--maroon)}
+p{margin:0 0 13px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:6px}
+li::marker{color:var(--muted)}
+
+/* ---------- inline ---------- */
+.k{color:var(--red);font-weight:600}
+.kk{color:var(--red);font-weight:600;background:var(--red-wash);padding:1px 4px;border-radius:3px}
+.en{font-family:"Bai Jamjuree",sans-serif;font-size:.94em;color:var(--teal);font-weight:500}
+abbr{text-decoration:none;border-bottom:1px dotted var(--muted)}
+
+/* ---------- blocks ---------- */
+.box{
+  background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--red);
+  padding:16px 18px;margin:20px 0;
+}
+.box .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:14px;font-weight:700;color:var(--red)}
+.box.tip{border-left-color:var(--teal)}
+.box.tip .h5{color:var(--teal)}
+.box.exam{border-left-color:var(--amber);background:var(--amber-wash);border-color:#f0e2bf}
+.box.exam .h5{color:#795000}
+.box :last-child{margin-bottom:0}
+.box.memory{border-left-color:var(--maroon);background:#fff8f4}
+.box.memory .h5{color:var(--maroon)}
+
+.def{background:var(--teal-wash);border:1px solid #cfe2de;padding:14px 17px;margin:16px 0;font-size:16px}
+.def b{color:var(--teal)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14.6px;background:var(--panel)}
+th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:#f3f1ec;font-family:"Bai Jamjuree",sans-serif;font-weight:600;font-size:14px}
+td.c,th.c{text-align:center}
+.tblwrap{overflow-x:auto;margin:18px 0}
+.tblwrap table{margin:0;min-width:520px}
+
+.flow{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:18px 0;
+}
+.flow .step{
+  flex:1 1 132px;background:var(--panel);border:1px solid var(--rule);
+  border-top:3px solid var(--amber);padding:10px 12px;font-size:14px;
+}
+.flow .step b{display:block;font-family:"Bai Jamjuree",sans-serif;font-size:12px;color:var(--red);margin-bottom:3px}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.cols>div{background:var(--panel);border:1px solid var(--rule);padding:14px 16px}
+.cols .h5{margin:0 0 8px;font-family:"Bai Jamjuree",sans-serif;font-size:15px;font-weight:700}
+.cols ul{margin:0;padding-left:18px;font-size:14.6px}
+@media(max-width:620px){.cols{grid-template-columns:1fr}}
+
+.formula{
+  font-family:"Bai Jamjuree",sans-serif;font-size:19px;text-align:center;
+  background:var(--panel);border:1px dashed var(--red);padding:16px;margin:18px 0;color:var(--red);font-weight:600;
+}
+.formula small{display:block;font-family:"IBM Plex Sans Thai",sans-serif;font-size:13px;color:var(--muted);font-weight:400;margin-top:6px}
+
+.tree{font-family:"Bai Jamjuree",sans-serif;font-size:13.5px;line-height:1.85;background:var(--panel);
+  border:1px solid var(--rule);padding:14px 16px;margin:16px 0;white-space:pre;overflow-x:auto;color:#3d3a35}
+.badge{display:inline-block;font:600 12px "Bai Jamjuree",sans-serif;padding:2px 7px;border-radius:999px;background:var(--teal-wash);color:var(--teal);white-space:nowrap}
+.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.formula-grid .formula{margin:0;font-size:17px}
+.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.status-card{border:1px solid var(--rule);background:#fff;padding:13px 15px}
+.status-card.good{border-top:4px solid var(--teal)}
+.status-card.warn{border-top:4px solid var(--amber)}
+.status-card.bad{border-top:4px solid var(--red)}
+.status-card .h5{margin:0 0 5px;font:700 14px "Bai Jamjuree",sans-serif}
+.status-card p{font-size:14px;margin:0}
+.source-note{font-size:13px;color:var(--muted);border-top:1px dotted var(--rule);padding-top:8px;margin-top:22px}
+.backtop{position:fixed;right:20px;bottom:20px;width:42px;height:42px;border:1px solid var(--rule);border-radius:50%;background:#fff;color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 6px 22px rgba(34,32,29,.12);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+.backtop.show{opacity:1;pointer-events:auto;transform:none}
+.backtop:hover{background:var(--ink);color:#fff}
+
+/* ---------- quiz ---------- */
+details{background:var(--panel);border:1px solid var(--rule);margin:10px 0;padding:0}
+summary{
+  cursor:pointer;padding:12px 15px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"?";font-family:"Bai Jamjuree",sans-serif;font-weight:700;color:var(--red);flex:0 0 auto}
+summary:hover{background:#faf8f3}
+details[open] summary{border-bottom:1px solid var(--rule);background:#faf8f3}
+.ans{padding:12px 15px 14px 15px;font-size:15.3px;background:var(--red-wash)}
+.ans :last-child{margin-bottom:0}
+
+footer{border-top:1px solid var(--rule);padding-top:20px;color:var(--muted);font-size:14px}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:760px){
+  .wrap{padding-left:18px;padding-right:18px}
+  .navin{padding-left:14px;padding-right:14px;grid-template-columns:minmax(0,1fr) 190px}
+  .formula-grid,.status-grid{grid-template-columns:1fr}
+  header{padding-top:34px}
+}
+@media(max-width:520px){.navin{grid-template-columns:1fr}.navtools{display:none}.heromap{grid-template-columns:repeat(2,minmax(0,1fr))}.heromap a{padding:9px 10px;overflow-wrap:anywhere}}
+@media print{
+  nav,.backtop{display:none!important}.wrap{max-width:none;padding:0}body{font-size:11pt;background:#fff}
+  section{break-before:page;margin-bottom:28px}header{break-before:auto}.box,table,.cols,.formula-grid{break-inside:avoid}
+  details{break-inside:avoid}details>.ans{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navin">
+    <div class="navlinks">
+    <a href="#u1">1 · ภาพรวม PM</a>
+    <a href="#u2">2 · PLC &amp; SDLC</a>
+    <a href="#u3">3 · Requirements</a>
+    <a href="#u4">4 · คัดเลือกโครงการ</a>
+    <a href="#u5">5 · Initiation &amp; WBS</a>
+    <a href="#u6">6 · Scheduling</a>
+    <a href="#u7">7 · ทีม &amp; ทรัพยากร</a>
+    <a href="#ra">เสริม · Modeling</a>
+    <a href="#u8">8 · Cost</a>
+    <a href="#u9">9 · Control</a>
+    <a href="#uml">UML</a>
+    <a href="#u10">10 · Risk</a>
+    <a href="#u11">11 · Change</a>
+    <a href="#u12">12 · Closure</a>
+    <a href="#quiz">ข้อสอบซ้อมมือ</a>
+    </div>
+    <div class="navtools"><input id="topic-search" type="search" placeholder="ค้นหาหัวข้อ / คำศัพท์" aria-label="ค้นหาหัวข้อในชีท" autocomplete="off"></div>
+  </div>
+  <div class="reading-progress" id="reading-progress"></div>
+</nav>
+<div class="search-results" id="search-results" role="listbox" aria-label="ผลการค้นหา"></div>
+
+<main class="wrap">
+
+<header>
+  <div class="code">960200 · Software Project Management for DII · CAMT CMU</div>
+  <h1>ชีทติวสอบ<br>การบริหารโครงการซอฟต์แวร์</h1>
+  <p class="lede">สรุปครบ Unit 1–12 พร้อมบทเรียน Requirements Analysis และ UML คำที่ระบายเป็น<span class="kk">สีแดง</span>คือคีย์เวิร์ดที่ควรจำ ส่วนกล่องสีเหลืองคือจุดที่ควรฝึกอธิบายก่อนสอบ</p>
+  <div class="hero-meta"><span>12 Units + UML</span><span>สูตรพร้อมตัวอย่าง</span><span>ค้นหาหัวข้อได้</span><span>รองรับมือถือและพิมพ์</span></div>
+
+  <div class="heromap">
+    <a href="#u1"><b>UNIT 1</b><span>นิยามโครงการ, ข้อจำกัด 3 ด้าน, PMBOK, SPM</span></a>
+    <a href="#u2"><b>UNIT 2</b><span>PLC 5 เฟส, SDLC 7 ขั้น, Waterfall/Agile/Scrum/Kanban</span></a>
+    <a href="#u3"><b>UNIT 3</b><span>Need vs Requirement, FR/NFR/Domain, RE Process 7</span></a>
+    <a href="#u4"><b>UNIT 4</b><span>Identification &amp; Selection, Feasibility 5 ด้าน, Scoring</span></a>
+    <a href="#u5"><b>UNIT 5</b><span>SOW, Project Plan, Scope, WBS 5 วิธี</span></a>
+    <a href="#u6"><b>UNIT 6</b><span>Gantt, CPM, PERT, Flow Chart</span></a>
+    <a href="#u7"><b>UNIT 7</b><span>ผู้นำ, โครงสร้างองค์กร 3 แบบ, PM Software</span></a>
+    <a href="#u8"><b>UNIT 8</b><span>Cost Estimate, Budget, Baseline, Cost Multiplier</span></a>
+    <a href="#u9"><b>UNIT 9</b><span>Baseline, EVA, Communication, Agile Control</span></a>
+    <a href="#uml"><b>UML</b><span>ER, Class และ Sequence Diagram</span></a>
+    <a href="#u10"><b>UNIT 10</b><span>Risk Analysis, Response และ Control</span></a>
+    <a href="#u11"><b>UNIT 11</b><span>Change Management, CCB, Change Request</span></a>
+    <a href="#u12"><b>UNIT 12</b><span>Closure, UAT, Sign-off, Maintenance</span></a>
+    <a href="#ra"><b>เสริม</b><span>URS/SRS, Use Case, Activity Diagram</span></a>
+  </div>
+</header>
+
+<!-- =============== UNIT 1 =============== -->
+<section id="u1">
+  <div class="unitbar"><span class="unitno">UNIT 1</span><h2>Overview of PM and SPM in Digital Industry</h2></div>
+  <p class="subtitle">โครงการคืออะไร ทำไมต้องบริหาร และบริหารซอฟต์แวร์ต่างจากบริหารทั่วไปตรงไหน</p>
+
+  <h3>1.1 โครงการ (Project) คืออะไร</h3>
+  <div class="def">
+    <b>Project</b> = กลุ่มของกิจกรรมที่ทำ<span class="k">ภายในระยะเวลาจำกัด</span> เพื่อให้บรรลุเป้าหมายหรือวัตถุประสงค์ โดยใช้<span class="k">งบประมาณที่กำหนดไว้</span> เป็นการดำเนินงานที่เกิดขึ้น<span class="k">เพียงชั่วคราว</span> มีเอกลักษณ์เฉพาะของวิธีการ ภายใต้ทรัพยากร ต้นทุน และเวลาที่จำกัด
+  </div>
+
+  <h4>คุณลักษณะพื้นฐานของโครงการ 4 ข้อ (ออกสอบบ่อยมาก)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:32%">คุณลักษณะ</th><th>คำอธิบาย</th></tr>
+    <tr><td><span class="k">ไม่สามารถทำซ้ำได้</span><br><span class="en">Uniqueness</span></td><td>มีจุดมุ่งหมายเฉพาะ และมีกลุ่มกิจกรรมเฉพาะที่ต่างจากงานประจำ</td></tr>
+    <tr><td><span class="k">มีระยะเวลาเริ่มต้นและสิ้นสุด</span><br><span class="en">Temporary</span></td><td>มีขอบเขตเวลาชัดเจน กำหนดวันเริ่ม–วันจบ รวมถึงเวลาของแต่ละกิจกรรม</td></tr>
+    <tr><td><span class="k">มีความซับซ้อน</span><br><span class="en">Highly Complex</span></td><td>ต้องจัดลำดับก่อน–หลัง บางกิจกรรมทำพร้อมกัน ต้องบูรณาการความรู้หลายฝ่าย</td></tr>
+    <tr><td><span class="k">ใช้ทรัพยากรจำนวนมาก</span><br><span class="en">Require large amount of resources</span></td><td>ทั้งคน งบประมาณ เครื่องมือ และเวลา จึงต้องบริหารให้มีประสิทธิภาพสูงสุด</td></tr>
+  </table>
+  </div>
+
+  <h3>1.2 การบริหารโครงการ (Project Management)</h3>
+  <p>คือ<span class="k">การประยุกต์ใช้ความรู้ ทักษะ เครื่องมือ และเทคนิค</span> เพื่อทำกิจกรรมให้บรรลุวัตถุประสงค์ของโครงการ พร้อมกับจัดการทรัพยากรที่มีอยู่อย่างเหมาะสมที่สุด ให้เกิดทั้ง<span class="k">ประสิทธิภาพ</span> และ<span class="k">ประสิทธิผล</span> ภายในเวลาที่จำกัด</p>
+  <p>พื้นฐานของกระบวนการบริหารโครงการ 5 อย่าง: <span class="k">Planning</span> (วางแผน) → <span class="k">Organizing</span> (จัดองค์กร) → <span class="k">Leading</span> (นำ) → <span class="k">Motivating</span> (จูงใจ) → <span class="k">Controlling</span> (ควบคุม)</p>
+
+  <div class="box exam">
+    <div class="h5">จุดที่มักออกสอบ — ข้อจำกัด 3 ประการของการบริหารโครงการ</div>
+    <p>การบริหารโครงการต้องดำเนินการภายใต้เงื่อนไข 3 ประการ (Triple Constraint) คือ<br>
+    1. <span class="kk">งบประมาณ (Cost/Budget)</span> &nbsp; 2. <span class="kk">เวลา (Time)</span> &nbsp; 3. <span class="kk">ขอบเขตงาน (Scope)</span></p>
+    <p style="margin-top:8px">จำง่ายๆ ว่าถ้าขยับด้านใดด้านหนึ่ง อีกสองด้านจะกระทบเสมอ เช่น เพิ่ม Scope โดยไม่ขยับ Time = ต้องเพิ่ม Cost</p>
+  </div>
+
+  <h4>โครงการ vs งานประจำ (สายงานปกติ)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:26%">ประเด็น</th><th>การบริหารโครงการ</th><th>การบริหารงานในสายปกติ</th></tr>
+    <tr><td>ช่วงเวลา</td><td><span class="k">จำกัด</span> มีวันจบ</td><td><span class="k">ต่อเนื่อง</span> ไม่มีวันจบ</td></tr>
+    <tr><td>การใช้ทรัพยากร</td><td>ใช้ช่วงเวลาเดียวแล้วส่งคืน</td><td>ใช้อย่างต่อเนื่อง</td></tr>
+    <tr><td>ทีมงาน</td><td>ปรับเปลี่ยนตลอดตามสถานการณ์</td><td>ค่อนข้างคงตัวระยะกลาง–ยาว</td></tr>
+    <tr><td>ความชำนาญ</td><td>เน้นคนที่<span class="k">ชำนาญอยู่แล้ว</span> เพราะไม่มีเวลาฝึกอบรม</td><td>เน้น<span class="k">ฝึกอบรม</span>ให้คนพัฒนาตนเองได้</td></tr>
+    <tr><td>ความขัดแย้ง/ต่อรอง</td><td><span class="k">สูง</span> เพราะชั่วคราว + ต้องพึ่งทรัพยากรจากสายงานปกติ</td><td><span class="k">น้อย</span> เพราะทุกอย่างคงตัว</td></tr>
+  </table>
+  </div>
+
+  <h3>1.3 วิชาชีพการบริหารโครงการ &amp; PMBOK</h3>
+  <p>การบริหารโครงการเป็น<span class="k">สหวิทยาการ</span> จึงมีการตั้งสมาคมวิชาชีพในสหรัฐอเมริกาชื่อ <span class="kk">Project Management Institute (PMI)</span> ซึ่งรวบรวมองค์ความรู้ไว้เรียกว่า <span class="kk">PMBOK — Project Management Body of Knowledge</span> ประกอบด้วย <span class="k">10 หมวดหมู่ความรู้</span></p>
+  <div class="tblwrap">
+  <table>
+    <tr><td>1. Integration Management</td><td>6. Human Resource Management</td></tr>
+    <tr><td>2. Scope Management</td><td>7. Communications Management</td></tr>
+    <tr><td>3. Time Management</td><td>8. Risk Management</td></tr>
+    <tr><td>4. Cost Management</td><td>9. Procurement Management</td></tr>
+    <tr><td>5. Quality Management</td><td>10. Stakeholders Management</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--muted)">เทคนิคจำ: <b>I-S-T-C-Q-H-C-R-P-S</b> — สามตัวแรกคือ Integration + สามเหลี่ยม Scope/Time/Cost แล้วต่อด้วย Quality, HR, Communication, Risk, Procurement, Stakeholder</p>
+
+  <h3>1.4 ความสำคัญและแหล่งที่มาของโครงการ</h3>
+  <p>โครงการเกิดขึ้นเพื่อผลักดัน <span class="k">Strategic Intent</span> (เจตนารมณ์เชิงกลยุทธ์) → <span class="k">Vision</span> → <span class="k">Mission</span> → ลงสู่ <span class="k">Operational Management</span></p>
+  <div class="cols">
+    <div>
+      <div class="h5" style="color:var(--red)">Top-down</div>
+      <p style="font-size:14.6px;margin:0">โครงการเกิดจาก<span class="k">เจตนารมณ์ของผู้บริหาร</span> ผ่านนโยบายและกลยุทธ์ขององค์กร</p>
+    </div>
+    <div>
+      <div class="h5" style="color:var(--red)">Bottom-up</div>
+      <p style="font-size:14.6px;margin:0">โครงการเกิดจาก<span class="k">ปัญหาในสายงานปกติ</span> หรือโอกาสจากความเปลี่ยนแปลงภายใน/ภายนอก</p>
+    </div>
+  </div>
+
+  <h4>ความจำเป็นในการจัดทำโครงการ — แบ่ง 2 สถานการณ์</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">สถานการณ์เชิงรับ (เน้นแก้ปัญหา)</div>
+      <ul>
+        <li>ปัญหาด้านการบริหารทั่วไปที่เกิดซ้ำๆ</li>
+        <li>ข้อจำกัดด้านทรัพยากร (ทรัพยากรแพงขึ้น)</li>
+        <li>ความเปลี่ยนแปลงของความต้องการลูกค้า</li>
+        <li>ความก้าวหน้าด้านเทคโนโลยี</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">สถานการณ์เชิงรุก (เน้นสร้างโอกาส)</div>
+      <ul>
+        <li>เพิ่มความรวดเร็วและความถูกต้อง</li>
+        <li>พัฒนาคุณภาพสินค้าและบริการ</li>
+        <li>เสนอสินค้าหรือบริการใหม่ (Value Creation)</li>
+        <li>เตรียมความพร้อมสำหรับภาวะวิกฤต</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>ปัญหาที่พบบ่อยในการบริหารโครงการ</h4>
+  <ol>
+    <li><span class="k">ล่าช้า / ล้มเหลว</span> (Late, Fail)</li>
+    <li><span class="k">ไม่ตรงความคาดหวังของลูกค้า</span> (Incomplete customer expectation)</li>
+    <li><span class="k">คุณภาพต่ำ ความน่าเชื่อถือต่ำ</span> (Low quality, Low reliability)</li>
+    <li><span class="k">งบบานปลาย</span> (Over budget)</li>
+  </ol>
+
+  <div class="box">
+    <div class="h5">สถิติที่อาจถูกหยิบมาเป็นตัวเลือก</div>
+    <ul style="margin-bottom:0">
+      <li><span class="k">70%</span> ของโครงการทั้งหมดล้มเหลว</li>
+      <li><span class="k">42%</span> ของบริษัทไม่เข้าใจความจำเป็นหรือความสำคัญของการบริหารโครงการ</li>
+      <li><span class="k">55%</span> ของ PM ระบุว่า budget overrun คือสาเหตุของความล้มเหลว</li>
+      <li><span class="k">Stakeholders engagement</span> คือกระบวนการ PM ที่มีคุณค่ามากที่สุด</li>
+      <li><span class="k">62%</span> ของโครงการที่สำเร็จ มี sponsor ที่ให้การสนับสนุน</li>
+      <li>องค์กรที่ทำได้ดี (High-performing) ปิดโครงการได้ตรงเวลา/งบ/ขอบเขต <span class="k">90% ขึ้นไป</span></li>
+      <li><span class="k">78%</span> ของโครงการเจอปัญหางบเกินหรือตารางเวลาล่าช้า</li>
+    </ul>
+  </div>
+
+  <h3>1.5 Software Project Management (SPM)</h3>
+  <div class="def">
+    <b>SPM</b> = การจัดการกิจกรรมการผลิตหรือพัฒนาซอฟต์แวร์ ให้อยู่ในขอบเขตของการทำงานและระยะเวลาที่กำหนด โดยมี<span class="k">การตรวจสอบอย่างเป็นขั้นตอน</span> เพื่อให้มั่นใจว่าซอฟต์แวร์มีคุณภาพ ตรงความต้องการผู้ใช้ ด้วยต้นทุนคน เวลา และงบประมาณที่เหมาะสม<br>
+    <span style="font-size:14.5px">แก่นสามคำ: <span class="k">Manage</span> (จัดการงาน) → <span class="k">Allocate</span> (จัดสรรทรัพยากร) → <span class="k">Timing</span> (จัดการเวลา)</span>
+  </div>
+
+  <h4>ความท้าทายของ SPM 4 ข้อ</h4>
+  <ol>
+    <li><span class="kk">ซอฟต์แวร์เป็นผลิตภัณฑ์ที่จับต้องไม่ได้</span> — ผู้บริหารมองไม่เห็นผลกระทบชัดเจนเมื่องานไม่เป็นไปตามแผน</li>
+    <li><span class="kk">กระบวนการผลิตซอฟต์แวร์ไม่มีมาตรฐานที่แน่นอน</span> — ขึ้นกับสภาพแวดล้อมองค์กร ใช้กับองค์กรอื่นอาจไม่เหมาะ</li>
+    <li><span class="kk">แต่ละโครงการมีลักษณะพิเศษต่างกัน</span> — ประสบการณ์เดิมอาจล้าสมัย ใช้กับเทคโนโลยีใหม่ไม่ได้</li>
+    <li><span class="kk">ความต้องการเปลี่ยนแปลงอยู่เสมอ</span> — กระทบทั้งเวลา งบประมาณ และคุณภาพ</li>
+  </ol>
+  <p style="font-size:14.6px;color:var(--muted)">คู่ขัดแย้งที่อาจารย์ยกมา: คุณภาพ ↔ ความน่าเชื่อถือ / สมรรถนะ ↔ ความยืดหยุ่น / ความสร้างสรรค์ ↔ การเปิดเผย / โครงสร้าง ↔ กระบวนการ</p>
+
+  <h4>ประเภทของโครงการ (Type of Project) 5 ประเภท</h4>
+  <ul>
+    <li><span class="k">ด้านการวิจัยและทดลอง</span> — ตั้งสมมติฐาน ควบคุมตัวแปร หาแนวทางแก้ปัญหา</li>
+    <li><span class="k">ด้านทฤษฎี</span> — นำทฤษฎีมาตั้งสมมติฐาน ศึกษาเชิงลึกจนเป็นผู้เชี่ยวชาญ</li>
+    <li><span class="k">ด้านสิ่งประดิษฐ์และนวัตกรรม</span> — สร้างสิ่งที่โลกยังไม่เคยมี</li>
+    <li><span class="k">ด้านการสำรวจ</span> — ลงพื้นที่จริง ไม่ต้องกำหนดตัวแปรหรือสมมติฐาน</li>
+    <li><span class="k">ด้านพัฒนาธุรกิจ</span> — ร่วมมือระหว่างภาคธุรกิจกับหน่วยวิจัย/ภาครัฐ</li>
+  </ul>
+</section>
+
+<!-- =============== UNIT 2 =============== -->
+<section id="u2">
+  <div class="unitbar"><span class="unitno">UNIT 2</span><h2>SPM Process and Methodology</h2></div>
+  <p class="subtitle">วงจรโครงการ (PLC) วงจรพัฒนาซอฟต์แวร์ (SDLC) และวิธีการบริหารแบบต่างๆ</p>
+
+  <h3>2.1 Project Life Cycles (PLC) — 5 ขั้นตอน</h3>
+  <div class="flow">
+    <div class="step"><b>1 INITIATION</b>การกำหนดค่าเริ่มต้น</div>
+    <div class="step"><b>2 PLANNING</b>การวางแผน</div>
+    <div class="step"><b>3 EXECUTION</b>การดำเนินการ</div>
+    <div class="step"><b>4 MONITORING &amp; CONTROL</b>ตรวจสอบและควบคุม</div>
+    <div class="step"><b>5 CLOSURE</b>การปิดโครงการ</div>
+  </div>
+
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">เฟส</th><th>กิจกรรมหลักที่ต้องจำ</th></tr>
+    <tr>
+      <td><span class="k">Initiation</span><br>การเริ่มต้นโครงการ</td>
+      <td>นิยามโครงการและกำหนดเป้าหมาย · <span class="k">ศึกษาความเป็นไปได้</span> · กำหนดขอบเขตเบื้องต้น · <span class="k">ประเมินมูลค่าโครงการ</span> · กำหนดผู้มีส่วนได้ส่วนเสีย · พัฒนาเอกสารสิทธิ์ของโครงการ</td>
+    </tr>
+    <tr>
+      <td><span class="k">Planning</span><br>การวางแผน</td>
+      <td>กำหนดขอบเขตโครงการ · สร้างแผนโครงการ · วางแผนงบประมาณ · กำหนดบทบาทหน้าที่และความรับผิดชอบ</td>
+    </tr>
+    <tr>
+      <td><span class="k">Execution</span><br>การดำเนินโครงการ</td>
+      <td>จัดสรรและจัดการทรัพยากร · สร้างผลิตภัณฑ์หรือบริการ · พบปะพูดคุยเพื่อแก้ปัญหา</td>
+    </tr>
+    <tr>
+      <td><span class="k">Monitoring &amp; Control</span><br>ตรวจสอบและควบคุม</td>
+      <td>ติดตามความคืบหน้า · ติดตามการใช้ทรัพยากรและต้นทุน · ตรวจสอบความสอดคล้องกับแผน · ตอบสนองต่อการเปลี่ยนแปลงและป้องกันการหยุดชะงัก</td>
+    </tr>
+    <tr>
+      <td><span class="k">Closure</span><br>การปิดโครงการ</td>
+      <td>ส่งมอบผลิตภัณฑ์/บริการ · ทบทวนผลงานโครงการ · จัดทำเอกสารรายงานผลสำเร็จ</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">ประเด็นที่ชอบถาม</div>
+    <ul style="margin-bottom:0">
+      <li>การอนุมัติเอกสารสิทธิ์โครงการในเฟส Initiation มีผลได้ <span class="kk">3 กรณี</span> คือ <b>ให้ดำเนินการต่อ</b> / <b>ให้ชะลอไว้ก่อน</b> / <b>ปฏิเสธโครงการ</b></li>
+      <li>ทั้ง 5 เฟส<span class="k">ทำงานอย่างสัมพันธ์กันและคาบเกี่ยวกัน</span> ไม่ได้จบเฟสหนึ่งแล้วค่อยเริ่มอีกเฟส — จุดเริ่มต้นและสิ้นสุดของเนื้องานแต่ละกระบวนการจะ<span class="k">ทับซ้อน</span>กัน</li>
+      <li>ถ้าดูกราฟ Activity Volume: <span class="k">Execution มี activity volume สูงสุด</span> ส่วน Closure จะพุ่งสั้นๆ ตอนท้าย</li>
+      <li>กิจกรรมในเฟส Planning ที่ถามบ่อย: Scope Definition and Planning, <span class="k">Activity Definition</span>, <span class="k">Work Breakdown Structure</span>, Activity Sequence, Activity Duration Estimation, Activity Resource Estimation, Schedule Development, Cost Estimation, Cost Budgeting, Quality Planning, HR Planning, Communication Planning, Risk Management Planning, Purchase Plan, Contracting</li>
+      <li>ในเฟส Closure กรณีซอฟต์แวร์ หลักฐานการยอมรับจากลูกค้ามักเป็น <span class="kk">User Acceptance Test (UAT)</span></li>
+    </ul>
+  </div>
+
+  <h4>วัฏจักรโครงการ: เอกชน vs ภาครัฐ</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">องค์กรภาคเอกชน</div>
+      <p style="font-size:14.6px;margin:0">กำหนดแนวคิดโครงการ (Project Ideas) → วางแผนศึกษาและวิเคราะห์ความเป็นไปได้ (<span class="k">Feasibility Studies Report</span>) → ดำเนินงานโครงการ (ทำเองหรือจ้างเหมา ผ่าน <span class="k">TOR</span>) → ยุติและส่งมอบ</p>
+    </div>
+    <div>
+      <div class="h5">องค์กรภาครัฐ (4 ขั้นวน)</div>
+      <p style="font-size:14.6px;margin:0">1) วางแผน ประเมินผล และออกแบบ → 2) คัดเลือก อนุมัติ เตรียมการ → 3) ดำเนินงาน ควบคุม ส่งมอบ → 4) <span class="k">ประเมินผลและกลั่นกรอง</span> (ปรับนโยบายและแผน) แล้ววนกลับเข้าสู่ยุทธศาสตร์</p>
+    </div>
+  </div>
+
+  <h3>2.2 Software Development Life Cycles (SDLC) — 7 ขั้นตอน</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:5%" class="c">#</th><th style="width:27%">ขั้นตอน</th><th>สาระสำคัญ / ผลลัพธ์</th></tr>
+    <tr><td class="c">1</td><td><span class="k">Ideation / Planning</span></td><td>กำหนด Objective, Expected Outcome, Time, Scope, Resource, Stakeholders — ข้อมูลยิ่งละเอียด ยิ่งลดความเสี่ยง</td></tr>
+    <tr><td class="c">2</td><td><span class="k">Analysis / Defining Requirements</span></td><td>PM + <span class="k">System Analyst</span> + <span class="k">Product Owner</span> เก็บและวิเคราะห์ความต้องการ แบ่งเป็น Domain / Functional / Non-functional</td></tr>
+    <tr><td class="c">3</td><td><span class="k">Design &amp; Prototyping</span></td><td>Architecture, UX/UI, เลือกภาษา, Database, Communication &amp; Security → ได้ <span class="k">System Design Specification</span></td></tr>
+    <tr><td class="c">4</td><td><span class="k">Development / Implementation</span></td><td>Coding, Compile Code, Finding &amp; Fixing Errors, <span class="k">Source Code Management</span> (เวอร์ชัน)</td></tr>
+    <tr><td class="c">5</td><td><span class="k">Testing</span></td><td>สร้าง <span class="k">Test case</span> — Unit Test, Integration Test, Functional Test, Acceptance Test</td></tr>
+    <tr><td class="c">6</td><td><span class="k">Deployment</span></td><td>Installation / Release to market, Setting up in real environment, <span class="k">Training</span>, คู่มือ, แผน Support</td></tr>
+    <tr><td class="c">7</td><td><span class="k">Operation &amp; Maintenance</span></td><td><span class="k">Correction</span> (แก้ข้อผิดพลาด), <span class="k">Prevention</span> (ป้องกันล่วงหน้า), <span class="k">Investigation</span> (ติดตามประเมิน), <span class="k">Improvement</span> (รวบรวมคำร้องขอปรับปรุง)</td></tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">คำถามคลาสสิก: PLC ต่างจาก SDLC อย่างไร</div>
+    <p><span class="kk">PLC</span> คือวงจรการ<b>บริหารโครงการ</b> ครอบคลุมทุกประเภทโครงการ เน้นการจัดการคน เวลา งบประมาณ ขอบเขต (Initiation → Closure)</p>
+    <p><span class="kk">SDLC</span> คือวงจรการ<b>ผลิต/พัฒนาตัวซอฟต์แวร์</b> เน้นกิจกรรมทางเทคนิค (วิเคราะห์ → ออกแบบ → เขียนโปรแกรม → ทดสอบ → ติดตั้ง → บำรุงรักษา)</p>
+    <p style="margin-bottom:0">ความสัมพันธ์: <b>SDLC ฝังอยู่ภายใน PLC</b> โดยเฉพาะช่วง Execution — พูดง่ายๆ PLC คือ "บริหารโครงการ" ส่วน SDLC คือ "สร้างของ"</p>
+  </div>
+
+  <h3>2.3 Project Management Methodologies</h3>
+
+  <h4>Waterfall Model <span style="font-weight:400;color:var(--muted);font-size:14px">— แบบดั้งเดิม, ทิศทางเดียว</span></h4>
+  <p>Requirements → Design → Development → Testing → Deployment → Maintenance โดย<span class="k">แต่ละขั้นต้องเสร็จก่อนเริ่มขั้นถัดไป</span></p>
+  <div class="cols">
+    <div>
+      <div class="h5">เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่มั่นใจว่า Requirement <span class="k">จะไม่เปลี่ยน</span>ระหว่างทาง</li>
+        <li>ผู้เกี่ยวข้องทราบภาพรวมว่าต้องการอะไร</li>
+        <li>คาดการณ์<span class="k">ผลลัพธ์ที่แน่นอน</span>ได้</li>
+        <li>องค์กรที่มีระบบแบบแผน ติดตามงานเอกสารเป็นระบบ</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ไม่เหมาะกับ / ข้อสังเกต</div>
+      <ul>
+        <li>โครงการที่<span class="k">เปลี่ยนแปลงอยู่เสมอ</span></li>
+        <li>โครงการที่ยังไม่เห็นภาพผลลัพธ์สุดท้าย</li>
+        <li>วางแผนตั้งแต่ต้นจนจบให้แม่นยำได้ยาก</li>
+        <li>ผิดพลาดขั้นหนึ่ง <span class="k">ย้อนกลับไปแก้ยาก</span> และกระทบทั้งระบบ</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Agile Methodology <span style="font-weight:400;color:var(--muted);font-size:14px">— Iterative model</span></h4>
+  <p>ทำงาน<span class="k">หมุนวน ทวนซ้ำกระบวนการ</span> รอบละสั้นๆ (มักราว 2–3 เดือนต่อ iteration) ทีมตรวจสอบและให้ feedback ระหว่างทางโดย<span class="k">ไม่ต้องรอขั้นตอนก่อนหน้าเสร็จ</span></p>
+  <p>หลักการทำงาน 3 ส่วน: <span class="kk">Collaboration</span> (ทำงานแบบมีส่วนร่วม) · <span class="kk">Speed</span> (รวดเร็ว) · <span class="kk">Open to Data-driven Change</span> (ขับเคลื่อนด้วยการเปลี่ยนแปลงข้อมูล)</p>
+  <div class="cols">
+    <div>
+      <div class="h5">เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่เปลี่ยนแปลงบ่อย</li>
+        <li>ยังไม่เห็นภาพผลลัพธ์สุดท้ายชัดเจน</li>
+        <li>มีเวลาดำเนินการจำกัด</li>
+        <li>Stakeholder ต้องการมีส่วนร่วมทุกขั้นตอน — <span class="k">มุ่งเน้นทีมงานมากกว่ากระบวนการ</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ไม่เหมาะกับ</div>
+      <ul>
+        <li>โครงการที่มี<span class="k">งานเอกสารจำนวนมาก</span></li>
+        <li>โครงการที่กำหนดสิ่งที่ต้องส่งมอบไว้ชัดเจนแล้ว</li>
+        <li>ทีมงานไม่มีแรงจูงใจมากพอ</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Scrum Framework <span style="font-weight:400;color:var(--muted);font-size:14px">— Incremental model</span></h4>
+  <p>เครื่องมือบริหารแบบ Agile ที่ให้<span class="k">ทีมช่วยกันรุมงาน</span> <span class="k">ไม่มีผู้บริหารโครงการ นักออกแบบ/วิเคราะห์ระบบ หรือนักทดสอบแยกตำแหน่ง</span> แต่มี 3 บทบาทคือ</p>
+  <ul>
+    <li><span class="kk">Product Owner</span> — ประเมินคุณค่าและจัดลำดับความสำคัญของงานให้ทีม</li>
+    <li><span class="kk">Scrum Master</span> — ควบคุมดูแลและกำจัดอุปสรรคที่ขัดขวางการทำงานของทีม</li>
+    <li><span class="kk">Team</span> — ทำงานแบบ Self-management ประกอบด้วย <span class="k">3–9 คน</span> รวมทุกตำแหน่งเข้าด้วยกัน เพื่อให้ทำงานได้จนจบโดยไม่ต้องข้ามแผนก</li>
+  </ul>
+  <p>ทฤษฎีสกรัม 3 เสา: <span class="kk">Transparency</span> · <span class="kk">Inspection</span> · <span class="kk">Adoption</span><br>
+  วงจร: Product Vision → User Stories → Product Backlog → Planning meeting → <span class="k">Sprint Backlog</span> → Sprint (2–4 สัปดาห์) + <span class="k">Daily Stand Up</span> → Deployment → <span class="k">Sprint Review + Sprint Retrospective</span></p>
+  <p style="font-size:14.6px"><b>เหมาะกับ:</b> โครงการที่ต้องการผลลัพธ์รวดเร็วและติดตามสม่ำเสมอ, งานพัฒนาเทคโนโลยี/ซอฟต์แวร์, องค์กรแบบ <span class="k">Flat Organization</span><br>
+  <b>ไม่เหมาะกับ:</b> ทีมข้ามหลายแผนกในองค์กรใหญ่, โครงการที่กำหนด deliverable ชัดเจนแล้ว, ทีมไม่มีแรงจูงใจ, องค์กรแบบ <span class="k">High-hierarchical Structure</span></p>
+
+  <h4>Kanban Method <span style="font-weight:400;color:var(--muted);font-size:14px">— "คัมบัง" = ป้ายแสดงสัญลักษณ์</span></h4>
+  <p>เครื่องมือ Agile ที่ใช้<span class="k">กระดานและการ์ด</span> คิดค้นเพื่อบริหารอุตสาหกรรมการผลิตแบบ <span class="kk">Just-in-Time (JIT)</span> กระดานออกแบบให้เห็น <span class="k">Workflow ทั้งหมด</span> และแบ่งงานตาม <span class="k">Status</span> (Backlog → Stories → To Do → In Progress → To Verify → Done)</p>
+  <p style="font-size:14.6px"><b>เหมาะกับ:</b> หลายประเภทงาน, ต้องการเห็นสถานะเชิงประจักษ์และหา<span class="k">คอขวด (Bottleneck)</span>ได้ง่าย, เน้นการสื่อสารระหว่างทีม<br>
+  <b>ไม่เหมาะกับ:</b> โครงการซับซ้อนสูงมีขั้นตอนเยอะ, โครงการแบบ <span class="k">Push system</span><br>
+  <b>ข้อสังเกต:</b> บอร์ดอาจดูยาก, เสี่ยงต่อการไม่อัพเดทงานบนบอร์ด, จัดการเวลา (Timing) ได้ยาก</p>
+  <div class="box tip">
+    <div class="h5">จำสมการนี้ไว้</div>
+    <p style="margin:0"><span class="kk">Scrum + Kanban = Scrumban Methodology</span> — จำกัด work in progress แบบ Kanban แต่มี daily stand up แบบ Scrum</p>
+  </div>
+
+  <h3>2.4 Choosing the Right Method — ปัจจัยในการเลือก 6 ข้อ</h3>
+  <ol>
+    <li><span class="kk">Team size &amp; Company Structure</span> — จำนวนสมาชิก และโครงสร้างองค์กรสนับสนุนแบบใด</li>
+    <li><span class="kk">Cost &amp; Budget</span> — ขนาดเงินลงทุน แหล่งทุน เงินสำรอง</li>
+    <li><span class="kk">Client &amp; Stakeholders Collaboration</span> — ลูกค้าเข้ามามีส่วนร่วมมากน้อยแค่ไหน</li>
+    <li><span class="kk">Ability to take risks</span> — ยอมรับและจัดการความเสี่ยงได้แค่ไหน (พิจารณาร่วมกับขนาดโครงการ)</li>
+    <li><span class="kk">Flexibility</span> — มีพื้นที่ปรับขอบเขตงานระหว่างดำเนินงานหรือไม่</li>
+    <li><span class="kk">Timeline</span> — ระยะเวลาจนถึงกำหนดส่งมอบ</li>
+  </ol>
+  <p style="font-size:14.6px;color:var(--muted)">สถิติจาก Hubstaff (2021): <span class="k">39%</span> ขององค์กรที่สำรวจใช้ <span class="k">hybrid project management practices</span></p>
+</section>
+
+<!-- =============== UNIT 3 =============== -->
+<section id="u3">
+  <div class="unitbar"><span class="unitno">UNIT 3</span><h2>Requirements in Software Project</h2></div>
+  <p class="subtitle">ความต้องการคืออะไร มีกี่ประเภท และเก็บมาด้วยกระบวนการอะไร</p>
+
+  <h3>3.1 Needs VS Requirements</h3>
+  <div class="def">
+    <b>Requirement (ความต้องการ)</b> = สิ่งที่ต้อง<span class="k">ทำให้สำเร็จ</span> เพื่อบรรลุความต้องการ (Need) หรือเป้าหมาย (Goal)
+  </div>
+  <div class="box">
+    <div class="h5">ตัวอย่างที่อาจารย์ใช้ — ข้อไหนคือ Requirement</div>
+    <p style="margin:0">1. ความอยากดื่มน้ำ → นี่คือ <span class="kk">Need / Goal</span> (ความรู้สึกที่ต้องการให้ถูกเติมเต็ม)<br>
+    2. ความอยากหาซื้อน้ำมาดื่มเพื่อดับกระหาย → นี่คือ <span class="kk">Requirement</span> (สิ่งที่ต้องทำเพื่อให้ Need สำเร็จ)</p>
+  </div>
+
+  <h3>3.2 Type of System Requirement — 3 ประเภทหลัก</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:22%">ประเภท</th><th>นิยาม</th><th style="width:34%">ตัวอย่าง</th></tr>
+    <tr>
+      <td><span class="kk">Functional Requirement</span></td>
+      <td>หน้าที่หลัก / ส่วนการทำงานหรือบริการที่ซอฟต์แวร์ควรมี — เป็นสิ่งที่ระบบ <span class="k">"Should Do"</span> เพื่อตอบสนองผู้ใช้</td>
+      <td>ผู้ใช้ค้นหาหนังสือได้ด้วย ISBN/ชื่อ/ผู้แต่ง · Login ด้วย Username &amp; Password · ระบบออกรายงาน Export เป็น .pdf, .docx, .xlsx ได้</td>
+    </tr>
+    <tr>
+      <td><span class="kk">Non-Functional Requirement</span><br><span style="font-size:13px;color:var(--muted)">= Quality Attributes</span></td>
+      <td>ไม่เกี่ยวกับหน้าที่หลักโดยตรง แต่สนใจว่าระบบต้องมี<span class="k">คุณภาพ</span>ด้านใด</td>
+      <td>ทำงานได้ 24 ชม. · รองรับ 1 ล้าน user/วัน · ตอบสนองภายใน 2 วินาที · เก็บข้อมูลตามมาตรฐาน <span class="k">PDPA</span> · session timeout 5 นาที · รองรับ 3 ภาษา</td>
+    </tr>
+    <tr>
+      <td><span class="kk">Domain Requirement</span></td>
+      <td>เกี่ยวกับ<span class="k">งานหลักของระบบธุรกิจ</span>ที่ต้องการซอฟต์แวร์มาสนับสนุนโดยเฉพาะ อาจเป็นเงื่อนไขของฟังก์ชัน หรือเงื่อนไขที่ใช้คำนวณผลลัพธ์</td>
+      <td>สูตรคิดค่าโดยสารตามระยะทางของ Grab · เงื่อนไขการคิดค่าปรับหนังสือเกินกำหนด</td>
+    </tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px"><b>หมวดของ NFR ที่ควรจำ:</b> <span class="k">Speed, Security, Portability, Compatibility, Capacity</span> (เช่น storage), <span class="k">Reliability</span> (จำนวน/ร้อยละความล้มเหลว, เวลาระหว่างความล้มเหลว), <span class="k">Environment</span> (ตารางการทำงาน สภาพอากาศ), <span class="k">Localization</span> (ภาษา สกุลเงิน timezone)</p>
+
+  <h4>Business Requirement — ระดับที่ 0</h4>
+  <p>ความต้องการ<span class="k">เชิงธุรกิจ</span>ที่กำหนดโดย stakeholder เป็นความต้องการ<span class="k">ระดับแรกสุด</span>เมื่อเริ่มโครงการ มีจำนวนไม่มาก ถือว่าอยู่ในระดับ <span class="kk">"problem space"</span></p>
+  <p style="font-size:14.6px">ตัวอย่าง: Time to Market · Low Cost · Support a Variety of Customer Behavior · Highly Customizable · Increase Net Profit 10% · Reduce Paper Work · High Competitiveness · Build Awareness</p>
+
+  <h4>ตารางรหัสประเภทความต้องการ (Encoding)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:12%">รหัส</th><th style="width:30%">ประเภท</th><th>คำอธิบาย</th></tr>
+    <tr><td class="c"><span class="k">F</span></td><td>Functional Requirement</td><td>ฟังก์ชันของระบบที่มีปฏิสัมพันธ์กับผู้ใช้</td></tr>
+    <tr><td class="c"><span class="k">D</span></td><td>Data Requirement</td><td>ความต้องการด้านข้อมูล</td></tr>
+    <tr><td class="c"><span class="k">B</span></td><td>Behavior Requirement</td><td>ด้านพฤติกรรมหรือการตอบสนองของระบบ</td></tr>
+    <tr><td class="c"><span class="k">I</span></td><td>Interface Requirement</td><td>การเชื่อมต่อกับระบบอื่น รวมถึงส่วนติดต่อผู้ใช้</td></tr>
+    <tr><td class="c"><span class="k">P</span></td><td>Output Requirement</td><td>ผลลัพธ์ที่ได้จากระบบ</td></tr>
+  </table>
+  </div>
+
+  <h3>3.3 Requirement Engineering Process — 7 กระบวนการ</h3>
+  <div class="def">
+    <b>วิศวกรรมความต้องการ</b> = กระบวนการที่ทำให้เข้าใจและเข้าถึงความต้องการของลูกค้าได้อย่างแท้จริง ด้วยการ<span class="k">สกัด ตรวจสอบ และนิยาม</span>ความต้องการ เพื่อสร้างเป็นข้อกำหนดสำหรับพัฒนาในขั้นถัดไป <span style="font-size:13.5px;color:var(--muted)">[Jawadekar, 2004]</span>
+  </div>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:30%">กระบวนการ</th><th>สิ่งที่ทำ</th></tr>
+    <tr><td class="c">1</td><td><span class="k">การเริ่มต้นวิเคราะห์</span><br><span class="en">Inception</span></td><td>ตั้ง<span class="k">คำถามเปิด</span>เพื่อเข้าใจพื้นฐานของปัญหาและแนวทางแก้ สร้างการสื่อสารและความร่วมมือระหว่างลูกค้ากับผู้พัฒนา</td></tr>
+    <tr><td class="c">2</td><td><span class="k">การสกัดความต้องการ</span><br><span class="en">Elicitation</span></td><td>สอบถามว่าต้องการอะไร เป้าหมายของระบบคืออะไร ปัญหาที่พบ: หาขอบเขตของปัญหา, ทำความเข้าใจปัญหา, <span class="k">ความไม่แน่นอน</span></td></tr>
+    <tr><td class="c">3</td><td><span class="k">การขยายรายละเอียด</span><br><span class="en">Elaboration</span></td><td>ขยายและแจกแจงสารสนเทศจากลูกค้า → <span class="k">แบ่งกลุ่มความต้องการ</span> และ<span class="k">สร้างแบบจำลอง</span>เพื่อให้ทีมเข้าใจตรงกัน</td></tr>
+    <tr><td class="c">4</td><td><span class="k">การเจรจาต่อรอง</span><br><span class="en">Negotiation</span></td><td>กรณีลูกค้าต่อรองเกินกว่าที่ระบบจะทำได้ ต้องประสานความขัดแย้งและปรับเปลี่ยนความต้องการบางส่วนให้ทุกฝ่ายยอมรับได้</td></tr>
+    <tr><td class="c">5</td><td><span class="k">การจัดทำข้อกำหนด</span><br><span class="en">Specification</span></td><td>จัดทำเอกสารรวบรวมข้อกำหนดให้เป็นต้นแบบของโปรแกรม ระบุคุณลักษณะและความสามารถของซอฟต์แวร์</td></tr>
+    <tr><td class="c">6</td><td><span class="k">การตรวจรับ</span><br><span class="en">Validation</span></td><td>ทบทวนข้อกำหนดเพื่อให้มั่นใจว่า<span class="k">ครบถ้วนและไม่คลุมเครือ</span> โดยวิศวกรซอฟต์แวร์ ลูกค้า และผู้มีส่วนได้ส่วนเสีย</td></tr>
+    <tr><td class="c">7</td><td><span class="k">การจัดการความต้องการ</span><br><span class="en">Requirement Management</span></td><td>ความต้องการเปลี่ยนแปลงตลอดช่วงชีวิตของระบบ จึงต้องจัดการอย่างต่อเนื่อง</td></tr>
+  </table>
+  </div>
+
+  <h3>3.4 Requirement Elicitation</h3>
+  <div class="def">
+    <b>การสกัดความต้องการ</b> = <span class="k">ทักษะหลักของวิศวกรรมความต้องการ</span> เป็นกระบวนการได้มาซึ่งข้อมูลที่จำเป็นของโครงการจากผู้มีส่วนได้ส่วนเสีย ทำให้ทราบภาพรวมและขอบเขตของซอฟต์แวร์ก่อนเริ่มพัฒนา
+  </div>
+
+  <h4>เทคนิคการสกัดความต้องการ 9 เทคนิค</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><td><span class="k">Documentation Analysis</span><br>วิเคราะห์เอกสารที่มีอยู่เดิม</td><td><span class="k">Interview</span><br>สัมภาษณ์รายบุคคล</td><td><span class="k">Focus Group</span><br>สนทนากลุ่ม</td></tr>
+    <tr><td><span class="k">Brainstorm</span><br>ระดมสมอง</td><td><span class="k">Interface Analysis</span><br>วิเคราะห์การเชื่อมต่อกับระบบอื่น</td><td><span class="k">User Interface Analysis</span><br>วิเคราะห์ส่วนติดต่อผู้ใช้</td></tr>
+    <tr><td><span class="k">Prototyping</span><br>สร้างต้นแบบให้ลองใช้</td><td><span class="k">Survey and Questionnaire</span><br>สำรวจ/แบบสอบถาม</td><td><span class="k">Requirements Workshop</span><br>เวิร์กช็อปร่วมกับผู้เกี่ยวข้อง</td></tr>
+  </table>
+  </div>
+
+  <h4>4 Process of Requirement Elicitation</h4>
+  <ol>
+    <li><span class="k">ติดต่อ/ทำกิจกรรมร่วมกับผู้มีส่วนได้ส่วนเสีย</span> โดยใช้เทคนิคสกัดความต้องการต่างๆ แล้วรวบรวมไว้</li>
+    <li><span class="k">จัดโครงสร้างโดยรวม</span> — จัดกลุ่มความต้องการที่เกี่ยวข้องไว้ด้วยกัน แบ่งเป็นระบบย่อย และระบุความสัมพันธ์ระหว่างระบบย่อย</li>
+    <li><span class="k">จัดลำดับความสำคัญและความจำเป็น</span> — บางความต้องการอาจถูกตัดออก ต้องเจรจาต่อรองเมื่อเกิดความขัดแย้ง</li>
+    <li><span class="k">จัดทำเอกสารความต้องการ</span> — ได้เป็น <span class="k">URS</span> (User Requirement Specification) และ <span class="k">SRS</span> (System Requirement Specification)</li>
+  </ol>
+
+  <h4>User Requirement vs System Requirement</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:14%"></th><th>User Requirement (UR)</th><th>System Requirement (SR)</th></tr>
+    <tr><td><b>เขียนให้ใคร</b></td><td><span class="k">Written for Customers</span></td><td><span class="k">Written for Developers</span></td></tr>
+    <tr><td><b>ภาษา</b></td><td>ภาษาธรรมชาติ (Natural Language)</td><td>ระบุชัดเจนและเข้มงวด (Clearly &amp; More rigorously specified)</td></tr>
+    <tr><td><b>รายละเอียด</b></td><td><span class="k">ไม่มีรายละเอียดทางเทคนิค</span> เป็นความต้องการระดับสูงสุด</td><td>ลงรายละเอียดทั้ง Functional และ Non-functional</td></tr>
+    <tr><td><b>คำถามหลัก</b></td><td><span class="kk">ผู้ใช้ทำอะไรได้บ้าง?</span> (Actor/User performs the task)</td><td><span class="kk">ระบบ/ซอฟต์แวร์ทำอะไรได้บ้าง?</span> (System performs the task)</td></tr>
+  </table>
+  </div>
+
+  <h4>Work Product ที่ได้จากการเก็บความต้องการ</h4>
+  <p>คำรับรองความต้องการและความเป็นไปได้ · กำหนดขอบเขตของระบบและซอฟต์แวร์ · ระบุกลุ่มลูกค้า ผู้ใช้ ผู้มีส่วนได้ส่วนเสีย · เทคโนโลยีที่ต้องการ · รายการความต้องการและข้อจำกัดทางธุรกิจ · รูปแบบสถานการณ์การใช้งาน · <span class="k">ต้นแบบ (Prototype)</span></p>
+  <p style="font-size:14.6px;color:var(--muted)">กลุ่ม Work Product ก่อนเข้าสู่ Requirement Analysis: User Requirement, Business Work Flow, Problem Statement, Business Information &amp; Rules → วิเคราะห์ → ได้ <span class="k">Requirement Specification</span></p>
+  <p style="font-size:14.6px"><b>บทบาทของ SA:</b> นักวิเคราะห์ระบบทำหน้าที่เป็น<span class="k">คนกลาง ที่ปรึกษา ผู้ช่วยแก้ปัญหา และผู้ต่อรอง</span>ระหว่างลูกค้ากับทีมพัฒนา</p>
+</section>
+
+<!-- =============== UNIT 4 =============== -->
+<section id="u4">
+  <div class="unitbar"><span class="unitno">UNIT 4</span><h2>Project Identification &amp; Selection</h2></div>
+  <p class="subtitle">ก่อน Initiation — หาโครงการ ศึกษาความเป็นไปได้ และคัดเลือก</p>
+
+  <div class="box tip">
+    <div class="h5">ตำแหน่งในวงจร</div>
+    <p style="margin:0">Identification &amp; Selection คือ<span class="kk">เฟส "0"</span> — เกิดขึ้น<b>ก่อน</b> Initiation (เฟส 1) เสมอ ผลลัพธ์คือ <span class="k">Project Proposal</span></p>
+  </div>
+
+  <h3>4.1 นิยาม</h3>
+  <div class="cols">
+    <div>
+      <div class="h5">Project Identification (การค้นหาโครงการ)</div>
+      <p style="font-size:14.6px;margin:0">กระบวนการ<span class="k">อย่างเป็นระบบ</span>ในการสร้างและระบุไอเดียของโครงการที่เป็นไปได้ เพื่อพัฒนาเป็นข้อเสนอเบื้องต้น<br><br><b>Output = <span class="k">List of Projects</span></b> (รายการโครงการที่ต้องการดำเนินงาน พร้อมแหล่งที่มา/แผนก)</p>
+    </div>
+    <div>
+      <div class="h5">Project Selection (การเลือกสรรโครงการ)</div>
+      <p style="font-size:14.6px;margin:0">การศึกษาไอเดียแต่ละโครงการ<span class="k">อย่างละเอียด</span> แล้วเลือกโครงการที่มี<span class="k">ลำดับความสำคัญสูงสุด</span> เพื่อพิจารณาและพัฒนาต่อ</p>
+    </div>
+  </div>
+  <p style="font-size:14.6px">ที่มาของโครงการอีกทางหนึ่ง: โครงการจากหน่วยงานอื่นที่ได้รับว่าจ้าง ผ่าน <span class="k">TOR</span> — ด้วย<span class="k">การว่าจ้าง / การประมูล / การทาบทาม</span></p>
+
+  <h3>4.2 Source of Project</h3>
+  <div class="cols">
+    <div>
+      <div class="h5">Macro Project (ระดับมหภาค)</div>
+      <p style="font-size:14.6px;margin:0">ความร่วมมือระดับชาติ ส่งผลกระทบเชิงพัฒนา<span class="k">เกินพื้นที่ท้องถิ่น</span> ดำเนินการข้ามภูมิภาค — Macro-planning คือการวางแผน<span class="k">เชิงกลยุทธ์ภาพใหญ่ วิสัยทัศน์ระยะยาว</span><br><span style="font-size:13.5px;color:var(--muted)">แหล่งไอเดีย: Entrepreneurs, Technical Experts, Progressive Farmers, Local Leaders, Mass Media, Bankers, National Policies</span></p>
+    </div>
+    <div>
+      <div class="h5">Micro Project (ระดับจุลภาค)</div>
+      <p style="font-size:14.6px;margin:0">ความร่วมมือระดับองค์กร — Micro-planning อยู่<span class="k">ระดับโครงการรายตัว</span> มีรายการงานและ timeline ละเอียด</p>
+    </div>
+  </div>
+
+  <h4>ผู้เกี่ยวข้อง 4 กลุ่มกับลักษณะโครงการ (ตารางนี้ออกสอบบ่อย)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th>แหล่งที่มา</th><th class="c">ต้นทุน</th><th class="c">ระยะเวลา</th><th class="c">ความซับซ้อน</th><th class="c">ขนาด</th><th>จุดมุ่งเน้น</th></tr>
+    <tr><td><span class="k">Top Management</span><br><span style="font-size:13px;color:var(--muted)">เช่น CEO</span></td><td class="c">สูงที่สุด</td><td class="c">ยาวนานที่สุด</td><td class="c">สูงที่สุด</td><td class="c">ใหญ่ที่สุด</td><td><span class="k">กลยุทธ์</span></td></tr>
+    <tr><td><span class="k">Steering Committee</span><br><span style="font-size:13px;color:var(--muted)">ผู้บริหารระดับล่าง / ข้ามสายงาน</span></td><td class="c">สูง</td><td class="c">ยาวนาน</td><td class="c">สูง</td><td class="c">ใหญ่</td><td><span class="k">การทำงานร่วมกัน</span> + วิเคราะห์ต้นทุน–กำไรเป็นแบบแผน</td></tr>
+    <tr><td><span class="k">User Department</span><br><span style="font-size:13px;color:var(--muted)">หัวหน้าหน่วยที่ร้องขอ</span></td><td class="c">ต่ำ</td><td class="c">สั้น</td><td class="c">ต่ำ</td><td class="c">เล็ก</td><td><span class="k">ภายในส่วนงาน</span> ไม่มุ่งเน้นกลยุทธ์ พัฒนาเร็ว</td></tr>
+    <tr><td><span class="k">Development Group</span><br><span style="font-size:13px;color:var(--muted)">programmer, IS manager</span></td><td class="c">ต่ำ–สูง</td><td class="c">สั้น–ยาว</td><td class="c">ต่ำ–สูง</td><td class="c">เล็ก–ใหญ่</td><td><span class="k">บูรณาการกับระบบงานปัจจุบัน</span> พัฒนาเร็ว มักไม่คำนึงต้นทุน/กำไร</td></tr>
+  </table>
+  </div>
+
+  <h3>4.3 แผนงาน vs โครงการ vs กลุ่มงาน vs งาน</h3>
+  <div class="tree">แผนงาน (Program)  ─── ชุดของโครงการตั้งแต่ 2 โครงการขึ้นไปที่สัมพันธ์กัน มีเป้าหมายเดียวกัน
+   └─ โครงการ (Project)  ─── กลุ่มของกิจกรรมที่สัมพันธ์กัน
+        └─ กลุ่มงาน (Work Package)
+             └─ งาน (Task)</div>
+  <div class="formula">
+    Program = (Project 1, Project 2, …, Project n) → Goal<br>
+    Project = (Activity 1, Activity 2, …, Activity n) → Target of Project
+  </div>
+
+  <h3>4.4 Project Feasibility Study — การศึกษาความเป็นไปได้</h3>
+  <div class="def">
+    <b>Feasibility Study</b> = การศึกษาวิเคราะห์และจัดทำข้อมูลเพื่อแสดง<span class="k">เหตุผลสนับสนุนความเหมาะสม</span>ของโครงการ ว่านำไปสู่การปฏิบัติได้จริง และให้ผลประโยชน์ตอบแทน<span class="k">คุ้มค่าต่อการลงทุน</span>
+  </div>
+
+  <h4>ความเป็นไปได้ 5 ด้าน — จำด้วยคำว่า TELOS</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:8%">ตัวย่อ</th><th style="width:26%">ด้าน</th><th>ศึกษาอะไร</th></tr>
+    <tr><td class="c"><span class="k">T</span></td><td><span class="k">Technical</span><br>ด้านเทคนิค</td><td>ขั้นตอนเชิงเทคนิคหรือวิชาความรู้ที่จำเป็นต่อการทำกิจกรรมภายใต้โครงการให้สมบูรณ์</td></tr>
+    <tr><td class="c"><span class="k">E</span></td><td><span class="k">Economical</span><br>ด้านเศรษฐกิจ/การเงิน</td><td>วิเคราะห์การเงิน ความเหมาะสมของการลงทุน และผลตอบแทนทางเศรษฐกิจ</td></tr>
+    <tr><td class="c"><span class="k">L</span></td><td><span class="k">Legal</span><br>ด้านกฎระเบียบ/กฎหมาย</td><td>กฎเกณฑ์ กฎหมาย ระเบียบ นโยบายภาครัฐ ตลอดจนเงื่อนไขที่มีผลต่อปัจจัยทางสังคม</td></tr>
+    <tr><td class="c"><span class="k">O</span></td><td><span class="k">Operational</span><br>ด้านการดำเนินงาน</td><td>ความพร้อมขององค์กรและการจัดการ ศักยภาพการปฏิบัติงาน แนวทางจัดองค์กร การวางระบบบริหารงานบุคคล</td></tr>
+    <tr><td class="c"><span class="k">S</span></td><td><span class="k">Scheduling</span><br>ด้านกำหนดการและระยะเวลา</td><td>ประเมินผลสำเร็จตามกำหนดเวลา คาดการณ์ระยะเวลาที่เหมาะสมภายใต้ขอบเขตที่กำหนด</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px">ทั้ง 5 ด้านมองได้ 2 มุม: <span class="k">โอกาส (Opportunity)</span> และ <span class="k">ข้อจำกัด (Constraint)</span> เช่น Technical Opportunity ↔ Technical Constraint</p>
+
+  <h4>ข้อจำกัดการดำเนินโครงการ 3 ประเภท (Three Classes of Possible Constraints)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th><span class="k">ข้อจำกัดภายในโครงการ</span></th><th><span class="k">ข้อจำกัดภายในองค์กร</span></th><th><span class="k">ข้อจำกัดภายนอกองค์กร</span></th></tr>
+    <tr>
+      <td>Technique<br>Technology<br>Budget<br>Resources</td>
+      <td>Regulations<br>Organization Policy<br>Financial<br>Marketing<br>Operation</td>
+      <td>Laws and Regulations<br>National Infrastructure<br>Social and Culture<br>Logistics<br>Environment</td>
+    </tr>
+  </table>
+  </div>
+
+  <h4>เกณฑ์จำแนกโครงการ (Project Classification) 6 เกณฑ์</h4>
+  <ol>
+    <li><span class="k">Value Chain Analysis</span> — กิจกรรมในโครงการเพิ่มคุณค่าแก่สินค้า/บริการหรือไม่ โดยเฉพาะในมุมผู้บริโภค</li>
+    <li><span class="k">ความสอดคล้องกับกลยุทธ์ขององค์กร</span> — ช่วยให้บรรลุเป้าหมายตามกลยุทธ์ข้อใดบ้าง</li>
+    <li><span class="k">ผลตอบแทนที่เป็นไปได้</span> — เพิ่มกำไรหรือเพิ่มลูกค้าได้ในช่วงเวลาหนึ่ง</li>
+    <li><span class="k">ความยากด้านเทคนิคและความเสี่ยง</span> — บ่งบอกว่าเป็นโครงการเสี่ยงสูงหรือต่ำ</li>
+    <li><span class="k">ขนาดของโครงการ</span> — พิจารณาขอบเขตงานและกลุ่มผู้มีส่วนได้เสีย</li>
+    <li><span class="k">ระยะเวลาดำเนินโครงการ</span> — <span class="kk">ระยะสั้น ≤ 1 ปี · ระยะกลาง 1–3 ปี · ระยะยาว 3 ปีขึ้นไป</span></li>
+  </ol>
+
+  <h4>ประโยชน์ของ Feasibility Study</h4>
+  <p>เพิ่มโฟกัสให้ทีม · ค้นพบโอกาสใหม่ · จำกัดทางเลือกทางธุรกิจให้แคบลง · ระบุเหตุผลที่<span class="k">ไม่สมควร</span>ทำโครงการ · ให้ข้อมูลสำหรับการตัดสินใจ <span class="kk">"go / no-go"</span> · เพิ่มอัตราความสำเร็จโดยประเมินหลายพารามิเตอร์</p>
+  <p style="font-size:14.6px"><b>ระดับความละเอียดตามประเภทโครงการ:</b> โครงการเดิมที่เคยทำมาก่อน <span class="k">ไม่จำเป็นต้องศึกษาทุกด้าน</span> / <span class="k">โครงการใหม่หรือโครงการนำร่อง (Pilot Project)</span> ควรศึกษาทุกด้าน / โครงการภาครัฐเน้น<span class="k">สวัสดิการและความผาสุกของประชาชน</span> / โครงการภาคเอกชนเน้น<span class="k">กำไรจากการลงทุนและการวิเคราะห์ตลาด</span></p>
+
+  <h3>4.5 Project Selection — ผลการตัดสินใจ 5 แบบ</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:30%">ผลการตัดสินใจ</th><th>ความหมาย</th></tr>
+    <tr><td><span class="kk">1. ยอมรับโครงการ</span><br><span class="en">Accept Project</span></td><td>เริ่มจัดทำโครงการและดำเนินการพัฒนาต่อไป</td></tr>
+    <tr><td><span class="kk">2. ปฏิเสธโครงการ</span><br><span class="en">Reject Project</span></td><td>ไม่พิจารณาโครงการนั้นต่อ หรือระงับแล้วให้เสนอโครงการใหม่มาแทน</td></tr>
+    <tr><td><span class="kk">3. ชะลอโครงการ</span><br><span class="en">Delay Project</span></td><td>องค์กรยังไม่พร้อม เมื่อพร้อมแล้วจะนำมาพิจารณาอีกครั้ง</td></tr>
+    <tr><td><span class="kk">4. ให้ผู้ใช้พัฒนาระบบเอง</span><br><span class="en">End-user Development</span></td><td>ส่งผู้ใช้ไปฝึกอบรม แล้วให้พัฒนาระบบกันเองภายในองค์กร</td></tr>
+    <tr><td><span class="kk">5. ให้ทบทวนโครงการ</span><br><span class="en">Proof of Project</span></td><td>ให้กลับไปเรียบเรียงหรือแก้ไขหลักการและเหตุผล แล้วนำมาเสนอใหม่</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">สิ่งที่ใช้ประกอบการตัดสินใจ: ความจำเป็น · รายชื่อโครงการ · ปัจจัยแวดล้อม · แหล่งทรัพยากรที่มีอยู่แล้ว · เกณฑ์การประเมิน</p>
+
+  <h3>4.6 Scoring Model — วิธีให้คะแนนเปรียบเทียบโครงการ</h3>
+  <p>เปรียบเทียบโครงการได้ 3 ฐาน: ตาม<span class="k">วัตถุประสงค์องค์กร</span> · ตาม<span class="k">ประโยชน์ที่จะได้รับ</span> · ตาม<span class="k">ความเป็นไปได้แต่ละด้าน</span> และแต่ละฐานให้คะแนนได้ 3 แบบ</p>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:24%">วิธี</th><th>วิธีคิด</th></tr>
+    <tr><td><span class="k">เชิงปริมาณ</span></td><td>ถามว่า <span class="k">"มี / ไม่มี"</span> ใส่ X หรือ – แล้วนับจำนวน X</td></tr>
+    <tr><td><span class="k">เชิงคุณภาพ</span></td><td>ถามว่า <span class="k">"มีแล้วดีระดับไหน"</span> ให้คะแนน เช่น 0–5 แล้วรวมคะแนน</td></tr>
+    <tr><td><span class="k">เชิงคุณภาพแบบถ่วงน้ำหนัก</span></td><td>ให้ <span class="k">น้ำหนัก (%) ของแต่ละเกณฑ์</span> แล้วคูณกับคะแนน → รวมเป็นคะแนนสุดท้าย <b>น้ำหนักรวมต้องเท่ากับ 100%</b></td></tr>
+  </table>
+  </div>
+  <div class="box exam">
+    <div class="h5">ถ้าข้อสอบให้คำนวณ — ทำแบบนี้</div>
+    <p>สมมติเกณฑ์ "เพิ่มจำนวนลูกค้า" น้ำหนัก 30% โครงการ Social Commerce ได้ 5 คะแนน<br>
+    → คะแนนถ่วงน้ำหนัก = <span class="kk">5 × 0.3 = 1.5</span></p>
+    <p style="margin-bottom:0">ทำครบทุกเกณฑ์แล้วบวกรวม โครงการที่ได้คะแนนรวมสูงสุด = โครงการที่ควรเลือก<br>
+    <span style="font-size:14px;color:var(--muted)">ข้อควรระวัง: ผลลัพธ์แบบไม่ถ่วงน้ำหนักกับแบบถ่วงน้ำหนัก<b>อาจให้คำตอบคนละโครงการ</b> — ข้อสอบชอบถามตรงนี้</span></p>
+  </div>
+</section>
+
+<!-- =============== UNIT 5 =============== -->
+<section id="u5">
+  <div class="unitbar"><span class="unitno">UNIT 5</span><h2>Project Initiation &amp; Planning</h2></div>
+  <p class="subtitle">เขียนโครงการ วางแผน กำหนดขอบเขต และแตกงานเป็น WBS</p>
+
+  <h3>5.1 Project Initiation — กิจกรรม 6 ข้อ</h3>
+  <p>เป็นระยะที่เกิด<span class="k">หลังจากองค์กรคัดเลือกโครงการที่เหมาะสมที่สุดแล้ว</span> ทีมงานต้องกำหนดขนาดและขอบเขตกิจกรรม ได้แก่</p>
+  <ol>
+    <li><span class="k">การนิยามโครงการ และกำหนดเป้าหมาย</span></li>
+    <li><span class="k">การศึกษาความเป็นไปได้</span></li>
+    <li><span class="k">การกำหนดขอบเขตเบื้องต้นของโครงการ</span></li>
+    <li><span class="k">การประเมินมูลค่าโครงการ</span></li>
+    <li><span class="k">การกำหนดผู้มีส่วนได้ส่วนเสีย</span></li>
+    <li><span class="k">การพัฒนาเอกสารสิทธิ์ของโครงการ</span> — ผลอนุมัติเป็นไปได้ 3 กรณี: ดำเนินการต่อ / ชะลอไว้ก่อน / ปฏิเสธ</li>
+  </ol>
+
+  <h3>5.2 รูปแบบการเขียนโครงการ 2 แบบ</h3>
+
+  <h4>1) Logical Framework (LogFrame)</h4>
+  <p>มาจากการประยุกต์แนวคิดของ<span class="k">บริษัทเอกชนในสหรัฐอเมริกา</span> และ<span class="k">หน่วยงานความช่วยเหลือทางวิชาการในเยอรมัน</span></p>
+  <ul>
+    <li>มีลักษณะเป็นตาราง <span class="kk">Matrix 16 ช่อง (4 × 4)</span></li>
+    <li>แต่ละช่องสัมพันธ์กันอย่างมีเหตุผลแบบ <span class="kk">If–Then Relationship</span></li>
+  </ul>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:22%">แถว (Project Description)</th><th>Indicators<br><span style="font-weight:400;font-size:13px">ตัวชี้วัด</span></th><th>Means of Verification<br><span style="font-weight:400;font-size:13px">วิธีตรวจสอบ</span></th><th>Assumption<br><span style="font-weight:400;font-size:13px">ฐานคติสำคัญ</span></th></tr>
+    <tr><td><span class="k">Goal</span> (Impact)<br>จุดมุ่งหมายระดับแผนงาน</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><span class="k">Purpose</span> (Outcome)<br>วัตถุประสงค์ระดับโครงการ</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><span class="k">Expected Results</span> (Output)<br>ผลงานหรือเป้าหมาย</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+    <tr><td><span class="k">Activities</span> (Input)<br>กิจกรรม</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">4 แถว × 4 คอลัมน์ = 16 ช่อง — ข้อสอบชอบถามจำนวนช่องและชื่อคอลัมน์</p>
+
+  <h4>2) Descriptive Style (แบบพรรณนาความ)</h4>
+  <p>เขียนตามแบบฟอร์มที่หน่วยงานกำหนด นิยมใช้ทั่วไปโดยเฉพาะ<span class="k">หน่วยงานราชการ องค์กรพัฒนาระหว่างประเทศ องค์กรพัฒนาเอกชน และองค์กรประชาชน</span></p>
+  <p style="font-size:14.6px"><b>หัวข้อในแบบฟอร์ม Project Proposal:</b> ชื่อโครงการ · หน่วยงานที่รับผิดชอบ · ปีงบประมาณ · 1) หลักการและเหตุผล 2) วัตถุประสงค์ 3) เป้าหมาย 4) วิธีดำเนินงาน 5) ระยะเวลาโครงการ 6) สถานที่โครงการ 7) งบประมาณ 8) ผู้รับผิดชอบ 9) การติดตามและประเมินผล 10) ผลที่คาดว่าจะได้รับ</p>
+
+  <h3>5.3 SOW vs Project Plan (ข้อนี้ออกสอบแน่)</h3>
+  <div class="cols">
+    <div>
+      <div class="h5" style="color:var(--red)">Statement of Work (SOW)</div>
+      <p style="font-size:14.3px;margin:0 0 8px">เอกสารแสดง<span class="k">ข้อตกลงร่วมกันระหว่างลูกค้าและบริษัท</span> ประกอบด้วย 5 ส่วน:</p>
+      <ul>
+        <li>ที่มาและความสำคัญ (Background/Problems)</li>
+        <li>วัตถุประสงค์ (Objectives)</li>
+        <li>คำอธิบายสินค้าหรือบริการ (Product Description)</li>
+        <li>ขอบเขตการดำเนินงาน (Scope)</li>
+        <li>สิ่งที่จะต้องส่งมอบ (Deliverables)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5" style="color:var(--red)">Project Plan</div>
+      <p style="font-size:14.3px;margin:0 0 8px">มี 5 ส่วนของ SOW <span class="k">บวกเพิ่ม</span>อีก 7 ส่วน:</p>
+      <ul>
+        <li>กิจกรรมและความสัมพันธ์ (Tasks, Relationship &amp; Dependence)</li>
+        <li>ระยะเวลาแต่ละกิจกรรม (Task Duration)</li>
+        <li>การวางแผนใช้ทรัพยากรตามหลัก <span class="kk">4M + 1E</span></li>
+        <li>ตารางกำหนดเวลา (Start &amp; Completion Date)</li>
+        <li>การระบุความเสี่ยง (Risks)</li>
+        <li>การบริหารการเปลี่ยนแปลง (Change Management / Version Control)</li>
+        <li>เงื่อนไขการส่งมอบ (Delivery Instructions/Constraints)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box tip">
+    <div class="h5">4M + 1E คืออะไร</div>
+    <p style="margin:0"><span class="kk">Material</span> (วัสดุ) · <span class="kk">Man</span> (คน) · <span class="kk">Machine</span> (เครื่องจักร/เครื่องมือ) · <span class="kk">Method</span> (วิธีการ) · <span class="kk">Environment</span> (สภาพแวดล้อม)</p>
+  </div>
+
+  <h3>5.4 Project Planning</h3>
+  <div class="def">
+    <b>การวางแผน</b> = การกำหนดอนาคตล่วงหน้าเกี่ยวกับภารกิจหรือกิจกรรมต่างๆ ที่จะกระทำให้บรรลุวัตถุประสงค์<br>
+    <span style="font-size:14.5px">ผลผลิตของการวางแผน คือ <span class="k">ตัวแผน (Plan)</span></span>
+  </div>
+
+  <h4>วัตถุประสงค์ของการวางแผน 4 ข้อ</h4>
+  <ol>
+    <li>เพื่อกำหนด<span class="k">ทิศทาง</span>ของการดำเนินโครงการ</li>
+    <li>เพื่อ<span class="k">ลดผลกระทบของการเปลี่ยนแปลง</span></li>
+    <li>เพื่อ<span class="k">ลดความสูญเสีย</span>จากความผิดพลาดที่อาจเกิดขึ้น</li>
+    <li>เพื่อเป็น<span class="k">มาตรฐานสำหรับการควบคุม</span>การดำเนินโครงการ</li>
+  </ol>
+  <p style="font-size:14.6px">Planning is to know: <span class="k">Project Characteristics</span> · <span class="k">Product Characteristics</span> · <span class="k">The Process and Activities</span> · <span class="k">Their Sequences and Components</span></p>
+
+  <h4>ขั้นตอนการวางแผนโครงการ 9 ขั้น</h4>
+  <ol>
+    <li>รวบรวมข้อมูลและข้อเท็จจริง → <span class="k">รู้ปัญหาและความต้องการ</span></li>
+    <li>วิเคราะห์ปัญหาและความต้องการ → <span class="k">รู้สาเหตุ</span></li>
+    <li>กำหนดวัตถุประสงค์และเป้าหมาย → <span class="k">รู้ผลลัพธ์ของงานที่จะทำ</span></li>
+    <li>การคิดค้นทางเลือก → <span class="k">รู้วิธีการต่างๆ</span></li>
+    <li>วิเคราะห์และเปรียบเทียบทางเลือก → <span class="k">รู้ลำดับทางเลือก / เลือกทางที่เหมาะสม</span></li>
+    <li>จัดทำ<span class="k">ข้อเสนอโครงการ</span> (TOR/Project Proposal/Quotation)</li>
+    <li>เสนอ <span class="k">Project Owner</span> พิจารณา → ไม่อนุมัติให้กลับไปปรับปรุง</li>
+    <li>จัดทำ<span class="k">แผนโครงการ</span> (Project Plan) โดย Project Team</li>
+    <li>เสนอพิจารณาอีกครั้ง → อนุมัติจึงเริ่มดำเนินการ</li>
+  </ol>
+
+  <h4>กิจกรรมสำคัญในการวางแผน 2 อย่างแรก</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">01 Task Identification</div>
+      <p style="font-size:14.3px;margin:0">การระบุงานที่ต้องทำ หากมีงานใดหายไปจะทำให้<span class="k">คำนวณเวลาส่งมอบผิดพลาด</span> วิธีที่นิยมคือวาดแผนงานแบบ<span class="k">โครงสร้างลำดับชั้น (Hierarchy)</span> เริ่มจากงานหลักแล้วแตกเป็นงานย่อย — วิธีนี้เรียกว่า <span class="kk">Work Breakdown Structure</span></p>
+    </div>
+    <div>
+      <div class="h5">02 Estimating Task Completion Time</div>
+      <p style="font-size:14.3px;margin:0">ประมาณเวลาด้วย 3 ตัวแปร:<br>
+      <span class="k">B</span> = Best-case (เร็วที่สุด)<br>
+      <span class="k">W</span> = Worst-case (ช้าที่สุด)<br>
+      <span class="k">P</span> = Probable-case (เวลาจริงที่คิดว่าจะเสร็จ)</p>
+    </div>
+  </div>
+  <div class="formula">
+    เวลาที่เหมาะสม = (B + 4P + W) ÷ 6
+    <small>สังเกตว่าเป็นสูตรเดียวกับ PERT ใน Unit 6 เพียงเปลี่ยนชื่อตัวแปรเป็น O, M, P</small>
+  </div>
+  <div class="box exam">
+    <div class="h5">ลองคำนวณ</div>
+    <p style="margin:0">งาน A: เร็วสุด 4 วัน · น่าจะเป็น 6 วัน · ช้าสุด 14 วัน<br>
+    → (4 + 4×6 + 14) ÷ 6 = (4 + 24 + 14) ÷ 6 = 42 ÷ 6 = <span class="kk">7 วัน</span></p>
+  </div>
+
+  <h4>ทีมวางแผนโครงการ (Project Planning Team)</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">ระดับองค์กร</div>
+      <ul>
+        <li>คณะกรรมการอำนวยการ (Board of Directors)</li>
+        <li>ผู้บริหารระดับสูง (Senior Manager)</li>
+        <li>ผู้จัดการตามสายงาน (Functional Manager)</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ระดับโครงการ</div>
+      <ul>
+        <li>ผู้จัดการโครงการ (Project Manager)</li>
+        <li>ผู้จัดการกลุ่มงาน (Work Package Manager)</li>
+        <li>ผู้เชี่ยวชาญ (Professionals) — อาจเป็นบุคคลภายในหรือภายนอกองค์กร</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>5.5 Project Scope Management</h3>
+  <div class="def">
+    <b>ขอบเขตงาน (Scope)</b> = กิจกรรมหรืองานทั้งหมดและขั้นตอนต่างๆ ที่เกี่ยวข้องกับการผลิตสินค้าหรือบริการของโครงการ<br>
+    <b>การกำหนดขอบเขต</b> = กิจกรรมที่ใช้กำหนดและควบคุม<span class="k">ส่วนประกอบที่ควรมีและไม่ควรมี</span>ในโครงการ เพื่อให้ทุกฝ่ายเข้าใจตรงกัน
+  </div>
+  <p>Scope เป็นปัจจัยที่ต้องคำนึงถึง<span class="k">ก่อนปัจจัยอื่นๆ</span> เพราะแสดงภาพรวมและความสัมพันธ์ของปัจจัยทั้งหมด ถ้ากำหนดไม่ดีจะทำให้วางแผนผิดพลาด และส่งผลเสียร้ายแรงต่อ<span class="k">ต้นทุนและคุณภาพ</span></p>
+
+  <h4>มิติของขอบเขตโครงการ 6 ด้าน</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><td><span class="k">ขอบเขตด้านเวลา</span></td><td><span class="k">ขอบเขตด้านพื้นที่</span></td><td><span class="k">ขอบเขตด้านเทคโนโลยี</span></td></tr>
+    <tr><td><span class="k">ขอบเขตด้านประชากร</span></td><td><span class="k">ขอบเขตด้านข้อมูล</span></td><td><span class="k">ขอบเขตด้านจริยธรรม</span></td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">คำถามที่ใช้กำกับแต่ละมิติ: "อะไรทำได้บ้าง?" และ "อะไรที่รวมอยู่ในโครงการ?" — ส่วนสิ่งที่ทำไม่ได้คือ <span class="k">ข้อจำกัด (Limitation)</span></p>
+
+  <h3>5.6 Work Breakdown Structure (WBS)</h3>
+  <div class="def">
+    <b>WBS</b> = การแบ่งหน้าที่หลักในแต่ละโครงการออกมาเป็นหน้าที่หรือกิจกรรมย่อย เพื่อให้<span class="k">บริหารจัดการและกระจายทรัพยากร</span>ได้ง่ายขึ้น<br>
+    มีลักษณะเป็น<span class="k">แผนภูมิรากไม้</span> แบ่งเป็น<span class="k">ระดับชั้น (Hierarchy)</span> ตั้งแต่งานใหญ่ที่สุด จนถึงงานระดับย่อยที่สุดที่เป็น <span class="kk">Work Package</span>
+  </div>
+  <div class="tree">Level 0   Project X
+Level 1      ├── งานหลัก A ── งานหลัก B ── งานหลัก C
+Level 2      │      ├── งานย่อย
+Level 3      │      │      └── Work Package  ← ระดับล่างสุด</div>
+
+  <ul>
+    <li>WBS ถือเป็น<span class="k">เอกสารเบื้องต้นในการบริหารจัดการโครงการ</span> ที่แสดงหลักเกณฑ์ในการวางแผนและบริหารทรัพยากร</li>
+    <li>โครงสร้างที่ดีควรอธิบายถึง <span class="kk">"ผลลัพธ์ที่อยากได้"</span> ของแต่ละขั้นตอน</li>
+    <li><span class="kk">กิจกรรมใดที่ไม่จำเป็นต่อการดำเนินโครงการ ไม่ควรถูกแสดงไว้ใน WBS</span> ← ข้อนี้ออกสอบบ่อย</li>
+    <li>แบ่งได้ 2 แนว: ตาม<span class="k">กระบวนการบริหารโครงการ</span> (Initiation / Planning / Execution / Control / Closure) หรือตาม<span class="k">กลุ่มของงาน</span> (Project Management, Systems Engineering, Software, Hardware, …)</li>
+    <li>ประโยชน์: กำหนดขอบเขตงานอย่างมีระบบ · ช่วยประเมินราคาและปริมาณทรัพยากร · <span class="k">จัดแบ่งหน้าที่ความรับผิดชอบ</span></li>
+  </ul>
+
+  <h4>วิธีการสร้าง WBS 5 วิธี (จำให้ครบ)</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:26%">วิธี</th><th>สาระสำคัญ</th></tr>
+    <tr>
+      <td class="c">1</td><td><span class="kk">Using Guideline</span><br>วิธีการใช้คำแนะนำ</td>
+      <td>สร้างตามแนวทางหรือคำแนะนำที่<span class="k">มีอยู่แล้ว</span> องค์กรขนาดใหญ่จะกำหนดรูปแบบชัดเจน เพื่อให้ผู้ที่จะ<span class="k">ประมูล</span>ใช้เป็นแนวทาง — กรณีนี้<span class="k">หลีกเลี่ยงไม่ได้</span> ต้องทำตามที่เจ้าของโครงการแนะนำ</td>
+    </tr>
+    <tr>
+      <td class="c">2</td><td><span class="kk">Analogy Approach</span><br>วิธีการเปรียบเทียบ</td>
+      <td>อาศัย WBS ของ<span class="k">โครงการที่เคยทำมาแล้ว</span>และมีลักษณะคล้ายคลึงกัน มาเป็นจุดเริ่มต้น ข้อดีคือ<span class="k">ประหยัดทรัพยากร</span> เช่น เวลา ค่าใช้จ่าย และบุคลากร</td>
+    </tr>
+    <tr>
+      <td class="c">3</td><td><span class="kk">Top-down Approach</span><br>วิธีจากบนลงล่าง</td>
+      <td>เริ่มจากกิจกรรม<span class="k">กว้างๆ และใหญ่ที่สุดก่อน</span> แล้วแตกเป็นกิจกรรมย่อย — เหมาะกับโครงการที่ผู้จัดการโครงการ<span class="k">มีความรู้และประสบการณ์ด้านเทคนิคมากพอ</span> และมองภาพรวมออกชัดเจน</td>
+    </tr>
+    <tr>
+      <td class="c">4</td><td><span class="kk">Bottom-up Approach</span><br>วิธีจากล่างขึ้นบน</td>
+      <td><span class="k">สมาชิกในทีมมีบทบาทมาก</span> ช่วยกันกำหนดกิจกรรมให้เฉพาะเจาะจงและมากที่สุดเท่าที่เป็นไปได้ แล้วจัดรวมเป็นกลุ่มในระดับสูงขึ้น<br><b>ข้อเสีย:</b> <span class="k">เสียเวลามาก</span><br><b>แต่:</b> มีประสิทธิภาพมาก มักใช้กับ<span class="k">โครงการ IT ที่สร้างสินค้า/บริการแนวใหม่ที่ยังไม่เคยมีใครทำ</span> หรือโครงการที่ต้องการให้ทีมรู้สึกผูกพัน</td>
+    </tr>
+    <tr>
+      <td class="c">5</td><td><span class="kk">Mind-mapping Approach</span><br>วิธีวางแผนจากความคิด</td>
+      <td>แตกความคิดหลักออกเป็น<span class="k">กิ่งก้านสาขา</span> ทีมเริ่มสร้าง WBS ได้<span class="k">อย่างอิสระ โดยไม่ต้องมีโครงสร้างที่เป็นทางการ</span> ส่งเสริม<span class="k">ความคิดสร้างสรรค์</span> การมีส่วนร่วม และศีลธรรมอันดีในทีม</td>
+    </tr>
+  </table>
+  </div>
+
+  <h4>ข้อควรคำนึงในการสร้าง WBS 6 ข้อ</h4>
+  <ol>
+    <li>ข้อมูลใน WBS ต้อง<span class="k">สอดคล้องกับการดำเนินงานจริง</span>ของโครงการ</li>
+    <li>กิจกรรมย่อยสุด (ระดับล่างสุด) ควรมี<span class="kk">ผู้รับผิดชอบเพียงคนเดียว</span> แม้ผู้ร่วมทำกิจกรรมจะมีมากกว่า 1 คน</li>
+    <li><span class="k">สมาชิกทีมควรมีส่วนร่วม</span>ในการสร้าง WBS และทุกคนยอมรับและเห็นพ้องต้องกัน</li>
+    <li>ทุกกิจกรรมควรกำหนดไว้เป็น<span class="k">ลายลักษณ์อักษร</span> เพื่อให้เข้าใจตรงกันเกี่ยวกับขอบเขตงาน</li>
+    <li>WBS ต้อง<span class="k">ยืดหยุ่นได้</span> เพื่อรองรับการเปลี่ยนแปลง ขณะที่ยังควบคุมรายละเอียดได้เหมาะสม</li>
+    <li>รายละเอียดของกิจกรรมหนึ่งๆ เป็นการ<span class="k">สรุปรวบรายละเอียดของกิจกรรมที่อยู่ระดับล่างลงไป</span></li>
+  </ol>
+</section>
+
+<!-- =============== UNIT 6 =============== -->
+<section id="u6">
+  <div class="unitbar"><span class="unitno">UNIT 6</span><h2>Project Scheduling</h2></div>
+  <p class="subtitle">Gantt Chart · CPM · PERT · Flow Chart — หน่วยที่มีการคำนวณ</p>
+
+  <h3>6.1 Project Scheduling คืออะไร</h3>
+  <div class="def">
+    <b>Project Scheduling</b> = ส่วนหนึ่งของการบริหารโครงการที่เกี่ยวกับการ<span class="k">ลิสต์กิจกรรม milestones และ deliverables</span> รวมถึงวันเริ่ม–วันจบ ความยาวของโครงการ และการบริหารทรัพยากรที่ต้องใช้ในแต่ละกิจกรรม<br>
+    <span style="font-size:14.5px"><b>Objective:</b> เพื่อให้มั่นใจว่าโครงการ<span class="k">เสร็จตรงเวลา</span> และได้<span class="k">คุณภาพตามที่ต้องการ</span></span>
+  </div>
+
+  <h4>เทคนิคการกำหนดเวลา 6 กลุ่ม</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><td>1. <span class="k">Task List</span></td><td>2. <span class="k">Calendar</span></td><td>3. <span class="k">Gantt Chart</span></td></tr>
+    <tr><td>4. <span class="k">Mathematical Analysis</span><br><span style="font-size:13.5px">→ CPM, PERT</span></td><td>5. <span class="k">Duration Compression</span><br><span style="font-size:13.5px">→ Fast Tracking, Crashing, Multitasking, Dumping extra resources</span></td><td>6. <span class="k">Simulation</span><br><span style="font-size:13.5px">→ Flow Chart และอื่นๆ</span></td></tr>
+  </table>
+  </div>
+
+  <h3>6.2 Gantt Chart (แผนภูมิแกนต์)</h3>
+  <p>พัฒนาขึ้นในปี <span class="kk">ค.ศ. 1917</span> โดย <span class="kk">Henry L. Gantt</span> เพื่อวางแผนเกี่ยวกับเวลา แก้ปัญหาการจัดตารางการผลิต ควบคุมแผนงาน ตามแนวคิด<span class="k">การบริหารเชิงวิทยาศาสตร์</span></p>
+  <ul>
+    <li><span class="k">แกนนอน</span> = มาตราส่วนแสดง<span class="k">เวลา</span></li>
+    <li><span class="k">แกนตั้ง</span> = มาตราส่วนแสดง<span class="k">ขั้นตอนของกิจกรรม/งาน</span> หรืออัตรากำลังขององค์กร</li>
+    <li>แสดงระยะเวลาแต่ละกิจกรรมเป็น<span class="k">แถบหรือเส้น</span></li>
+  </ul>
+  <h4>ก่อนสร้าง Gantt Chart ต้องทำ 4 ขั้น</h4>
+  <ol>
+    <li>แยกย่อยแผนงานออกเป็น<span class="k">กิจกรรมหรืองานย่อย</span> (คือ WBS นั่นเอง)</li>
+    <li>พิจารณาว่า<span class="k">ใครควรเป็นผู้รับผิดชอบ</span>แต่ละกิจกรรม</li>
+    <li>ตกลงกันเรื่อง<span class="k">เนื้องาน ระยะเวลา และงบประมาณ</span></li>
+    <li>พิจารณา<span class="k">ภาพรวมทั้งหมดอีกครั้ง</span>ว่ายังอยู่ในกรอบที่กำหนดไว้หรือไม่</li>
+  </ol>
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดี</div>
+      <ul>
+        <li><span class="k">ง่ายในการอ่านและทำความเข้าใจ</span></li>
+        <li>ไม่ซับซ้อน จัดทำสะดวก</li>
+        <li>เหมาะกับงานที่ไม่ต้องปรับแผนบ่อยๆ</li>
+        <li>เหมาะกับงานที่มีลักษณะซ้ำๆ ยืดหยุ่นสูง</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัด</div>
+      <ul>
+        <li><span class="k">ไม่สามารถแสดงความสัมพันธ์ของงานหลายๆ งานได้</span></li>
+        <li>ไม่เหมาะกับโครงการที่มีงานมาก จะสับสน</li>
+        <li><span class="k">ไม่มีหลักเกณฑ์วิเคราะห์เวลาที่ชัดเจน</span></li>
+        <li>อาจขัดแย้งด้านลำดับงานและเงื่อนไข เพราะกำหนดวันเริ่ม–จบก่อน แล้วค่อยกำหนดช่วงเวลากิจกรรม</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.3 CPM — Critical Path Method</h3>
+  <div class="def">
+    <b>Critical Path (สายงานวิกฤต)</b> = ลำดับการทำกิจกรรมของโครงการที่<span class="k">ยาวที่สุด</span> หากกิจกรรมบนสายงานวิกฤตเปลี่ยนแปลง จะ<span class="k">กระทบจำนวนวันและวันสิ้นสุดโครงการทันที</span>
+  </div>
+  <ul>
+    <li>พัฒนาในปลายปี <span class="kk">1950</span> โดย <span class="kk">James E. Kelley</span></li>
+    <li>วัตถุประสงค์แรก: <span class="k">ลดต้นทุน</span>ที่เกิดจากการจัดตารางเวลาที่ไม่มีประสิทธิภาพ — ไม่ใช่แก้ปัญหาด้วยการใช้แรงงานเพิ่ม</li>
+    <li>เป็น<span class="k">เทคนิคเชิงปริมาณ</span>ด้านการวิเคราะห์โครงข่ายงาน (<span class="k">Network Analysis</span>)</li>
+    <li>โครงสร้าง: งาน 1 งาน = <span class="kk">โหนด (Node)</span> เขียนแทนด้วยวงกลม ใส่รหัสงานและเวลา · เส้นเชื่อม/ลูกศร = <span class="kk">Link</span> เชื่อมงานก่อนหน้าสู่งานถัดไป</li>
+    <li>เน้นด้าน<span class="k">การวางแผนและควบคุมเวลา ตลอดจนค่าใช้จ่าย</span></li>
+  </ul>
+
+  <h3>6.4 PERT — Program Evaluation and Review Technique</h3>
+  <ul>
+    <li>พัฒนาครั้งแรกปี <span class="kk">1958</span> โดย<span class="kk">สำนักงานโครงการพิเศษ กองทัพเรือสหรัฐฯ</span></li>
+    <li>ใช้เมื่อ<span class="k">เวลาในการดำเนินกิจกรรมไม่ได้กำหนดไว้หรือไม่สามารถทราบได้</span> จึงต้องใช้<span class="k">หลักสถิติและความน่าจะเป็น</span>คาดการณ์เวลาเสร็จสิ้น</li>
+    <li>PERT อาจ<span class="k">ไม่ได้สนใจการระบุงานวิกฤต</span> เพราะเป้าหมายรวมคือทำให้โครงการเสร็จตามกำหนดเวลาและงบประมาณ</li>
+  </ul>
+  <div class="formula">
+    Expected Time = (O + 4M + P) ÷ 6
+    <small><b>O</b> = Optimistic Time เร็วที่สุด &nbsp;·&nbsp; <b>M</b> = Most Likely Time เวลาประมาณการจริงกรณีไม่มีปัญหา &nbsp;·&nbsp; <b>P</b> = Pessimistic Time นานที่สุด</small>
+  </div>
+  <div class="box exam">
+    <div class="h5">ระวังสับสน O / M / P</div>
+    <p style="margin:0">ตัว <b>P</b> ใน PERT = <span class="k">Pessimistic</span> (แย่ที่สุด/นานที่สุด)<br>
+    แต่ตัว <b>P</b> ในสูตร Unit 5 = <span class="k">Probable</span> (น่าจะเป็น) ซึ่งเท่ากับ <b>M</b> ใน PERT<br>
+    สูตรเหมือนกัน: <b>ตัวที่คูณ 4 เสมอคือตัว "น่าจะเป็นมากที่สุด"</b></p>
+  </div>
+
+  <h4>CPM vs PERT — ตารางเทียบที่ต้องจำ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">ประเด็น</th><th>CPM</th><th>PERT</th></tr>
+    <tr><td>ประสบการณ์ผู้บริหาร</td><td><span class="k">เคยมีประสบการณ์มาก่อน</span></td><td><span class="k">ไม่มีประสบการณ์</span> ต้องอาศัยความน่าจะเป็นทางสถิติ</td></tr>
+    <tr><td>เวลาดำเนินกิจกรรม</td><td><span class="k">แน่นอน</span></td><td><span class="k">ไม่แน่นอน</span></td></tr>
+    <tr><td>สิ่งที่มุ่งเน้น</td><td><span class="k">Cost-Time Trade-off</span> และการลดต้นทุนเป็นสำคัญ</td><td><span class="k">เวลา</span>เป็นสำคัญ หาวิธีที่ใช้เวลาน้อยที่สุด</td></tr>
+    <tr><td>ประเภทโครงการ</td><td>โครงการที่<span class="k">เคยทำมาแล้ว</span></td><td>โครงการ<span class="k">ใหม่ที่ยังไม่เคยทำ</span></td></tr>
+    <tr><td>เหมาะกับงาน</td><td><span class="k">ธุรกิจ วิศวกรรม ก่อสร้าง</span></td><td><span class="k">การค้นคว้าวิจัยและพัฒนา (R&amp;D)</span></td></tr>
+  </table>
+  </div>
+
+  <h4>ความสัมพันธ์ของงานใน CPM</h4>
+  <p><b>แบ่งตามการขึ้นกับงานก่อนหน้า (Dependency-based)</b></p>
+  <ul>
+    <li><span class="k">Dependent task</span> — งานหนึ่งขึ้นอยู่กับอีกงานหนึ่ง เช่น งาน 2 เริ่มได้ต้องทำงาน 1 เสร็จก่อน</li>
+    <li><span class="k">Multiple successor tasks</span> — งานหลายงานขึ้นกับงานก่อนหน้าเพียงงานเดียว และเริ่มพร้อมกันได้ เรียกว่า <span class="kk">Concurrent tasks</span></li>
+    <li><span class="k">Multiple predecessor tasks</span> — งานที่ขึ้นกับงานก่อนหน้าหลายงาน เช่น งาน 9 เริ่มได้ต้องทำงาน 7 และ 8 เสร็จก่อน</li>
+  </ul>
+  <p><b>แบ่งตามกำหนดเวลา (Time-based) 4 แบบ</b></p>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:16%">รหัส</th><th style="width:26%">ชื่อเต็ม</th><th>ความหมาย</th></tr>
+    <tr><td class="c"><span class="kk">FS</span></td><td>Finish to Start</td><td>A ต้อง<span class="k">เสร็จ</span>ก่อน B จึง<span class="k">เริ่ม</span>ได้ (แบบที่พบบ่อยที่สุด)</td></tr>
+    <tr><td class="c"><span class="kk">SS</span></td><td>Start to Start</td><td>A <span class="k">เริ่ม</span>แล้ว B จึง<span class="k">เริ่ม</span>ได้ — ทำคู่ขนานกัน</td></tr>
+    <tr><td class="c"><span class="kk">FF</span></td><td>Finish to Finish</td><td>A ต้อง<span class="k">เสร็จ</span>ก่อน B จึง<span class="k">เสร็จ</span>ได้</td></tr>
+    <tr><td class="c"><span class="kk">SF</span></td><td>Start to Finish</td><td>A ต้อง<span class="k">เริ่ม</span>ก่อน B จึง<span class="k">เสร็จ</span>ได้ (พบน้อยที่สุด)</td></tr>
+  </table>
+  </div>
+
+  <div class="box exam">
+    <div class="h5">วิธีหา Critical Path ในห้องสอบ</div>
+    <ol style="margin-bottom:0">
+      <li>ไล่<span class="k">ทุกเส้นทาง</span>ที่เป็นไปได้จากโหนดเริ่มต้นไปโหนดสิ้นสุด เขียนออกมาให้ครบ</li>
+      <li>บวกเวลาของทุกกิจกรรมในแต่ละเส้นทาง</li>
+      <li>เส้นทางที่ได้<span class="kk">ผลรวมเวลามากที่สุด</span> = <b>Critical Path</b> และเวลานั้นคือ<span class="k">ระยะเวลารวมของโครงการ</span></li>
+      <li>กิจกรรมที่อยู่บนเส้นทางนั้น = <span class="kk">Critical Activities</span> ซึ่ง<span class="k">เลื่อนไม่ได้เลย (Slack = 0)</span></li>
+    </ol>
+  </div>
+
+  <h4>ข้อดี / ข้อจำกัดของ CPM และ PERT</h4>
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดี</div>
+      <ul>
+        <li>แสดง<span class="k">ความสัมพันธ์ของงาน</span>ในโครงการได้</li>
+        <li>ระบุงานที่สำคัญที่สุด และรู้ว่างานใด<span class="k">เลื่อนเวลาได้</span></li>
+        <li>เหมาะกับ<span class="k">โครงการขนาดใหญ่ที่ซับซ้อนสูง</span></li>
+        <li>ช่วยให้<span class="k">ประเมินความเสี่ยง</span>ง่ายขึ้น</li>
+        <li>ทุกคนรู้ว่าควรทำอะไรและเมื่อใด ทำให้เสร็จเร็วขึ้น</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัด</div>
+      <ul>
+        <li>ความสัมพันธ์ระหว่างงานและเวลา<span class="k">ไม่ชัดเจน</span></li>
+        <li>ต้องมี<span class="k">คำอธิบายเพิ่มเติม</span>เกี่ยวกับลักษณะงาน</li>
+        <li><span class="k">ไม่เหมาะกับโครงการขนาดเล็ก</span>และงานง่ายๆ</li>
+        <li>แสดง<span class="k">ความคาดหวัง ไม่ใช่สถานะหรือความคืบหน้าจริง</span></li>
+        <li>ต้องดูแลระบบเพิ่มมากในระยะกำหนดขอบเขต</li>
+        <li>การประเมินเวลาสร้าง<span class="k">ความกดดัน</span> ไม่เอื้อต่องานที่ใช้ความคิดสร้างสรรค์</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>6.5 Flow Chart</h3>
+  <div class="cols">
+    <div>
+      <div class="h5">ผังงาน (Flow Chart)</div>
+      <p style="font-size:14.3px;margin:0">แผนผังรูปภาพที่แสดง<span class="k">แนวคิดหรือขั้นตอนการทำงานของโปรแกรม</span> ช่วยให้มองเห็นภาพรวม</p>
+    </div>
+    <div>
+      <div class="h5">ผังปฏิบัติงาน (Work Flow)</div>
+      <p style="font-size:14.3px;margin:0">รูปภาพหรือสัญลักษณ์ที่ใช้เขียนแทนขั้นตอน คำอธิบาย ข้อความ ที่ใช้ในการปฏิบัติงาน — <span class="k">"ใช้สัญลักษณ์แทนคำอธิบาย"</span></p>
+    </div>
+  </div>
+
+  <h4>ประเภทของ Flow Chart 4 แบบ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:30%">ประเภท</th><th>แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Document Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">เอกสาร</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">Data Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">ข้อมูล</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">System Flow Chart</span></td><td>การเคลื่อนไหวของ<span class="k">สิ่งของและทรัพยากร</span>ในระบบ</td></tr>
+    <tr><td><span class="kk">Program Flow Chart</span></td><td>ควบคุม<span class="k">การตัดสินใจของโปรแกรม</span>ในระบบ</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px">โครงสร้าง Flow Chart 3 แบบ: <span class="k">Sequence Structure</span> · <span class="k">Decision and Selection Structure</span> · <span class="k">Iteration Structure</span><br>
+  กฎการเขียน: ต้องเริ่มจาก<span class="k">จุดเริ่มต้น (Start)</span> และไปถึง<span class="k">จุดสิ้นสุด (Stop)</span> ได้เสมอ<br>
+  ประโยชน์หลัก: <span class="kk">"ทำให้เห็นภาพ"</span> จึงหาจุดอ่อน จุดบอด หรือ<span class="k">ปัญหาคอขวด (Bottleneck)</span> ได้</p>
+
+  <div class="box tip">
+    <div class="h5">As-is vs To-be (คู่นี้ออกสอบบ่อย)</div>
+    <p style="margin:0"><span class="kk">As-is-System</span> = ระบบงาน<span class="k">ปัจจุบัน</span>ของหน่วยงาน หรือ Flow การทำงานปกติ ซึ่งอาจใช้คอมพิวเตอร์/ไอทีช่วยหรือไม่ก็ได้<br>
+    <span class="kk">To-be-System</span> = ระบบงาน<span class="k">ใหม่</span>ที่เกิดจาก Requirements ล่าสุด ออกแบบไว้เพื่อแก้ปัญหาหรือเพิ่มประสิทธิภาพของระบบงานเดิม</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="h5">ข้อดีของ Flow Chart</div>
+      <ul>
+        <li>ช่วยลำดับขั้นตอน นำไปเขียนโปรแกรมได้ไม่สับสน</li>
+        <li>ช่วยตรวจสอบและแก้ไขโปรแกรมได้ง่ายเมื่อเกิดข้อผิดพลาด</li>
+        <li>ดัดแปลงแก้ไขได้สะดวกรวดเร็ว</li>
+        <li>ผู้อื่นศึกษาการทำงานของโปรแกรมได้ง่ายและเร็ว</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ข้อจำกัดของ Flow Chart</div>
+      <ul>
+        <li>ไม่เหมาะกับ<span class="k">ระบบการตัดสินใจที่ซับซ้อนเกินไป</span></li>
+        <li><span class="k">บอกไม่ได้ว่าขั้นตอนใดสำคัญกว่า</span> เพราะใช้สัญลักษณ์ลักษณะเดียวกัน</li>
+        <li>โครงการใหญ่ → ผังใหญ่ตาม แก้ไขยาก</li>
+        <li>แทนคำสั่งของภาษาคอมพิวเตอร์บางคำสั่งได้ไม่ชัดเจน</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============== UNIT 7 =============== -->
+<section id="u7">
+  <div class="unitbar"><span class="unitno">UNIT 7</span><h2>Team Management &amp; Resource Planning</h2></div>
+  <p class="subtitle">ผู้นำ โครงสร้างองค์กรโครงการ และซอฟต์แวร์บริหารโครงการ</p>
+
+  <h3>7.1 The Role of Leader</h3>
+  <p>ผู้บริหารโครงการมักถูกมอบหมายให้เป็น<span class="k">ผู้นำทีม (Leader)</span> ไปในตัว โดยเฉพาะถ้าโครงการมีระยะเวลาสั้นมากหรือเป็นความจำเป็นเร่งด่วน อย่างไรก็ตามบางโครงการอาจ<span class="k">หมุนเวียนตำแหน่งผู้นำ</span>กันภายในเป็นระยะ</p>
+
+  <h4>แนวปฏิบัติที่ดีสำหรับผู้นำ (Best Practice)</h4>
+  <ol>
+    <li><span class="k">สื่อสารความคืบหน้าและปัญหาอย่างสม่ำเสมอ</span>กับผู้จัดการโครงการและสมาชิกในทีม</li>
+    <li><span class="k">ประเมินความก้าวหน้าของทีม</span> ทัศนะของสมาชิก และมุมมองต่อการให้ความช่วยเหลือเป็นระยะๆ</li>
+    <li>สร้างความมั่นใจว่า<span class="k">ทุกคนช่วยเหลือกัน และทุกเสียงได้รับการรับฟัง</span></li>
+    <li><span class="k">ร่วมลงแรงในการทำงาน</span></li>
+  </ol>
+
+  <div class="cols">
+    <div>
+      <div class="h5">ช่วงกำหนดและวางแผนโครงการ</div>
+      <ul>
+        <li>ทำแผน<span class="k">งบประมาณ ต้นทุน และกำหนดเวลาขั้นต้น</span></li>
+        <li><span class="k">เลือกทีมงาน</span>บริหารโครงการ</li>
+        <li>จัดเตรียม<span class="k">เครื่องมือเครื่องใช้</span>ที่ต้องการ</li>
+        <li>ทำรายละเอียดที่จำเป็นเพื่อผลักดันให้โครงการเดินได้</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">ช่วงปฏิบัติและปิดโครงการ</div>
+      <ul>
+        <li><span class="k">การเริ่มงาน</span></li>
+        <li><span class="k">ตรวจสอบและแก้ปัญหา</span>ที่เกิดขึ้นให้ได้ตามเป้าหมาย</li>
+        <li>ดูรายละเอียดการบริหารโครงการทั้งหมด</li>
+        <li><span class="k">ทบทวนและประเมินโครงการ</span>ในช่วงปิดโครงการ</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:14.6px">คุณสมบัติของผู้นำ วัดจากความสามารถตอบคำถามเหล่านี้ได้: โครงการนี้จะทำอะไรบ้าง · ใครควรเป็นผู้ทำ · ทำอย่างไรจึงได้ทรัพยากรที่ต้องการ (โดย<span class="k">ไม่จำเป็นต้องรู้ลึกด้านเทคนิค</span>) · มีความเข้าใจในองค์กรและสภาพแวดล้อมของโครงการ</p>
+
+  <h3>7.2 Project Organization Structure — 3 แบบ</h3>
+
+  <h4>1) Functional Organization (จัดองค์กรแบบหน้าที่)</h4>
+  <p>จัดตาม<span class="k">โครงสร้างหน้าที่</span> อาศัยความเชี่ยวชาญด้านอาชีพในการแบ่ง เช่น R&amp;D · Engineering · Manufacturing · Marketing · Finance &amp; Accounting · HR</p>
+  <p style="font-size:14.6px"><b>ข้อดี:</b> โครงสร้าง<span class="k">คงที่ แน่นอน</span> · ผู้เชี่ยวชาญปฏิบัติงานเฉพาะทางได้รวดเร็วมีประสิทธิภาพ<br>
+  <b>ข้อเสีย:</b> อาจ<span class="k">ต่อต้านการเปลี่ยนแปลง</span> · ผู้ปฏิบัติงานอาจมี<span class="k">วิสัยทัศน์และทักษะที่แคบ</span></p>
+
+  <h4>2) Task Force Organization (กลุ่มงานเฉพาะกิจ)</h4>
+  <p>จัดเพื่อดำเนินงาน<span class="k">เฉพาะทางที่ซับซ้อนและเกี่ยวข้องหลายหน่วยงาน</span> ทีมเป็นกลุ่มขนาดเล็กที่ทำงานร่วมกัน โดยมีทักษะและความรู้ต่างกัน</p>
+  <p style="font-size:14.6px"><b>ข้อดี:</b> <span class="k">ยืดหยุ่น คล่องตัว</span> · สร้างโอกาสในการเติบโตและพัฒนาโครงการ<br>
+  <b>ข้อเสีย:</b> ผู้ปฏิบัติงานอาจรู้สึก<span class="k">ไม่มั่นคง</span> · ใช้ทรัพยากรบุคคลได้<span class="k">ไม่มีประสิทธิภาพ</span></p>
+
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:34%">ประเด็น</th><th>Functional</th><th>Task Force</th></tr>
+    <tr><td>ลักษณะการดำเนินงาน</td><td><span class="k">ต่อเนื่อง</span></td><td><span class="k">แก้ไขปัญหา</span></td></tr>
+    <tr><td>ความแน่นอน</td><td>สูง</td><td>ไม่แน่นอนสูง</td></tr>
+    <tr><td>การมอบหมายงาน</td><td>แน่นอน · อำนาจถูกกำหนดก่อนมอบหมายงาน</td><td>ตามสถานการณ์ · ยืดหยุ่นปรับเปลี่ยนได้</td></tr>
+    <tr><td>สายการบังคับบัญชา</td><td><span class="k">ยาว</span></td><td><span class="k">สั้น</span></td></tr>
+    <tr><td>วัตถุประสงค์</td><td>กำหนดจาก<span class="k">บนลงล่าง</span></td><td>กำหนดจาก<span class="k">ล่างขึ้นบน</span></td></tr>
+    <tr><td>การให้รางวัล</td><td>ค่าจ้าง เงินเดือน กำไร</td><td>การเรียนรู้ การยอมรับ การสนับสนุน การสื่อสาร</td></tr>
+    <tr><td>ความเชี่ยวชาญ</td><td>เฉพาะทาง</td><td>รับผิดชอบหลายด้าน</td></tr>
+    <tr><td>ภาวะผู้นำ</td><td>เกิดจาก<span class="k">ตำแหน่งหน้าที่</span></td><td>เกิดจาก<span class="k">การบริหารทุกระดับ</span></td></tr>
+    <tr><td>โอกาสก้าวหน้า</td><td>จำกัด</td><td>—</td></tr>
+  </table>
+  </div>
+
+  <h4>3) Matrix Organization (แบบเมทริกซ์)</h4>
+  <p>จัดองค์กรแบบ<span class="k">ผสมผสาน</span> หรือเรียกว่า<span class="kk">องค์กรคู่ขนาน (Parallel Organization)</span> ระหว่างผู้ปฏิบัติงานตามโครงสร้าง<span class="k">แบบหน้าที่</span> กับผู้ปฏิบัติงานตามโครงสร้าง<span class="k">แบบเฉพาะกิจ</span></p>
+  <p><b>คุณลักษณะสำคัญ 3 ประการ:</b></p>
+  <ol>
+    <li><span class="kk">ระบบการบังคับบัญชาหลายสาย</span></li>
+    <li><span class="kk">กลไกสนับสนุนที่เกี่ยวข้อง</span></li>
+    <li><span class="kk">วัฒนธรรมองค์กรหรือรูปแบบพฤติกรรมองค์กรที่เกี่ยวข้อง</span></li>
+  </ol>
+  <p style="font-size:14.6px"><b>ข้อดี:</b> มีทั้ง<span class="k">เสถียรภาพและความยืดหยุ่น</span> · ใช้ทรัพยากรได้มีประสิทธิภาพทั้งคน เครื่องมือ และสิ่งอำนวยความสะดวก<br>
+  <b>ข้อเสีย:</b> <span class="k">อำนาจและความรับผิดชอบไม่ชัดเจน</span> · อาจเกิด<span class="k">ความซ้ำซ้อนของงาน</span> · ซับซ้อนสูง ต้องอาศัยการสื่อสารอยู่เสมอเพื่อลดปัญหาด้านการตัดสินใจ</p>
+
+  <div class="box tip">
+    <div class="h5">โครงสร้างองค์กรของโครงการในเอกสารข้อเสนอ</div>
+    <p style="margin:0">ระดับบนสุดคือ <span class="k">ผู้อุปถัมภ์หรือคณะกรรมการอำนวยการ</span> → <span class="k">ผู้จัดการโครงการ</span> → <span class="k">ผู้นำทีม</span> → <span class="k">สมาชิกทีม</span> พร้อมตารางระบุ ชื่อสมาชิก / ตำแหน่ง / หน้าที่รับผิดชอบ / ข้อมูลติดต่อ</p>
+  </div>
+
+  <h3>7.3 Project Management Software</h3>
+  <h4>ประเภทของ PM Software 3 แบบ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:24%">ประเภท</th><th>ลักษณะ</th></tr>
+    <tr><td><span class="kk">Desktop Software</span></td><td>เช่น <span class="k">Microsoft Project</span> — เจ้าของต้องแชร์เอกสารให้คนอื่น จึงมี<span class="k">ข้อจำกัดเมื่อต้องอัปเดตและดูแลโดยมากกว่า 1 คน</span></td></tr>
+    <tr><td><span class="kk">Web-based Solution</span></td><td>เข้าถึงผ่านเว็บ อ่าน เขียน แก้ไขได้ — <span class="k">ดีที่สุดสำหรับโครงการที่กระจายข้ามแผนกและข้ามพื้นที่ และสำหรับ virtual team</span></td></tr>
+    <tr><td><span class="kk">Mobile Solution</span></td><td>ใช้งานผ่านอุปกรณ์เคลื่อนที่</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">ตัวอย่างซอฟต์แวร์: Jira · Microsoft Project · Smartsheet · Trello · Asana · Monday · ClickUp · Wrike<br>
+  เกร็ด: ใน Jira <span class="k">Scrum Boards</span> ช่วยแตกงานใหญ่เป็นชิ้นเล็กเพื่อทำเป็น sprint ส่วน <span class="k">Roadmaps ทำหน้าที่เหมือน Gantt Chart</span></p>
+
+  <h4>คุณสมบัติหลักของ PM Software 6 ข้อ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:28%">Feature</th><th>สาระสำคัญ</th></tr>
+    <tr><td class="c">1</td><td><span class="kk">Collaboration &amp; Communication</span></td><td>ผู้เกี่ยวข้องเข้าถึงและอัปเดตเอกสาร/ความคืบหน้าบน dashboard ได้ — จึงต้องมี <span class="k">access control และ authentication management</span></td></tr>
+    <tr><td class="c">2</td><td><span class="kk">Scheduling</span></td><td>วาด <span class="k">Gantt charts</span> และปฏิทินร่วม เพิ่ม <span class="k">activity dependencies</span> แสดง <span class="k">critical path</span> และอัปเดตอัตโนมัติเมื่อมีการเปลี่ยนแปลง รวมถึง <span class="k">Baselining</span></td></tr>
+    <tr><td class="c">3</td><td><span class="kk">Issue Tracking</span></td><td>ติดตามและมอนิเตอร์ประเด็นที่ stakeholder รายงาน เช่น <span class="k">Software defects</span></td></tr>
+    <tr><td class="c">4</td><td><span class="kk">Portfolio Management</span></td><td>วัดและติดตาม<span class="k">หลายโครงการพร้อมกัน</span> — ฟีเจอร์นี้<span class="k">อาจแพงและไม่เหมาะกับบริษัทเล็ก</span></td></tr>
+    <tr><td class="c">5</td><td><span class="kk">Document Management</span></td><td>เก็บเอกสารไว้ศูนย์กลาง มี access control ที่ถูกต้อง รองรับ <span class="k">document versioning และ reporting</span></td></tr>
+    <tr><td class="c">6</td><td><span class="kk">Resource Management</span></td><td>แสดง<span class="k">การใช้ทรัพยากรตลอด project life cycle</span> ครอบคลุมทั้งคนและงบ มี budget dashboard และ automated invoicing</td></tr>
+  </table>
+  </div>
+
+  <h4>ปัจจัยในการเลือก PM Software</h4>
+  <p><span class="kk">Scalability</span> · <span class="kk">Company Size</span> · <span class="kk">Feature Needed</span> · <span class="kk">Operational Platform</span> · <span class="kk">Reasonable Price</span> · <span class="kk">Support Service</span></p>
+
+  <h4>ประโยชน์ของ PM Software</h4>
+  <p>เพิ่มประสิทธิภาพการสื่อสาร · ผู้นำเห็นโครงการใน<span class="k">ระดับมหภาค</span> · ช่วยทีมจัดลำดับความสำคัญของงาน · ควบคุมต้นทุนและบริหารงบประมาณ · <span class="k">จัดสรรทรัพยากร</span> · เอื้อต่อการทำงานร่วมกันแบบ remote</p>
+</section>
+
+<!-- =============== RA =============== -->
+<section id="ra">
+  <div class="unitbar"><span class="unitno">เสริม</span><h2>Requirements Analysis &amp; System Modeling</h2></div>
+  <p class="subtitle">URS/SRS · UML · Use Case Diagram · Activity Diagram</p>
+
+  <h3>เสริม 1 · Requirements Analysis</h3>
+  <div class="def">
+    <b>การวิเคราะห์ความต้องการ</b> = การศึกษาแนวทางหรือการดำเนินงาน เพื่อนำ<span class="k">ข้อมูลที่สกัด</span>ไปใช้ในการ<span class="k">ออกแบบและพัฒนาซอฟต์แวร์</span>
+  </div>
+  <p><b>บทบาท SA (System Analyst / นักวิเคราะห์ระบบ):</b> สกัดความต้องการ → วิเคราะห์ → ออกแบบระบบ → ส่งต่อทีมพัฒนา → จัดทำเอกสารด้านซอฟต์แวร์<br>
+  ความสามารถที่ต้องมี: <span class="k">ความรู้ด้านเทคนิค · ทักษะการวิเคราะห์ · การสื่อสาร · การจัดการ</span></p>
+
+  <h4>ขั้นตอนการระบุข้อกำหนดความต้องการ (Requirement Specification)</h4>
+  <div class="flow">
+    <div class="step"><b>ขั้นที่ 1</b>สกัด และรวบรวม<br><span style="font-size:12.5px;color:var(--muted)">ศึกษาข้อมูลที่เกี่ยวข้อง · ศึกษาปัญหา · ศึกษาความเป็นไปได้ · สกัดความต้องการ</span></div>
+    <div class="step"><b>ขั้นที่ 2</b>วิเคราะห์<br><span style="font-size:12.5px;color:var(--muted)">แยกแยะ · จัดหมวดหมู่ · แบ่งประเภท · URS &amp; SRS</span></div>
+    <div class="step"><b>ขั้นที่ 3</b>ออกแบบระบบ<br><span style="font-size:12.5px;color:var(--muted)">Process Model · Data Model · System Architecture · User Interface</span></div>
+    <div class="step"><b>ขั้นที่ 4</b>จัดทำเอกสาร<br><span style="font-size:12.5px;color:var(--muted)">การวิเคราะห์ระบบ · การออกแบบระบบ</span></div>
+  </div>
+
+  <h4>UR → URS → SRS</h4>
+  <p>เริ่มจากถามว่า <span class="k">"ใครใช้ระบบบ้าง?"</span> แล้วแจกแจงความต้องการตามกลุ่มผู้ใช้ด้วยคำถาม</p>
+  <ul>
+    <li><span class="kk">Who</span> — บทบาทของผู้ใช้ เช่น ผู้ปฏิบัติงาน หัวหน้า ผู้ดูแลระบบ</li>
+    <li><span class="kk">What</span> — สิ่งที่ผู้ใช้จะทำกับระบบ หรือคาดหวังให้ระบบทำอะไร</li>
+    <li><span class="kk">How</span> — ผู้ใช้อยากให้ระบบทำอย่างไร หรือทำไมอยากใช้ระบบ เพื่ออะไร</li>
+  </ul>
+  <div class="box">
+    <div class="h5">ตัวอย่างการเขียนที่ต้องทำเป็น (มักออกเป็นข้อเขียน)</div>
+    <p style="margin:0 0 6px"><b>URS</b> = จัดกลุ่มความต้องการ หรือจัดทำเป็นโมดูล</p>
+    <p style="font-size:14.6px;margin:0 0 10px;padding-left:12px;border-left:2px solid var(--rule)">
+      <span class="k">URS-01</span> ผู้ใช้สามารถเข้าใช้งานด้วยการลงชื่อเข้าใช้ (Login) ตามระดับสิทธิ์การใช้งาน ได้แก่ ผู้ปฏิบัติงาน, หัวหน้า, ผู้ดูแลระบบ
+    </p>
+    <p style="margin:0 0 6px"><b>SRS</b> = ระบุ<span class="k">ฟังก์ชันงานของซอฟต์แวร์</span> ให้บรรลุความต้องการของผู้ใช้ ประกอบด้วย System Functional · Operational Constraint · Services</p>
+    <p style="font-size:14.6px;margin:0;padding-left:12px;border-left:2px solid var(--rule)">
+      <span class="k">SRS-01</span> ระบบสามารถรองรับการ login ได้ด้วย username และ password<br>
+      <span class="k">SRS-02</span> ระบบสามารถตรวจสอบระดับสิทธิ์ผู้ใช้งานที่ login ได้ดังนี้ ผู้ปฏิบัติงาน, หัวหน้า, ผู้ดูแลระบบ
+    </p>
+    <p style="margin:10px 0 0;font-size:14.3px;color:var(--muted)">โครงสร้างคือ <b>1 URS มีได้หลาย SRS อยู่ข้างใต้</b> — URS ขึ้นต้นด้วย "ผู้ใช้/หัวหน้า/แอดมิน สามารถ…" ส่วน SRS ขึ้นต้นด้วย "ระบบสามารถ…"</p>
+  </div>
+
+  <h3>เสริม 2 · Analysis Model &amp; UML</h3>
+  <div class="def">
+    <b>แบบจำลอง (Model)</b> = แผนภาพที่แสดงข้อเท็จจริงหรือกิจกรรมที่เกิดขึ้นในระบบ ด้วยการ<span class="k">ใช้สัญลักษณ์แทนการอธิบายด้วยตัวหนังสือ</span> ซึ่งชัดเจน เข้าใจง่าย และไม่ซับซ้อน<br>
+    <b>แบบจำลองการวิเคราะห์</b> = แบบจำลองที่เขียนขึ้นจาก<span class="k">ข้อกำหนดความต้องการของระบบ</span> สะท้อนหน้าที่การทำงานของระบบ และนำไปใช้ออกแบบต่อ
+  </div>
+  <div class="cols">
+    <div>
+      <div class="h5">1. Behavioral UML Diagram<br><span style="font-weight:400;font-size:13.5px;color:var(--muted)">เชิงลักษณะการทำงาน</span></div>
+      <ul>
+        <li><span class="k">Activity Diagram</span></li>
+        <li><span class="k">Use Case Diagram</span></li>
+        <li><span class="k">Sequence Diagram</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="h5">2. Structural UML Diagram<br><span style="font-weight:400;font-size:13.5px;color:var(--muted)">เชิงโครงสร้าง</span></div>
+      <ul>
+        <li><span class="k">Class Diagram</span></li>
+        <li><span class="k">Entity Relationship Diagram</span></li>
+        <li><span class="k">Data-flow Diagram</span></li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:14.6px"><b>นิยามสั้นที่ต้องท่องได้:</b><br>
+  <span class="k">Use Case Diagram</span> — แผนภาพที่ใช้แสดง<span class="k">ปฏิสัมพันธ์ระหว่างระบบงานภายในและผู้ใช้งาน</span><br>
+  <span class="k">Activity Diagram</span> — แผนภาพการทำงานของระบบ แสดง<span class="k">ขั้นตอนและเงื่อนไข</span>การทำงานแต่ละงาน<br>
+  <span class="k">Sequence Diagram</span> — แผนภาพแสดงปฏิสัมพันธ์ระหว่าง <span class="k">Object</span> โดยเฉพาะการส่ง <span class="k">Message ตามลำดับเวลา</span></p>
+
+  <h4>Use Case Diagram Symbols</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:20%">สัญลักษณ์</th><th>ใช้แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Actor</span><br><span style="font-size:13px;color:var(--muted)">รูปคนก้างปลา</span></td><td>แทน<span class="k">ผู้ใช้งาน กลุ่มผู้ใช้ หรือองค์กร</span>ที่ใช้งาน</td></tr>
+    <tr><td><span class="kk">Use case</span><br><span style="font-size:13px;color:var(--muted)">วงรี</span></td><td><span class="k">ฟังก์ชันงานหรือกระบวนงาน</span> — มัก<span class="k">ขึ้นต้นด้วยคำกริยา</span></td></tr>
+    <tr><td><span class="kk">System</span><br><span style="font-size:13px;color:var(--muted)">กรอบสี่เหลี่ยม</span></td><td>แสดง<span class="k">ขอบเขตของ Use case</span></td></tr>
+    <tr><td><span class="kk">Package</span></td><td>แสดง<span class="k">การจัดกลุ่ม Use case</span> เข้าด้วยกัน มีประโยชน์มากเมื่อแผนภาพซับซ้อน เป็นองค์ประกอบที่<span class="k">ละเว้นได้</span></td></tr>
+    <tr><td><span class="kk">Association</span><br><span style="font-size:13px;color:var(--muted)">เส้น / ลูกศรประ</span></td><td>ความสัมพันธ์ระหว่าง Actor กับ Use case และระหว่าง Use case ด้วยกัน เช่น include/uses, extends</td></tr>
+  </table>
+  </div>
+  <div class="box exam">
+    <div class="h5">include vs extend — ถามแทบทุกครั้ง</div>
+    <p style="margin:0"><span class="kk">&lt;&lt;include&gt;&gt; / uses</span> : The use case is <b>mandatory</b> — ตัวที่ถูก include คือ<span class="k">สิ่งที่ต้องเกิดเสมอ</span><br>
+    <span class="kk">&lt;&lt;extend&gt;&gt;</span> : The use case is <b>optional</b> — scenario สมบูรณ์ได้<span class="k">แม้ไม่มี</span> use case ที่ extend มา<br>
+    <span style="font-size:14.3px;color:var(--muted)">ตัวอย่างจากสไลด์: "จองที่จอดรถ" &lt;&lt;include&gt;&gt; "ออก QR ที่จอด" (ต้องออกเสมอ) / "จ่ายค่าที่จอด" &lt;&lt;extend&gt;&gt; "ใช้ส่วนลด/คูปอง" (จะใช้หรือไม่ใช้ก็ได้)</span></p>
+  </div>
+
+  <h4>Activity Diagram Symbols</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:26%">สัญลักษณ์</th><th>ใช้แสดงอะไร</th></tr>
+    <tr><td><span class="kk">Start Node</span> <span style="font-size:13px;color:var(--muted)">(วงกลมทึบ)</span></td><td>จุดเริ่มต้นของโปรแกรม/กระบวนงาน</td></tr>
+    <tr><td><span class="kk">Action State</span> <span style="font-size:13px;color:var(--muted)">(สี่เหลี่ยมมุมมน)</span></td><td>การทำงานของระบบหรือขั้นตอนการทำงาน มัก<span class="k">ขึ้นต้นด้วยคำกริยา</span></td></tr>
+    <tr><td><span class="kk">Control Flow</span> <span style="font-size:13px;color:var(--muted)">(ลูกศร)</span></td><td>การเชื่อมต่อของระบบไปยังขั้นตอนต่างๆ</td></tr>
+    <tr><td><span class="kk">Decision Node</span> <span style="font-size:13px;color:var(--muted)">(สี่เหลี่ยมข้าวหลามตัด)</span></td><td><span class="k">เงื่อนไข</span>หรือการตัดสินใจ</td></tr>
+    <tr><td><span class="kk">Fork</span></td><td>จุดเชื่อมต่อที่<span class="k">แยกการทำงานเป็นคู่ขนาน</span>ไปยังขั้นตอนถัดไป</td></tr>
+    <tr><td><span class="kk">Join</span></td><td>จุดเชื่อมต่อที่<span class="k">รวมการทำงานก่อนหน้ามากกว่า 1 งาน</span>ไปยังงานถัดไปงานเดียว</td></tr>
+    <tr><td><span class="kk">End State</span> <span style="font-size:13px;color:var(--muted)">(วงกลมทึบมีขอบ)</span></td><td>จุดสิ้นสุดของโปรแกรม/กระบวนงาน</td></tr>
+  </table>
+  </div>
+  <p style="font-size:14.6px;color:var(--muted)">องค์ประกอบอื่นที่เห็นในสไลด์: <span class="k">Initial Node</span> · <span class="k">Action</span> · <span class="k">Control Flow</span> · <span class="k">Activity Final Node</span> และการแบ่ง <span class="k">Swimlane</span> ตามผู้รับผิดชอบ (เช่น Author / Moderator)</p>
+
+  <h4>รูปแบบ Activity Diagram 5 แบบ</h4>
+  <div class="tblwrap">
+  <table>
+    <tr><th class="c" style="width:6%">#</th><th style="width:22%">รูปแบบ</th><th>ลักษณะการทำงาน</th></tr>
+    <tr><td class="c">1</td><td><span class="kk">Sequence</span></td><td>การทำงาน<span class="k">ตามลำดับ</span> เขียนเป็นลำดับขั้นตอนการทำงาน</td></tr>
+    <tr><td class="c">2</td><td><span class="kk">Selection</span></td><td>เลือกกระทำตามเงื่อนไข มี 2 กระบวนการ: <span class="k">จริงทำอย่างหนึ่ง เท็จทำอีกอย่างหนึ่ง</span></td></tr>
+    <tr><td class="c">3</td><td><span class="kk">Iteration</span></td><td>การทำซ้ำ <span class="k">วน Loop ในขั้นตอนเดิมจนกว่าจะเป็นไปตามเงื่อนไข</span></td></tr>
+    <tr><td class="c">4</td><td><span class="kk">Do while</span></td><td><span class="k">ตรวจสอบเงื่อนไขก่อน</span> ถ้าจริงจึงทำตามคำสั่ง แล้ววนกลับจนกว่าเงื่อนไขเป็นเท็จ</td></tr>
+    <tr><td class="c">5</td><td><span class="kk">Do until</span></td><td><span class="k">ทำคำสั่งก่อน 1 ครั้ง</span> แล้วตรวจสอบเงื่อนไข ถ้าเท็จกลับไปทำซ้ำจนกว่าเงื่อนไขเป็นจริง</td></tr>
+  </table>
+  </div>
+  <div class="box tip">
+    <div class="h5">จุดต่างของ Do while กับ Do until</div>
+    <p style="margin:0"><b>ลำดับ:</b> Do while <span class="k">ตรวจก่อน–ทำทีหลัง</span> (อาจไม่ได้ทำเลย) · Do until <span class="k">ทำก่อน–ตรวจทีหลัง</span> (ทำอย่างน้อย 1 ครั้งแน่นอน)<br>
+    <b>เงื่อนไขออกจาก loop:</b> Do while ออกเมื่อ<span class="k">เท็จ</span> · Do until ออกเมื่อ<span class="k">จริง</span></p>
+  </div>
+</section>
+
+<!-- =============== UNIT 8 =============== -->
+<section id="u8">
+  <div class="unitbar"><span class="unitno">UNIT 8</span><h2>Project Cost Planning</h2></div>
+  <p class="subtitle">วางแผนทรัพยากร → ประมาณต้นทุน → จัดงบประมาณ → สร้าง Cost Baseline → ควบคุมต้นทุน</p>
+
+  <h3>8.1 Project Cost Management คืออะไร</h3>
+  <div class="def"><b>Project Cost Management</b> คือกระบวนการวางแผน ติดตาม และควบคุมต้นทุนของโครงการ เพื่อหลีกเลี่ยงปัจจัยที่ทำให้ต้นทุนเพิ่ม เพราะต้นทุนที่เพิ่มขึ้นย่อมทำให้กำไรลดลง</div>
+  <div class="flow">
+    <div class="step"><b>1 · RESOURCE PLANNING</b>ต้องใช้อะไร และปริมาณเท่าไร</div>
+    <div class="step"><b>2 · COST ESTIMATING</b>ทรัพยากรทั้งหมดน่าจะมีต้นทุนเท่าไร</div>
+    <div class="step"><b>3 · COST BUDGETING</b>จัดสรรเงินไปยังงานย่อยและช่วงเวลา</div>
+    <div class="step"><b>4 · COST CONTROL</b>ติดตามค่าใช้จ่ายและควบคุมการเปลี่ยนแปลง Baseline</div>
+  </div>
+  <p><b>Resource Planning</b> ต้องพิจารณาทั้งประเภท/ลักษณะโครงการและบริบทองค์กร ใช้คำแนะนำจากผู้มีประสบการณ์ และให้ผู้เชี่ยวชาญหลายสาขาช่วยประเมินทางเลือก ผลลัพธ์คือรายการทรัพยากรบุคคล วัสดุ และอุปกรณ์ที่ต้องใช้ในขั้นต่อไป</p>
+
+  <h3>8.2 Cost Estimating — การประมาณต้นทุน</h3>
+  <p>คือการพยากรณ์ต้นทุนของทรัพยากรทั้งหมด และจัดทำ <span class="k">Cost Management Plan</span> ซึ่งควรบอกต้นทุนโดยละเอียด รวมถึงวิธีรับมือเมื่อค่าใช้จ่ายจริงต่างจากที่ประมาณไว้ เอกสารประมาณการที่ดีต้องระบุ <b>หลักเกณฑ์/สมมติฐาน รายละเอียดโครงการ และเทคนิคที่ใช้ประมาณ</b> เพื่อให้ตรวจสอบและนำกลับมาใช้กับโครงการคล้ายกันได้</p>
+
+  <h4>ประเภทของประมาณการและช่วงความแม่นยำ</h4>
+  <div class="tblwrap"><table>
+    <tr><th>ประเภท</th><th>ใช้เมื่อ</th><th class="c">ช่วง Accuracy</th><th>ความหมาย</th></tr>
+    <tr><td><b>ROM</b><br>Rough Order of Magnitude</td><td>ช่วงเริ่มต้น ข้อมูลยังน้อย</td><td class="c"><span class="kk">−25% ถึง +75%</span></td><td>ตัวเลขหยาบเพื่อการตัดสินใจระดับสูงว่าโครงการเป็นไปได้ทางการเงินหรือไม่</td></tr>
+    <tr><td><b>Budgetary Estimate</b></td><td>นิยามโครงการได้บางส่วน</td><td class="c"><span class="kk">−10% ถึง +25%</span></td><td>ใช้จัดสรรเงินทุนให้กิจกรรมต่าง ๆ; อาจไล่จาก Intermediate → Preliminary → Substantive เมื่อรายละเอียดเพิ่มขึ้น</td></tr>
+    <tr><td><b>Definitive Estimate</b></td><td>Scope และ Tasks เกือบสมบูรณ์</td><td class="c"><span class="kk">−5% ถึง +10%</span></td><td>ประมาณการช่วงท้าย มีรายละเอียดมากที่สุดและคลาดเคลื่อนน้อยที่สุด</td></tr>
+  </table></div>
+  <div class="box exam"><div class="h5">วิธีอ่านช่วงคลาดเคลื่อน</div><p>ถ้า ROM ประมาณ 100,000 บาท ช่วงที่ยอมรับตามสไลด์คือประมาณ <b>75,000–175,000 บาท</b> ไม่ได้แปลว่าความแม่นยำ 75% แต่เป็นขอบเขตต่ำ/สูงจากค่าประมาณ</p></div>
+
+  <h4>เทคนิคประมาณต้นทุน 4 แบบ</h4>
+  <div class="tblwrap"><table>
+    <tr><th>เทคนิค</th><th>วิธีคิด</th><th>จุดเด่น</th><th>ข้อจำกัด/เหมาะกับ</th></tr>
+    <tr><td><b>Top-down</b></td><td>อิงข้อมูลจริงในอดีตหรือโครงการคล้ายกัน แล้วประมาณภาพรวมลงมา</td><td>ง่าย เร็ว ประหยัดทรัพยากร</td><td>แม่นยำน้อยกว่าและต้องพึ่งผู้เชี่ยวชาญ</td></tr>
+    <tr><td><b>Bottom-up</b></td><td>ประมาณแต่ละกิจกรรมย่อยแล้วรวมเป็นต้นทุนทั้งโครงการ</td><td>ละเอียดและมักแม่นยำที่สุด</td><td>ใช้เวลา ต้องให้เจ้าของงานย่อยร่วมประมาณ</td></tr>
+    <tr><td><b>Parametric Modeling</b></td><td>แตกเป็น Work Unit × ต้นทุนต่อหน่วย เช่น Man-day, LOC, ความซับซ้อน; ตัวอย่าง COCOMO</td><td>ทำซ้ำและตรวจสอบได้ เหมาะกับซอฟต์แวร์</td><td>ต้องมีโมเดล/ข้อมูลต่อหน่วยที่น่าเชื่อถือ</td></tr>
+    <tr><td><b>Three-point Estimate</b></td><td>ใช้ Optimistic (O), Most likely (M), Pessimistic (P)</td><td>สะท้อนความไม่แน่นอน</td><td>ถ้าใช้แบบ PERT: (O + 4M + P) ÷ 6</td></tr>
+  </table></div>
+  <p>การประมาณจริงมักจำแนกตาม <b>WBS และเดือน</b> อาจเริ่มจาก Man-hour/Man-day แล้วแปลงเป็นเงิน สำหรับโครงการใหญ่ควรเผื่อ Integration, Testing และ Reserve เพราะคนมักประมาณต่ำกว่าความจริง และต้องเก็บ Historical Data เพื่อพัฒนาความแม่นยำรอบถัดไป</p>
+
+  <h3>8.3 Cost Budgeting — จาก Estimate สู่ Baseline</h3>
+  <p>คือการจัดสรรต้นทุนรวมที่ประมาณไว้ไปยังทุกกิจกรรมตาม <span class="k">WBS และตารางเวลา</span> จากนั้นพัฒนา WBS เป็น <b>Cost Breakdown Structure (CBS)</b> และงบตามช่วงเวลาเป็น <b>Cost Baseline</b> ซึ่งใช้วัดและควบคุมผลงานจริง</p>
+  <div class="cols">
+    <div><div class="h5">By Time Period</div><p>จัดงบตามเดือน สัปดาห์ หรือไตรมาส มักแสดงคู่ Gantt Chart หรือ Workflow เพื่อเห็นเงินที่ใช้สะสมตลอดโครงการ</p></div>
+    <div><div class="h5">By Cost Types</div><p>จัดตามประเภทต้นทุน เพื่อมองเห็นตัวขับต้นทุนและหาวิธีลด เช่น Labor, Outsourcing, Material, Logistic และ Operating/Overhead</p></div>
+  </div>
+  <p>การทำงบต้องระบุ <b>Cost Driver</b> (รายการ/งาน/บริการ), <b>Amount</b> (จำนวนชิ้น คน หรือเวลาทำงาน), <b>Unit Cost</b> และ <b>Overhead/Hidden Cost</b> ซึ่งเป็นต้นทุนทางอ้อมที่ไม่มีคุณค่าโดยตรงแต่กระทบกระบวนการทำงาน</p>
+
+  <h4>Cost Estimating vs Cost Budgeting</h4>
+  <div class="tblwrap"><table>
+    <tr><th>Cost Estimating</th><th>Cost Budgeting</th></tr>
+    <tr><td>พยากรณ์ว่าทำโครงการให้เสร็จน่าจะใช้เงินรวมเท่าไร</td><td>ตัดสินใจว่าจะจัดสรรเงินให้โครงการจริงเท่าไร และใช้เมื่อไร</td></tr>
+    <tr><td>ควรรวมค่าใช้จ่ายที่เป็นไปได้ให้ครบ ใช้พิจารณาความเป็นไปได้</td><td>สร้างจาก Schedule + Cost Estimate และรวม Buffer/Variance ได้</td></tr>
+    <tr><td>เป็นข้อมูลนำเข้าเพื่อสร้าง Cost Baseline</td><td>แสดงทั้งมุมรายช่วงเวลาและยอดรวมทั้งโครงการ</td></tr>
+  </table></div>
+  <div class="box memory"><div class="h5">จำสั้น ๆ</div><p><b>Estimate ก่อน Budget เสมอ:</b> Estimate = “น่าจะใช้เท่าไร” · Budget = “อนุมัติ/จัดสรรให้ใช้เท่าไร” · Baseline = “แผนอ้างอิงที่อนุมัติแล้วสำหรับวัดผล”</p></div>
+
+  <h3>8.4 Cost Multiplier / Factoring Form</h3>
+  <p>การแตกตัวคูณทำให้งบโปร่งใสและตรวจสอบได้ โดยแจกแจงหมวดรายจ่าย → รายการย่อย → จำนวน → อัตราต่อหน่วย → ความถี่/เวลา</p>
+  <div class="formula">ต้นทุนรายการ = Quantity × Unit Cost × Frequency/Time<small>ต้นทุนรวม = ผลรวมทุกรายการ + Overhead/Hidden Cost + เงินสำรองตามนโยบาย</small></div>
+  <p>หมวดงบตามเกณฑ์ราชการแบ่งกว้าง ๆ เป็น <b>งบดำเนินงาน</b> (ค่าจ้าง ค่าใช้สอย ค่าวัสดุ และอื่น ๆ เช่นสาธารณูปโภค) กับ <b>งบลงทุน</b> (ครุภัณฑ์ สิ่งก่อสร้าง และรายจ่ายลักษณะลงทุน) ต้องเขียนชื่อรายการและหน่วยนับให้ชัด และใช้อัตรามาตรฐานราชการหรือราคาตลาดที่อ้างอิงได้</p>
+
+  <h3>8.5 Cost Control</h3>
+  <p>ประกอบด้วยการติดตามเงินที่ใช้ ทบทวนการเปลี่ยนแปลง และแจ้ง Stakeholders เมื่อสิ่งที่เปลี่ยนกระทบค่าใช้จ่าย ข้อมูลนำเข้าหลักคือ <b>Cost Baseline, Performance Report, Change Request และ Cost Management Plan</b> ผลลัพธ์คือประมาณการและงบที่ทบทวนแก้ไขแล้ว โดย Unit 9 จะใช้ Earned Value Analysis วัดผลอย่างเป็นตัวเลข</p>
+</section>
+
+<!-- =============== UNIT 9 =============== -->
+<section id="u9">
+  <div class="unitbar"><span class="unitno">UNIT 9</span><h2>Project Monitoring &amp; Control</h2></div>
+  <p class="subtitle">วัดผลงานจริงเทียบแผนฐาน แปลค่า EVA สื่อสารสถานะ และควบคุมงานแบบ Agile</p>
+
+  <h3>9.1 วงจรควบคุมโครงการและ Baseline</h3>
+  <div class="flow">
+    <div class="step"><b>1 · SET BASELINE</b>กำหนดแผนฐานที่อนุมัติ</div>
+    <div class="step"><b>2 · MEASURE</b>วัดความก้าวหน้าจริงทั้งทางการ/ไม่เป็นทางการ</div>
+    <div class="step"><b>3 · COMPARE</b>เทียบ Actual กับ Baseline เพื่อหาความเบี่ยงเบน</div>
+    <div class="step"><b>4 · CORRECT</b>แก้ไขเพื่อพาโครงการกลับเข้าสู่แผน</div>
+  </div>
+  <p><b>Project Baseline</b> คือแผนความก้าวหน้าที่ได้รับอนุมัติ ใช้เป็น benchmark หรือ performance measurement baseline ไม่ใช่เพียงตัวเลขความคืบหน้า มี 3 ด้านที่สัมพันธ์กับ Triple Constraint:</p>
+  <ul>
+    <li><b>Scope Baseline</b> — Project Scope Statement, WBS และ WBS Dictionary</li>
+    <li><b>Schedule Baseline</b> — วันที่ แผนกิจกรรม Milestones และ Critical Path</li>
+    <li><b>Cost Baseline</b> — เงิน/ทรัพยากร ต้นทุนตรงและต้นทุนทางอ้อมตามช่วงเวลา</li>
+  </ul>
+
+  <h4>QA vs QC</h4>
+  <div class="cols">
+    <div><div class="h5">Quality Assurance (QA)</div><p><b>เน้นกระบวนการและการป้องกัน</b> วางแผนอย่างเป็นระบบเพื่อสร้างความเชื่อมั่นว่าผลลัพธ์จะมีคุณภาพ</p></div>
+    <div><div class="h5">Quality Control (QC)</div><p><b>เน้นผลิตภัณฑ์ การตรวจ และการค้นหาข้อบกพร่อง</b> ตรวจว่าสินค้า/บริการตรงมาตรฐานทั้งคุณภาพและปริมาณ</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ลำดับความสัมพันธ์</div><p><b>QC เป็นส่วนหนึ่งของ QA → QA เป็นส่วนหนึ่งของ QMS → QMS เป็นส่วนหนึ่งของการบริหารธุรกิจ</b> ที่มุ่งสร้างความพึงพอใจลูกค้า</p></div>
+
+  <h3>9.2 Earned Value Analysis (EVA)</h3>
+  <p>EVA รวมมิติ <b>Scope + Schedule + Cost</b> เพื่อเทียบผลงานจริงกับแผน ช่วยวิเคราะห์สถานะ กำหนดทิศทาง และพยากรณ์อนาคตของโครงการ</p>
+  <div class="tblwrap"><table>
+    <tr><th>ค่า</th><th>ชื่อเต็ม</th><th>คำถามที่ตอบ</th></tr>
+    <tr><td><span class="badge">PV / BCWS</span></td><td>Planned Value</td><td>ถึงวันนี้ “ตามแผน” ควรทำงานมูลค่าเท่าไร</td></tr>
+    <tr><td><span class="badge">EV / BCWP</span></td><td>Earned Value</td><td>งานที่ “ทำเสร็จจริง” มีมูลค่าตามงบเท่าไร</td></tr>
+    <tr><td><span class="badge">AC / ACWP</span></td><td>Actual Cost</td><td>งานที่ทำแล้ว “จ่ายจริง” ไปเท่าไร</td></tr>
+    <tr><td><span class="badge">BAC</span></td><td>Budget at Completion</td><td>งบรวมที่อนุมัติไว้เมื่อโครงการเสร็จ</td></tr>
+    <tr><td><span class="badge">EAC</span></td><td>Estimate at Completion</td><td>จากสถานะปัจจุบัน คาดว่าจบจริงจะใช้เงินรวมเท่าไร</td></tr>
+    <tr><td><span class="badge">ETC</span></td><td>Estimate to Complete</td><td>จากวันนี้ต้องใช้เงินเพิ่มอีกเท่าไรจึงเสร็จ</td></tr>
+    <tr><td><span class="badge">VAC</span></td><td>Variance at Completion</td><td>เมื่อจบ คาดว่าจะเหลือหรือเกินงบเท่าไร</td></tr>
+  </table></div>
+  <div class="formula-grid">
+    <div class="formula">SV = EV − PV<small>+ เร็วกว่าแผน · 0 ตามแผน · − ช้ากว่าแผน</small></div>
+    <div class="formula">CV = EV − AC<small>+ ประหยัด/คุ้มค่า · 0 ตามงบ · − เกินต้นทุน</small></div>
+    <div class="formula">SPI = EV ÷ PV<small>&gt;1 เร็ว · =1 ตามแผน · &lt;1 ช้า</small></div>
+    <div class="formula">CPI = EV ÷ AC<small>&gt;1 คุ้มค่า · =1 ตามงบ · &lt;1 ใช้เงินไม่มีประสิทธิภาพ</small></div>
+    <div class="formula">EAC = BAC ÷ CPI<small>สูตรพยากรณ์ทั่วไป เมื่อประสิทธิภาพต้นทุนเดิมจะดำเนินต่อ</small></div>
+    <div class="formula">ETC = EAC − AC<br>VAC = BAC − EAC<small>VAC บวก = ต่ำกว่างบ · VAC ลบ = เกินงบ</small></div>
+  </div>
+  <div class="box memory"><div class="h5">กันสลับสูตร</div><p><b>Variance ใช้ลบ, Index ใช้หาร และ EV อยู่หน้าเสมอ</b> — Schedule เทียบ PV, Cost เทียบ AC.</p></div>
+
+  <h4>อ่านสถานะจาก CPI × SPI</h4>
+  <div class="status-grid">
+    <div class="status-card good"><div class="h5">CPI &gt; 1 · SPI &gt; 1</div><p>ใช้งบมีประสิทธิภาพและเร็วกว่าแผน — รักษาแนวทางและยกย่องทีม</p></div>
+    <div class="status-card warn"><div class="h5">CPI &gt; 1 · SPI &lt; 1</div><p>ประหยัดแต่ช้า — ตรวจ blocker เพิ่มทรัพยากร/OT อย่างมีเหตุผล และติดตามถี่ขึ้น</p></div>
+    <div class="status-card warn"><div class="h5">CPI &lt; 1 · SPI &gt; 1</div><p>เร็วแต่แพง — ตรวจค่าใช้จ่าย การจัดคน และสาเหตุที่เร่งงานแล้วต้นทุนสูง</p></div>
+    <div class="status-card bad"><div class="h5">CPI &lt; 1 · SPI &lt; 1</div><p>ทั้งช้าและเกินงบ — หารากปัญหา จัดลำดับงาน เพิ่มประสิทธิภาพ และเจรจา Stakeholders</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ตัวอย่างจากโจทย์ในสไลด์</div><p>BAC = 40 ล้านบาท, ระยะเวลา 4 เดือน, ผ่าน 2 เดือนจึงควรเสร็จ 50%, ทำจริง 75%, AC = 33 ล้านบาท<br><b>PV = 40×50% = 20 · EV = 40×75% = 30 · SV = +10 · CV = −3 · SPI = 1.50 · CPI ≈ 0.91</b><br>สรุป: งานเร็วกว่าแผนมาก แต่ใช้เงินเกินมูลค่างานที่ได้ ควรตรวจต้นทุนและการจัดสรรทรัพยากร (คำนวณโดยสมมติความก้าวหน้าเท่ากับ 75%)</p></div>
+
+  <h3>9.3 Project Communication</h3>
+  <p>การสื่อสารเชื่อมทุกส่วนของโครงการ ระบบสื่อสารไม่ดีนำไปสู่ความขัดแย้งและความผิดพลาดของแผน Communication Plan จึงต้องตอบ 4 คำถาม: <b>ใครต้องรู้ · ต้องรู้อะไร · รายละเอียดระดับไหน · เมื่อไร/บ่อยเพียงใด</b></p>
+  <p>เลือกช่องทางตามระดับความเป็นทางการ ความเร่งด่วน และแบบกลุ่ม/ส่วนตัว เช่น Face-to-face, Email, PM Software, Messenger, Video Conference และโทรศัพท์ โครงการใหญ่ที่ Stakeholders มากควรมีแผนเต็มรูปแบบ ส่วนโครงการเล็กอาจใช้รายชื่อและช่องทางติดต่อที่ชัดเจน</p>
+  <div class="cols">
+    <div><div class="h5">เอกสารติดตามระหว่าง Execution</div><ul><li>Tracking Log</li><li>Meeting Record / Minutes of Meeting</li><li>Project Status / Progress Report</li><li>รายงานจาก Gantt Chart</li></ul></div>
+    <div><div class="h5">Status Report ควรมี</div><ul><li>Project Details และ Overall Status</li><li>Risks &amp; Issues</li><li>Help Needed</li><li>Forecast</li><li>Comments / Decisions</li></ul></div>
+  </div>
+
+  <h3>9.4 Agile Monitoring &amp; Control</h3>
+  <p>Traditional Control สมมติว่า Scope คงที่ จึงวัดกับ Baseline; Agile/Scrum ยอมให้ Backlog เปลี่ยนได้ จึงวัด <b>Increment ที่ส่งมอบจริงในแต่ละ Sprint</b> และปรับลำดับงานอย่างต่อเนื่อง</p>
+  <div class="tblwrap"><table>
+    <tr><th>เครื่องมือ</th><th>อ่านอย่างไร</th><th>เหมาะตอบคำถาม</th></tr>
+    <tr><td><b>Burndown Chart</b></td><td>X = วัน, Y = Story Points ที่เหลือ; Actual เหนือ Ideal = ช้า, ใต้ = เร็ว, เส้นราบ = blocker</td><td>ใน Sprint นี้ งานที่เหลือลดตามแผนหรือไม่</td></tr>
+    <tr><td><b>Burnup Chart</b></td><td>Completed Work เพิ่มขึ้นเทียบกับ Total Scope; เส้น Scope ขยับสูงคือมีงานเพิ่ม</td><td>งานไม่ลดเพราะทีมช้า หรือเพราะ Scope Creep</td></tr>
+    <tr><td><b>Velocity</b></td><td>ค่าเฉลี่ย Story Points ที่ Done ต่อ Sprint</td><td>Backlog ที่เหลือน่าจะใช้กี่ Sprint</td></tr>
+  </table></div>
+  <div class="formula">Velocity = ผลรวม Story Points ที่เสร็จ ÷ จำนวน Sprint<small>ตัวอย่าง (18+22+20+25+21)÷5 = 21.2 SP/Sprint; เหลือ 106 SP จึงใช้ประมาณ 5 Sprints</small></div>
+  <div class="cols">
+    <div><div class="h5">Sprint Review</div><p>ดู <b>Product Increment</b>; ทีมพัฒนา + Product Owner + Stakeholders ถามว่า “สร้างสิ่งที่ถูกต้องหรือไม่?” แล้วปรับ Product Backlog จาก Feedback</p></div>
+    <div><div class="h5">Sprint Retrospective</div><p>ดู <b>กระบวนการของทีม</b>; ทีมภายในถามว่า “ทำงานดีแค่ไหน จะปรับอย่างไร?” แล้วสร้าง Action Items สำหรับ Sprint ถัดไป</p></div>
+  </div>
+  <div class="box exam"><div class="h5">Traditional vs Agile ที่ควรตอบให้ได้</div><p><b>Traditional:</b> Baseline คงที่, SPI/CPI/EAC/VAC, รายงานรายสัปดาห์/เดือน, เปลี่ยน Scope ผ่าน Formal Change Control, เหมาะ Fixed-price/Waterfall<br><b>Agile:</b> Sprint Backlog ปรับได้, Burndown/Burnup/Velocity, รายวัน/ราย Sprint, เปลี่ยนผ่าน Backlog Reprioritization, เหมาะเมื่อ Requirement เปลี่ยนบ่อย</p></div>
+</section>
+
+<!-- =============== UML =============== -->
+<section id="uml">
+  <div class="unitbar"><span class="unitno">UML</span><h2>UML for Software Project</h2></div>
+  <p class="subtitle">แบบจำลองข้อมูล โครงสร้างเชิงวัตถุ และลำดับการสื่อสารของระบบ</p>
+
+  <h3>UML และ Analysis Model มองระบบอย่างไร</h3>
+  <p>แผนภาพช่วยเปลี่ยน Requirements ให้เป็นภาพร่วมระหว่างผู้ใช้ นักวิเคราะห์ และนักพัฒนา โดยบทนี้เน้น 3 แบบ: <b>ER Diagram</b> มองข้อมูล, <b>Class Diagram</b> มองโครงสร้างเชิงวัตถุ และ <b>Sequence Diagram</b> มองพฤติกรรมตามเวลา</p>
+  <div class="tblwrap"><table>
+    <tr><th>Diagram</th><th>คำถามหลัก</th><th>สิ่งที่เห็น</th></tr>
+    <tr><td><b>ER Diagram</b></td><td>ข้อมูลอะไรสัมพันธ์กับอะไร</td><td>Entity, Attribute, Key, Relationship, Cardinality</td></tr>
+    <tr><td><b>Class Diagram</b></td><td>ระบบประกอบด้วยวัตถุแบบใด</td><td>Class, Attribute, Method, Visibility, Class Relationship</td></tr>
+    <tr><td><b>Sequence Diagram</b></td><td>ใครเรียกใคร ตามลำดับเวลาอย่างไร</td><td>Object, Lifeline, Message, Activation และ Fragment</td></tr>
+  </table></div>
+
+  <h3>UML.1 Entity Relationship Diagram (ERD)</h3>
+  <div class="def"><b>ER Diagram</b> คือแผนภาพโครงสร้างและความสัมพันธ์ของข้อมูลในฐานข้อมูล ใช้อธิบายองค์ประกอบและข้อกำหนดของฐานข้อมูล และเป็นสื่อกลางระหว่างผู้ใช้กับนักพัฒนา</div>
+  <ul>
+    <li><b>Entity</b> — กลุ่มสิ่งที่ต้องเก็บข้อมูล อาจเป็นบุคคล สถานที่ การกระทำ หรือกิจกรรม; สัญลักษณ์สี่เหลี่ยมผืนผ้า</li>
+    <li><b>Attribute</b> — คุณลักษณะที่อธิบาย Entity/Relationship; สัญลักษณ์วงรี มีแบบธรรมดา, Primary Key, Multi-valued, Composite และ Derived</li>
+    <li><b>Relationship</b> — ความสัมพันธ์ระหว่าง Entity; สัญลักษณ์สี่เหลี่ยมข้าวหลามตัด Entity หนึ่งมีหลายความสัมพันธ์หรือสัมพันธ์กับตัวเองแบบ Recursive ได้</li>
+  </ul>
+  <p><b>Key ที่ต้องรู้:</b> Primary Key ระบุระเบียนไม่ซ้ำ · Foreign Key อ้างอิง Primary Key ของอีกตาราง · Composite Key ใช้หลาย Attribute ร่วมกันเป็นกุญแจ</p>
+  <div class="tblwrap"><table>
+    <tr><th>Cardinality</th><th>ความหมาย</th><th>แนวแปลงเป็นตาราง</th></tr>
+    <tr><td><b>1 : 1</b></td><td>A หนึ่งรายการสัมพันธ์กับ B ได้หนึ่งรายการ</td><td>วาง FK ในฝั่งที่เหมาะสม/บังคับมากกว่า และกำหนด Unique</td></tr>
+    <tr><td><b>1 : N</b></td><td>A หนึ่งรายการสัมพันธ์กับ B ได้หลายรายการ</td><td>วาง FK ของฝั่ง 1 ไว้ในตารางฝั่ง N</td></tr>
+    <tr><td><b>M : N</b></td><td>ทั้งสองฝั่งสัมพันธ์กันได้หลายรายการ</td><td>สร้าง Associative/Junction Table คั่นกลาง มี FK ไปทั้งสองฝั่ง</td></tr>
+  </table></div>
+  <div class="box exam"><div class="h5">ตัวอย่าง Gym จากกิจกรรม</div><p>Member จอง ClassSession ซึ่งแต่ละ Session มี Trainer, Schedule และ Room: ความสัมพันธ์ Member ↔ ClassSession เป็น M:N จึงควรมี Booking เป็นตารางกลาง; Trainer 1:N ClassSession และ Room 1:N ClassSession</p></div>
+
+  <h3>UML.2 Class Diagram</h3>
+  <p>Class Diagram แสดงโครงสร้างระบบเชิงวัตถุในระดับสูง ทั้งคุณลักษณะ การดำเนินงาน ข้อจำกัด และความสัมพันธ์ <b>Class เป็นแม่แบบ ส่วน Object เป็น instance ที่สร้างจากแม่แบบนั้น</b></p>
+  <div class="tree">┌──────────────────────────┐
+│ ClassName                │  ← ชื่อคลาส
+├──────────────────────────┤
+│ -attribute: DataType     │  ← Attributes / Fields
+├──────────────────────────┤
+│ +method(param): Return   │  ← Methods / Operations
+└──────────────────────────┘</div>
+  <p><b>Visibility:</b> <span class="kk">+</span> Public เรียกจากภายนอกได้ · <span class="kk">−</span> Private เข้าถึงเฉพาะในคลาส · <span class="kk">#</span> Protected เข้าถึงได้ในคลาสและ subclass</p>
+  <div class="tblwrap"><table>
+    <tr><th>ความสัมพันธ์</th><th>ความหมาย</th><th>ตัวอย่างจำ</th></tr>
+    <tr><td><b>Association</b></td><td>ความเชื่อมโยงทั่วไป</td><td>Customer ทำ Order</td></tr>
+    <tr><td><b>Inheritance</b></td><td>Subclass สืบทอดคุณสมบัติ/พฤติกรรมจาก Superclass</td><td>Dog เป็น Animal</td></tr>
+    <tr><td><b>Aggregation</b></td><td>Whole–part แบบหลวม; Part อยู่ได้เองเมื่อแยกจาก Whole</td><td>Pond มี Duck; เอา Duck ออก Pond ยังเป็น Pond</td></tr>
+    <tr><td><b>Composition</b></td><td>Whole–part แบบแน่น; Part ผูกกับวงจรชีวิตของ Whole</td><td>Electric Car กับ Battery ตามตัวอย่างในสไลด์</td></tr>
+    <tr><td><b>Unidirectional Association</b></td><td>A รู้จัก/เรียก B แต่ B ไม่จำเป็นต้องรู้จัก A</td><td>Booking เข้าถึง Seat ฝ่ายเดียว</td></tr>
+  </table></div>
+  <div class="box memory"><div class="h5">Aggregation vs Composition</div><p>ถามว่า “ถ้า Whole หาย Part ยังอยู่ได้ไหม?” — <b>อยู่ได้ = Aggregation (เพชรโปร่ง)</b> · <b>อยู่ไม่ได้/วงจรชีวิตผูกกัน = Composition (เพชรทึบ)</b></p></div>
+  <h4>ขั้นวาด Class Diagram 7 ขั้น</h4>
+  <ol><li>Identify Classes</li><li>List Attributes and Methods พร้อม Data Type/Visibility</li><li>Identify Relationships</li><li>Create Class Boxes</li><li>Add Attributes and Methods</li><li>Draw Relationships ด้วยเส้น/ลูกศรที่ถูกชนิดและทิศ</li><li>Review and Refine ให้ตรงทั้งธุรกิจและเทคนิค</li></ol>
+
+  <h3>UML.3 Sequence Diagram</h3>
+  <p>แสดงการส่ง Message ระหว่าง Object/Class <b>ตามลำดับเวลา</b> เพื่ออธิบายภาพรวมการทำงานและการสื่อสาร องค์ประกอบหลักคือ <b>Objects, Lifelines, Messages และ Activation Bars</b> โดยอ่านเวลาจากบนลงล่าง</p>
+  <div class="tblwrap"><table>
+    <tr><th>Message</th><th>ความหมาย</th></tr>
+    <tr><td><b>Synchronous</b></td><td>ผู้ส่งรอผู้รับประมวลผลและ Return ก่อนทำข้อความถัดไป; หัวลูกศรทึบ</td></tr>
+    <tr><td><b>Asynchronous</b></td><td>ผู้ส่งไม่รอผลตอบกลับ สามารถส่งข้อความถัดไปได้; หัวลูกศรเส้น</td></tr>
+    <tr><td><b>Return</b></td><td>ส่งผลกลับหลังประมวลผล จะละเส้นก็ได้เพราะ Synchronous สื่อ Return โดยนัย</td></tr>
+    <tr><td><b>Reflexive</b></td><td>Object ส่ง Message หาตัวเอง ลูกศรเริ่มและจบบน Lifeline เดียวกัน</td></tr>
+    <tr><td><b>Creation / Destruction</b></td><td>สร้าง Participant ระหว่างลำดับงาน / จบ Lifeline ด้วยเครื่องหมาย X</td></tr>
+  </table></div>
+  <h4>Sequence Fragment</h4>
+  <div class="cols">
+    <div><div class="h5">alt = if / else</div><p>มีตั้งแต่ 2 ทางเลือก แบ่ง Interaction Operand ด้วยเส้นประ แต่ละส่วนมี Guard และทำเพียงทางเลือกที่เงื่อนไขจริง</p></div>
+    <div><div class="h5">opt = if</div><p>เหตุการณ์ทางเลือกเดียว เกิดเมื่อ Guard จริง; ไม่แบ่งหลาย Operand</p></div>
+    <div><div class="h5">loop = ทำซ้ำ</div><p>ทำจน Guard เป็น false; ระบุ minint และ maxint เพื่อจำกัดรอบต่ำสุด/สูงสุดได้</p></div>
+    <div><div class="h5">ref = อ้างแผนภาพอื่น</div><p>แยกส่วนของ Sequence ขนาดใหญ่ออกไปใช้ซ้ำ ระบุชื่อ Diagram ที่อ้างในกรอบ ref</p></div>
+  </div>
+  <div class="box exam"><div class="h5">ลำดับระบบจองตั๋วหนังจากกิจกรรม</div><p>Customer → TicketBookingSystem: requestTicket() → PaymentGateway: processPayment() → ระบบรับ paymentConfirmation() → EmailService: sendConfirmationEmail() → Customer ได้อีเมลยืนยัน ควรวาด Lifeline และ Activation ตามลำดับนี้</p></div>
+</section>
+
+<!-- =============== UNIT 10 =============== -->
+<section id="u10">
+  <div class="unitbar"><span class="unitno">UNIT 10</span><h2>Project Risk Management</h2></div>
+  <p class="subtitle">ระบุ วิเคราะห์ จัดลำดับ วางแผนตอบสนอง และติดตามความไม่แน่นอนอย่างเป็นระบบ</p>
+
+  <h3>10.1 Risk และ Risk Management</h3>
+  <div class="def"><b>Risk</b> คือเหตุการณ์ไม่แน่นอนที่หากเกิดขึ้นจะกระทบวัตถุประสงค์ของโครงการ ผลอาจเป็นด้านลบ (<b>Threat</b>) หรือด้านบวก (<b>Opportunity</b>) ก็ได้</div>
+  <p><b>Risk Management</b> คือกระบวนการระบุ วิเคราะห์ และเลือกยอมรับ/จัดการความเสี่ยง เพื่อลดโอกาสเกิดหรือลดความเสียหายให้อยู่ในระดับที่ Stakeholders ยอมรับ ประเมิน ควบคุม และตรวจสอบได้ โดยคำนึงถึงความคุ้มค่า</p>
+  <div class="flow">
+    <div class="step"><b>1 · PLAN</b>กำหนดวิธี เกณฑ์ บทบาท และ Risk Appetite</div>
+    <div class="step"><b>2 · IDENTIFY</b>ค้นหาเหตุการณ์ สาเหตุ ผลกระทบ และบันทึก Risk Register</div>
+    <div class="step"><b>3 · ANALYZE</b>ประเมิน Probability, Impact, Timeframe/Frequency</div>
+    <div class="step"><b>4 · RESPOND</b>เลือก Avoid / Transfer / Reduce / Accept พร้อมเจ้าของความเสี่ยง</div>
+    <div class="step"><b>5 · MONITOR</b>ติดตาม Trigger สถานะ และค้นหา New/Emerging Risks</div>
+  </div>
+
+  <h3>10.2 Risk Categories</h3>
+  <div class="tblwrap"><table>
+    <tr><th>มุมมอง</th><th>4 กลุ่ม</th><th>ตัวอย่างคำถาม</th></tr>
+    <tr><td><b>องค์กรทั่วไป</b></td><td>Strategic · Financial · Operational · Compliance</td><td>กลยุทธ์ตรงวิสัยทัศน์ไหม, ผลตอบแทนคุ้มไหม, ขั้นตอน/เครื่องมือพร้อมไหม, ทำตามกฎหมายไหม</td></tr>
+    <tr><td><b>เทคโนโลยี/IT</b></td><td>Technology · Marketing · People · Structure/Process</td><td>เทคนิคทำได้ไหม, ผู้ใช้ยอมรับไหม, ทีมมีทักษะไหม, ต้องเชื่อมระบบอื่นหรือเปลี่ยนกระบวนการมากไหม</td></tr>
+    <tr><td><b>PMBOK ระดับโครงการ</b></td><td>Technical · External · Organizational · Project Management</td><td>Requirement/Interface, Customer/Supplier, Resource/Budget, Planning/Schedule/Communication</td></tr>
+  </table></div>
+  <p>Category เป็นเพียงรายการพื้นที่ที่มีแนวโน้มเกิดความเสี่ยง องค์กรอาจกำหนดหมวดมาตรฐานระดับสูง แต่ต้องขยายให้เข้ากับประเภทโครงการเสมอ</p>
+
+  <h4>แหล่งค้นหาความเสี่ยง</h4>
+  <ul>
+    <li><b>Risk Repository</b> — ประวัติความเสี่ยงจากโครงการที่จบแล้ว กรองตาม source/category/project ได้</li>
+    <li><b>Checklist Analysis</b> — คำถามจากประสบการณ์และประเภทโครงการ ช่วยหา gap</li>
+    <li><b>Expert Judgment</b> — Brainstorm/Interview ผู้มีประสบการณ์ Stakeholders และ Subject Matter Experts</li>
+    <li><b>Project Status</b> — รายงานสถานะ ประชุม ความก้าวหน้า คุณภาพ และ threshold violation ช่วยเปิดเผยความเสี่ยงใหม่</li>
+  </ul>
+
+  <h3>10.3 Risk Analysis</h3>
+  <p>ประเมินและจัดลำดับจาก <b>โอกาสเกิด (Likelihood/Probability), ผลกระทบ (Impact/Consequence), กรอบเวลา และความถี่</b> โดยกำหนดเกณฑ์ให้ชัดเจนก่อนให้คะแนน อาจใช้ Qualitative (ระดับ Low/Medium/High) หรือ Quantitative (ตัวเลข/มูลค่า)</p>
+  <div class="formula">Risk Severity = Probability × Impact<small>นำคะแนนไปวางใน Probability–Impact Matrix เช่น 3×3 หรือ 5×5 เพื่อจัดลำดับตอบสนอง</small></div>
+  <p><b>Risk Timeframe:</b> Near = ตอนนี้ถึง 1 เดือน · Mid = 2–6 เดือน · Far = มากกว่า 6 เดือน ส่วน Frequency อาจกำหนดเป็นครั้งต่อสัปดาห์/เดือน/ปี เกณฑ์ทุกระดับต้องเขียนให้วัดซ้ำได้ ไม่ใช้คำกว้างโดยไม่มีนิยาม</p>
+  <div class="box exam"><div class="h5">Risk Register หนึ่งรายการควรตอบอะไร</div><p>Risk ID/Category · คำอธิบายเหตุการณ์ · Cause → Event → Impact · Probability · Impact · Severity/Priority · Timeframe/Trigger · Owner · Response/Mitigation · Contingency · Status/Review Date</p></div>
+
+  <h3>10.4 Risk Response: ก่อนเกิด vs หลังเกิด</h3>
+  <div class="cols">
+    <div><div class="h5">Mitigation Plan — Prevention</div><p>ทำล่วงหน้าเพื่อ <b>ลดโอกาสเกิดหรือผลกระทบ</b> ของความเสี่ยง เช่น ตรวจสภาพรถ เผื่อเวลา อบรมทีม หรืออัปเดต dependency ก่อนมีปัญหา</p></div>
+    <div><div class="h5">Contingency Plan — Correction</div><p>แผนที่เตรียมไว้และ <b>เปิดใช้เมื่อเหตุการณ์เกิดจริง/Trigger ทำงาน</b> เช่น เรียก Taxi สำรอง สลับไป Backup System หรือใช้ผู้แทน Standby</p></div>
+  </div>
+  <div class="tblwrap"><table>
+    <tr><th>เทคนิค</th><th>ใช้เมื่อ/ทำอย่างไร</th><th>ตัวอย่าง</th></tr>
+    <tr><td><b>Avoid</b> หลีกเลี่ยง</td><td>ความเสี่ยงสูงมาก ยอมรับไม่ได้; ยกเลิก/เปลี่ยนกิจกรรมหรือวัตถุประสงค์</td><td>หยุดกิจกรรม ลดขนาดงาน เลือกทางเลือกที่เสี่ยงน้อยกว่า</td></tr>
+    <tr><td><b>Transfer/Share</b> ถ่ายโอน</td><td>ให้ภายนอกรับผิดชอบบางส่วน แต่ PM ยังต้องติดตาม</td><td>ประกันภัย, Outsource</td></tr>
+    <tr><td><b>Reduce/Control</b> ลด/ควบคุม</td><td>ปรับระบบงานเพื่อลด Probability หรือ Impact</td><td>อบรม, คู่มือ, Safety Equipment, Backup</td></tr>
+    <tr><td><b>Accept</b> ยอมรับ</td><td>ต้นทุนจัดการไม่คุ้มกับผลเสีย; ต้องกำหนดระดับยอมรับและเฝ้าระวัง</td><td>เตรียม Reserve/Contingency และติดตาม Trigger</td></tr>
+  </table></div>
+
+  <h3>10.5 Risk Monitoring &amp; Control</h3>
+  <div class="tblwrap"><table>
+    <tr><th>Control</th><th>หน้าที่</th><th>ตัวอย่างสั้น</th></tr>
+    <tr><td><b>Preventive</b></td><td>ป้องกันไม่ให้ความเสี่ยง/ข้อผิดพลาดเกิดตั้งแต่แรก</td><td>Validation, Training, Access Control</td></tr>
+    <tr><td><b>Detective</b></td><td>ค้นหาข้อผิดพลาดที่เกิดขึ้นแล้ว</td><td>Monitoring Alert, Audit Log, Test</td></tr>
+    <tr><td><b>Directive</b></td><td>ชี้แนะ/กระตุ้นให้เกิดพฤติกรรมที่นำไปสู่เป้าหมาย</td><td>Policy, Checklist, Guideline</td></tr>
+    <tr><td><b>Corrective</b></td><td>แก้สิ่งที่ผิดและป้องกันไม่ให้เกิดซ้ำ</td><td>Root-cause Fix, Patch, Process Improvement</td></tr>
+  </table></div>
+  <p>เมื่อโครงการคืบหน้า <b>ความเสี่ยงและความไม่แน่นอนมักลดลง แต่ต้นทุนในการเปลี่ยนแปลงสูงขึ้น</b> จึงควรบริหารแบบเชิงรุก ปรับ Risk Register ให้ทันสมัย ตรวจซ้ำสม่ำเสมอ เก็บเอกสารในระบบที่สอบกลับได้ ฝึกอบรมคน และมีแรงสนับสนุนจากผู้บริหาร</p>
+</section>
+
+<!-- =============== UNIT 11 =============== -->
+<section id="u11">
+  <div class="unitbar"><span class="unitno">UNIT 11</span><h2>Project Change Management</h2></div>
+  <p class="subtitle">ช่วยให้คนปรับตัว พร้อมควบคุมคำขอเปลี่ยนแปลงไม่ให้ Baseline ถูกแก้โดยไร้การอนุมัติ</p>
+
+  <h3>11.1 Change Management คืออะไร</h3>
+  <div class="def"><b>Change Management</b> คือแนวทางบริหารการเปลี่ยนแปลงของกลยุทธ์ องค์กร โครงการ แผน และระบบงาน เพื่อให้การเปลี่ยนไปในทิศทางที่ดีและลดผลกระทบ/ความเสี่ยงให้ต่ำที่สุด</div>
+  <p>เมื่อเกิดการเปลี่ยนแปลง ต้องระบุ <b>จุดที่เปลี่ยน เหตุผล ช่องว่างระหว่างสถานะปัจจุบันกับอนาคต ทางเลือกในการไปสู่เป้าหมาย</b> และสื่อสารกับทีม/ผู้เกี่ยวข้องตลอดทาง</p>
+
+  <h4>ระดับของการเปลี่ยนแปลง</h4>
+  <ul>
+    <li><b>Individual</b> — เข้าใจว่าคนแต่ละคนต้องการอะไรและช่วยให้ก้าวผ่านจากวิธีเดิมอย่างไร</li>
+    <li><b>Project-based</b> — ระบุกลุ่มคน โครงการ และสิ่งที่จะเปลี่ยนให้ชัด</li>
+    <li><b>Organizational</b> — ตอบสนองตลาด ลูกค้า และสังคม ผสานกับกลยุทธ์ และทำ Action Plan ให้ทั้งองค์กรไปทิศเดียวกัน</li>
+  </ul>
+
+  <h4>ประเภท Change 4 แบบ</h4>
+  <div class="tblwrap"><table>
+    <tr><th>ประเภท</th><th>ลักษณะ</th><th>ตัวอย่าง</th></tr>
+    <tr><td><b>Anticipatory</b></td><td>เตรียมเชิงรุกต่อสิ่งที่คาดว่าจะเกิด</td><td>อัปเกรดระบบก่อนเทคโนโลยีเดิมหมดอายุ</td></tr>
+    <tr><td><b>Reactive</b></td><td>ตอบสนองเหตุไม่คาดคิดอย่างเร่งด่วน</td><td>ปรับ priority หลัง technical failure</td></tr>
+    <tr><td><b>Incremental</b></td><td>ปรับเล็ก ๆ ต่อเนื่อง ลด disruption และเรียนรู้ไปด้วย</td><td>เพิ่ม feature/ปรับซอฟต์แวร์ทีละรอบ</td></tr>
+    <tr><td><b>Strategic</b></td><td>เปลี่ยนระดับใหญ่ กระทบทิศทาง โครงสร้าง คน กระบวนการ และเทคโนโลยี</td><td>เปลี่ยนโมเดลธุรกิจเป็น Digital ทั้งองค์กร</td></tr>
+  </table></div>
+
+  <h3>11.2 Change Factors</h3>
+  <div class="cols">
+    <div><div class="h5">External Factors</div><ul><li>สังคมและประชากร</li><li>การเมืองและกฎหมาย</li><li>สภาวะเศรษฐกิจ</li><li>คู่แข่งขัน</li><li>เทคโนโลยีภายนอก</li></ul></div>
+    <div><div class="h5">Internal Factors</div><ul><li>วัฒนธรรม</li><li>เทคโนโลยีภายใน</li><li>กระบวนการทำงาน/ตัดสินใจ</li><li>โครงสร้างองค์กร</li><li>กลยุทธ์</li><li>บุคลากรและความคาดหวัง</li></ul></div>
+  </div>
+
+  <h3>11.3 Change Control Process</h3>
+  <div class="flow">
+    <div class="step"><b>1 · SUBMIT &amp; LOG</b>ยื่น Change Request Form และบันทึก Change Log</div>
+    <div class="step"><b>2 · IMPACT ANALYSIS</b>ประเมิน Scope, Cost, Schedule, Quality, Resource และ Risk</div>
+    <div class="step"><b>3 · CCB REVIEW</b>อนุมัติ ปฏิเสธ เลื่อนพิจารณา หรือขอข้อมูลเพิ่ม</div>
+    <div class="step"><b>4 · UPDATE</b>เมื่ออนุมัติ จึงปรับ Baseline/เอกสาร/แผน</div>
+    <div class="step"><b>5 · COMMUNICATE</b>แจ้งผู้เกี่ยวข้องก่อน Implement และติดตามผล</div>
+  </div>
+  <p><b>Change Control Board (CCB)</b> คือกลุ่มผู้มีอำนาจอนุมัติคำขออย่างเป็นทางการก่อนเปลี่ยน Baseline สมาชิกหลักมักมี Sponsor, PM, Technical Lead และอาจมีตัวแทนลูกค้า มติทุกครั้งต้องบันทึกและแจ้งทีม</p>
+  <div class="box exam"><div class="h5">ห้ามจำผิด</div><p>การส่ง Change Request <b>ไม่เท่ากับได้รับอนุมัติ</b> ทีมไม่ควรเริ่มทำก่อน CCB ตัดสินและปรับ Baseline มิฉะนั้นจะเกิด uncontrolled change/scope creep และไม่มีฐานที่ถูกต้องสำหรับวัดผล</p></div>
+
+  <h4>Change Request Form ต้องมีอะไร</h4>
+  <div class="tblwrap"><table>
+    <tr><th>Field</th><th>สาระที่ต้องบันทึก</th></tr>
+    <tr><td>CR ID · Requestor · Request Date</td><td>รหัสอ้างอิง ผู้ขอ/บทบาท วันเวลา</td></tr>
+    <tr><td>Change Detail · Reason/Background</td><td>เปลี่ยนอะไร เพราะเหตุผลทางธุรกิจ ปัญหา กฎหมาย หรือเทคนิคใด</td></tr>
+    <tr><td>Impact Analysis</td><td>ผลต่อ Scope, Cost, Schedule, Quality, Resource/Tool และ Risk</td></tr>
+    <tr><td>Priority</td><td>Critical / High / Moderate / Low ตามเกณฑ์โครงการ</td></tr>
+    <tr><td>Reviewed by · Decision</td><td>ผู้พิจารณา ผล Approved/Rejected/Deferred พร้อมวันที่ เหตุผล และหลักฐานอนุมัติ</td></tr>
+  </table></div>
+
+  <h3>11.4 Change Management vs Change Control</h3>
+  <div class="tblwrap"><table>
+    <tr><th>ประเด็น</th><th>Change Management</th><th>Change Control</th></tr>
+    <tr><td>ระดับ</td><td>องค์กร บุคคล ทีม</td><td>โครงการและ Baseline</td></tr>
+    <tr><td>เป้าหมาย</td><td>ลดแรงต้าน ช่วยให้คนยอมรับและปรับตัว</td><td>ควบคุม Scope, Cost, Schedule และผลกระทบ</td></tr>
+    <tr><td>ผู้รับผิดชอบ</td><td>Sponsor, HR, Manager</td><td>PM, CCB</td></tr>
+    <tr><td>เครื่องมือ</td><td>Communication Plan, Change Curve, Training</td><td>Change Request Form, Impact Analysis, Change Log</td></tr>
+    <tr><td>ผลลัพธ์</td><td>คนพร้อมใช้วิธี/ระบบใหม่</td><td>คำตัดสินที่บันทึกและ Baseline ที่อนุมัติแล้ว</td></tr>
+  </table></div>
+  <div class="box memory"><div class="h5">จำสั้น ๆ</div><p><b>Change Management ดูแล “คน” · Change Control ดูแล “คำขอ เอกสาร กระบวนการ และ Baseline”</b> สองส่วนต้องทำงานร่วมกันจึงเปลี่ยนได้จริงและยังควบคุมโครงการได้</p></div>
+</section>
+
+<!-- =============== UNIT 12 =============== -->
+<section id="u12">
+  <div class="unitbar"><span class="unitno">UNIT 12</span><h2>Project Closure</h2></div>
+  <p class="subtitle">ยืนยันการยอมรับ ส่งมอบความเป็นเจ้าของ ปิดงานธุรการ เก็บบทเรียน และวางระบบดูแลหลัง Go-live</p>
+
+  <h3>12.1 Project Completion vs Project Closure</h3>
+  <div class="cols">
+    <div><div class="h5">Project Completion = งานเสร็จ</div><p>Tasks ถูกทำครบ Deliverables ถูกสร้าง/Deploy/ส่งมอบ และทีมสามารถหยุด Execute งานตามแผนได้ ตอบว่า <b>“สร้างและส่งสิ่งที่วางแผนไว้ครบหรือยัง?”</b></p></div>
+    <div><div class="h5">Project Closure = ปิดผลลัพธ์ครบวงจร</div><p>องค์กรยอมรับ ส่งต่อผู้ดูแล เก็บเอกสาร ปิดเงิน/สัญญา และบันทึกบทเรียน ตอบว่า <b>“ผลลัพธ์ได้รับการยอมรับ ส่งต่อ และปิดทุกภาระแล้วหรือยัง?”</b></p></div>
+  </div>
+  <div class="box exam"><div class="h5">ประเด็นออกสอบ</div><p><b>งานเสร็จไม่ได้แปลว่าปิดโครงการแล้ว</b> ถ้ายังไม่มี Sign-off, Handover, Financial/Admin Closure, Archive หรือ Maintenance Plan โครงการยังไม่ Closed อย่างสมบูรณ์</p></div>
+
+  <h4>ประเภทการปิดโครงการ</h4>
+  <div class="tblwrap"><table>
+    <tr><th>ประเภท</th><th>เกิดเมื่อ</th></tr>
+    <tr><td><b>Normal Closure</b></td><td>บรรลุเป้าหมาย ผ่าน Acceptance Criteria ส่งตรงเวลาและอยู่ในงบ</td></tr>
+    <tr><td><b>Premature Closure</b></td><td>สิ้นสุดก่อนกำหนดแต่ส่งมอบคุณค่าพอหรือบรรลุวัตถุประสงค์เร็วกว่าคาด</td></tr>
+    <tr><td><b>Perpetual Closure</b></td><td>ไม่มีจุดจบชัด เกิด Scope Creep ต่อเนื่อง หรือไม่มีนิยามว่า Done เมื่อไร</td></tr>
+    <tr><td><b>Failed Closure</b></td><td>ยุติเพราะอุปสรรคทำให้ไม่สามารถบรรลุวัตถุประสงค์</td></tr>
+    <tr><td><b>Change Priority Closure</b></td><td>ปิดเพราะงบ โครงสร้างองค์กร หรือลำดับความสำคัญทางธุรกิจเปลี่ยน</td></tr>
+  </table></div>
+
+  <h3>12.2 Project Closure Process — 10 งาน</h3>
+  <ol>
+    <li><b>Deliverable Verification &amp; Client Acceptance</b> — ตรวจทุก Deliverable ตาม Scope/Requirement แก้ Feedback สุดท้าย และรับการยอมรับเป็นทางการ</li>
+    <li><b>Final Performance Assessment</b> — เทียบผลกับ Scope, Cost, Schedule และ Quality; สรุปความสำเร็จ ปัญหา และ Variance</li>
+    <li><b>Financial Closure</b> — กระทบยอดค่าใช้จ่าย ส่ง/รับชำระ Invoice ชำระ Vendor และเก็บหลักฐานตรวจสอบ</li>
+    <li><b>Documentation &amp; Archiving</b> — รวม Contract, Plan, Change Request, Report, Decisions และจัดเก็บให้ปลอดภัย/ค้นคืนได้</li>
+    <li><b>Resource Release &amp; Reassignment</b> — ปลด/ย้ายทีม คืนอุปกรณ์ และแจ้งหน่วยงานเจ้าของทรัพยากร</li>
+    <li><b>Post-project Evaluation &amp; Lessons Learned</b> — ประชุมหา Strength/Improvement บันทึกปัญหา วิธีแก้ และถ่ายทอดความรู้</li>
+    <li><b>Administrative &amp; Legal Closure</b> — ปิดสัญญา ตรวจ Compliance/Standard และเอกสารปลดภาระ</li>
+    <li><b>Stakeholder Communication &amp; Final Report</b> — ออกรายงานฉบับสุดท้ายและประกาศปิดอย่างเป็นทางการ</li>
+    <li><b>Celebrate &amp; Recognize Contributions</b> — ยกย่องผลงานและขอบคุณทีม</li>
+    <li><b>Complete Closure Checklist</b> — ตรวจว่าไม่มีภาระ/เจ้าของ/เอกสารใดตกหล่นก่อนปิดสถานะ</li>
+  </ol>
+
+  <h3>12.3 UAT, Acceptance Criteria และ Sign-off</h3>
+  <div class="def"><b>User Acceptance Test (UAT)</b> คือการทดสอบขั้นสุดท้ายโดย End User หรือตัวแทนธุรกิจด้วย Business Scenario จริง เพื่อตัดสินว่าระบบตอบโจทย์และพร้อม Go-live หรือควรส่งกลับแก้ไข</div>
+  <div class="flow">
+    <div class="step"><b>DEVELOPMENT</b>สร้างระบบ</div><div class="step"><b>SIT</b>ทดสอบการทำงานร่วมกันของระบบ</div><div class="step"><b>UAT</b>ผู้ใช้จริงทดสอบตามธุรกิจ</div><div class="step"><b>GO-LIVE</b>ใช้งาน Production</div>
+  </div>
+  <p>Acceptance Criteria ที่ดีต้อง <b>Clear, Testable, Agreed และ Complete</b> และควรตกลงตั้งแต่ต้น เขียนแบบ Given–When–Then ได้ เช่น Given ลูกค้ามีสินค้าในตะกร้า · When สแกน QR และจ่ายสำเร็จ · Then แสดง “ชำระเงินสำเร็จ” ภายใน 3 วินาทีและส่งอีเมลยืนยัน</p>
+  <p><b>Sign-off/Client Acceptance Form</b> คือหลักฐานว่าลูกค้ายอมรับ Deliverables ตามเกณฑ์ อาจระบุข้อยกเว้น/Punch List ผู้อนุมัติ วันที่ และเงื่อนไข Warranty การ Sign-off ยังเป็นจุดเริ่มนับ Warranty ตามสไลด์ด้วย</p>
+
+  <h3>12.4 Post-project Maintenance</h3>
+  <p>หลัง Go-live ต้องดูแลให้ระบบต่อเนื่อง เสถียร ปลอดภัย แก้ข้อบกพร่อง อัปเดตตามสภาพแวดล้อม และรองรับความต้องการธุรกิจที่เปลี่ยน</p>
+  <div class="tblwrap"><table>
+    <tr><th>ประเภทตาม ISO/IEC 14764</th><th>เป้าหมาย</th><th>ตัวอย่าง</th></tr>
+    <tr><td><b>Corrective</b></td><td>แก้ defect/bug ที่พบใน Production</td><td>Patch ปัญหาคำนวณผิด</td></tr>
+    <tr><td><b>Adaptive</b></td><td>ปรับเข้ากับ Environment ใหม่</td><td>OS, Browser, API หรือกฎหมายใหม่</td></tr>
+    <tr><td><b>Perfective</b></td><td>เพิ่มประสิทธิภาพ/Usability หรือ Feature เล็กน้อย</td><td>ปรับ Query ให้เร็ว เพิ่มรายงาน</td></tr>
+    <tr><td><b>Preventive</b></td><td>ลดโอกาสเกิดปัญหาในอนาคต</td><td>Refactor, Update Dependency</td></tr>
+  </table></div>
+  <div class="box exam"><div class="h5">Warranty vs Maintenance Contract</div><p><b>Warranty</b> โดยทั่วไป 60–90 วัน บางโครงการ 6–12 เดือน เริ่มหลัง Sign-off; แก้ bug จากงานพัฒนาโดยไม่คิดเพิ่ม แต่ไม่รวม Requirement ใหม่/Enhancement<br><b>หลัง Warranty</b> เข้าสัญญา Maintenance/Support แยก มีค่าใช้จ่ายตามรูปแบบที่ตกลง หรือส่งต่อให้ลูกค้า/ทีมอื่นดูแล ต้องวางแผนก่อน Warranty หมด</p></div>
+  <p>ข้อตกลงดูแลต้องกำหนด <b>SLA</b> (Response Time และ Resolution Time แยกตาม Severity), ขอบเขตที่รวม/ไม่รวม และ Handover Package อย่างน้อย System Docs, Source Code, Deployment/Runbook, Credentials/Access ที่ส่งมอบอย่างปลอดภัย และ Known Issues</p>
+
+  <h4>Support Levels</h4>
+  <div class="flow">
+    <div class="step"><b>L1 · HELP DESK</b>รับแจ้ง ตอบคำถามทั่วไป คัดกรองและเก็บข้อมูล</div>
+    <div class="step"><b>L2 · TECHNICAL SUPPORT</b>แก้ Configuration, Integration และปัญหาเทคนิคที่ซับซ้อนขึ้น</div>
+    <div class="step"><b>L3 · ENGINEERING</b>แก้ Bug ระดับโค้ด สถาปัตยกรรม และปัญหาเชิงลึก</div>
+  </div>
+  <p>ผู้ดูแลอาจเป็นทีมพัฒนาเดิม ทีม Maintenance แยก หรือ Outsource ขึ้นกับขนาดองค์กร งบ และความรู้เฉพาะระบบ</p>
+
+  <h3>12.5 Closure Checklist ใช้ตัดสินใจอย่างไร</h3>
+  <div class="box tip"><div class="h5">Checklist ขั้นต่ำก่อนปิด</div><p>Deliverables/Acceptance Criteria ผ่าน · UAT และ Sign-off · Open defects มี owner/กำหนดแก้ · Documents/Training/Handover ครบ · Source/Build/Access พร้อม · Invoice/Vendor/Contract ปิด · Resources ถูกคืน/ย้าย · Final Report และ Lessons Learned · Warranty/SLA/Escalation ชัด · แจ้ง Stakeholders และ Archive แล้ว</p></div>
+  <p><b>กรณีจากสไลด์:</b> UAT 45/50 โดย Pass 45, Fail 3, Pending 2 และเอกสารเสร็จ 80% ยังไม่ควร Sign-off แบบไม่มีเงื่อนไข ควรประเมิน Severity ของ 3 Fail, ปิด 2 Pending, ทำเอกสาร/Handover ให้ครบก่อน Developer หลักย้าย และหากจำเป็นต้อง Go-live ตามวันเดิม ให้ใช้ Conditional Sign-off ที่ระบุ Known Issues, Owner, Due Date, Acceptance Risk และ Warranty Support อย่างชัดเจน</p>
+</section>
+
+<!-- =============== QUIZ =============== -->
+<section id="quiz">
+  <div class="unitbar"><span class="unitno">ซ้อมมือ</span><h2>ข้อสอบซ้อมมือ 40 ข้อ</h2></div>
+  <p class="subtitle">ลองตอบในใจก่อน แล้วค่อยกดเปิดเฉลย</p>
+
+  <details><summary>1. ข้อจำกัด 3 ประการที่การบริหารโครงการต้องดำเนินการภายใต้คืออะไร</summary>
+    <div class="ans"><p><b>งบประมาณ (Cost/Budget) · เวลา (Time) · ขอบเขตงาน (Scope)</b> — ถ้าขยับด้านหนึ่ง อีกสองด้านจะกระทบเสมอ</p></div></details>
+
+  <details><summary>2. คุณลักษณะพื้นฐานของโครงการมี 4 ข้อ อะไรบ้าง</summary>
+    <div class="ans"><p>1) ไม่สามารถทำซ้ำได้ (Uniqueness) 2) มีระยะเวลาเริ่มต้นและสิ้นสุด (Temporary) 3) มีความซับซ้อน (Highly Complex) 4) ใช้ทรัพยากรจำนวนมาก</p></div></details>
+
+  <details><summary>3. PMBOK ย่อมาจากอะไร และมีกี่หมวดหมู่ความรู้</summary>
+    <div class="ans"><p><b>Project Management Body of Knowledge</b> รวบรวมโดย <b>PMI (Project Management Institute)</b> มี <b>10 หมวดหมู่</b></p></div></details>
+
+  <details><summary>4. ความท้าทายของ SPM 4 ข้อ</summary>
+    <div class="ans"><p>1) ซอฟต์แวร์จับต้องไม่ได้ 2) กระบวนการผลิตซอฟต์แวร์ไม่มีมาตรฐานที่แน่นอน 3) แต่ละโครงการมีลักษณะพิเศษต่างกัน 4) ความต้องการเปลี่ยนแปลงอยู่เสมอ</p></div></details>
+
+  <details><summary>5. PLC กับ SDLC ต่างกันอย่างไร</summary>
+    <div class="ans"><p><b>PLC</b> = วงจรการบริหารโครงการ (Initiation → Planning → Execution → Monitoring &amp; Control → Closure) เน้นบริหารคน เวลา งบ ขอบเขต ใช้ได้กับทุกประเภทโครงการ<br>
+    <b>SDLC</b> = วงจรการพัฒนาซอฟต์แวร์ (Planning → Requirements → Design → Development → Testing → Deployment → Maintenance) เน้นกิจกรรมทางเทคนิค<br>
+    SDLC ฝังอยู่ภายใน PLC โดยเฉพาะช่วง Execution</p></div></details>
+
+  <details><summary>6. Scrum มี 3 บทบาทอะไรบ้าง และทีมควรมีกี่คน</summary>
+    <div class="ans"><p><b>Product Owner</b> (ประเมินคุณค่า จัดลำดับความสำคัญ) · <b>Scrum Master</b> (ดูแลและกำจัดอุปสรรค) · <b>Team</b> (Self-management, <b>3–9 คน</b> รวมทุกตำแหน่งเพื่อจบงานได้โดยไม่ข้ามแผนก)<br>ทฤษฎีสกรัม 3 เสา: Transparency, Inspection, Adoption</p></div></details>
+
+  <details><summary>7. Kanban ถูกคิดค้นมาใช้กับการบริหารแบบใด</summary>
+    <div class="ans"><p>อุตสาหกรรมการผลิตแบบ <b>Just-in-Time (JIT)</b> — งานถูกแบ่งตาม <b>Status</b> บนกระดาน และไม่เหมาะกับโครงการแบบ Push system</p></div></details>
+
+  <details><summary>8. ยกตัวอย่าง Non-Functional Requirement มา 3 ข้อ พร้อมบอกว่าต่างจาก Functional อย่างไร</summary>
+    <div class="ans"><p>เช่น "ระบบทำงานได้ 24 ชม." / "ตอบสนองภายใน 2 วินาที" / "รองรับ 10,000 transactions ต่อชั่วโมง"<br>
+    <b>FR</b> สนใจว่าระบบ <i>ต้องทำอะไรได้</i> (Should Do) ส่วน <b>NFR</b> สนใจว่าระบบ <i>ต้องมีคุณภาพด้านใด</i> (Quality Attributes)</p></div></details>
+
+  <details><summary>9. Requirement Engineering Process มี 7 ขั้น เรียงลำดับให้ถูก</summary>
+    <div class="ans"><p>Inception → Elicitation → Elaboration → Negotiation → Specification → Validation → Requirement Management</p></div></details>
+
+  <details><summary>10. URS ต่างจาก SRS อย่างไร</summary>
+    <div class="ans"><p><b>URS</b> เขียนให้ลูกค้าอ่าน ใช้ภาษาธรรมชาติ ไม่มีรายละเอียดเทคนิค ตอบคำถาม "ผู้ใช้ทำอะไรได้บ้าง"<br>
+    <b>SRS</b> เขียนให้ developer อ่าน ระบุชัดเจนเข้มงวด ตอบคำถาม "ระบบทำอะไรได้บ้าง" — 1 URS มีได้หลาย SRS</p></div></details>
+
+  <details><summary>11. ความเป็นไปได้ของโครงการมี 5 ด้านอะไรบ้าง</summary>
+    <div class="ans"><p><b>TELOS</b> — Technical (เทคนิค) · Economical (เศรษฐกิจ/การเงิน) · Legal (กฎหมาย/กฎระเบียบ) · Operational (การดำเนินงาน) · Scheduling (กำหนดการและระยะเวลา)</p></div></details>
+
+  <details><summary>12. ผลการตัดสินใจในขั้น Project Selection มีกี่แบบ อะไรบ้าง</summary>
+    <div class="ans"><p><b>5 แบบ</b> — ยอมรับโครงการ · ปฏิเสธโครงการ · ชะลอโครงการ · ให้ผู้ใช้พัฒนาระบบเอง (End-user Development) · ให้ทบทวนโครงการ (Proof of Project)</p></div></details>
+
+  <details><summary>13. SOW มีองค์ประกอบอะไรบ้าง และ Project Plan เพิ่มอะไรมา</summary>
+    <div class="ans"><p><b>SOW:</b> ที่มาและความสำคัญ · วัตถุประสงค์ · คำอธิบายสินค้าหรือบริการ · ขอบเขตการดำเนินงาน · สิ่งที่จะต้องส่งมอบ<br>
+    <b>Project Plan เพิ่ม:</b> กิจกรรมและความสัมพันธ์ · ระยะเวลาแต่ละกิจกรรม · การวางแผนทรัพยากรตาม 4M+1E · ตารางกำหนดเวลา · ความเสี่ยง · การบริหารการเปลี่ยนแปลง · เงื่อนไขการส่งมอบ</p></div></details>
+
+  <details><summary>14. LogFrame มีตารางกี่ช่อง และแถวประกอบด้วยอะไร</summary>
+    <div class="ans"><p><b>16 ช่อง (4 × 4)</b> สัมพันธ์กันแบบ <b>If–Then Relationship</b><br>
+    แถว: Goal (Impact) → Purpose (Outcome) → Expected Results (Output) → Activities (Input)<br>
+    คอลัมน์: Project Description · Indicators · Means of Verification · Assumption</p></div></details>
+
+  <details><summary>15. วิธีการสร้าง WBS มี 5 วิธี วิธีใดเหมาะกับโครงการ IT แนวใหม่ที่ยังไม่เคยมีใครทำ</summary>
+    <div class="ans"><p>5 วิธี: Using Guideline · Analogy Approach · Top-down Approach · Bottom-up Approach · Mind-mapping Approach<br>
+    <b>คำตอบ: Bottom-up Approach</b> — ทีมช่วยกันกำหนดกิจกรรมย่อยให้เฉพาะเจาะจงและมากที่สุด ข้อเสียคือเสียเวลามาก แต่มีประสิทธิภาพสูง และช่วยให้ทีมรู้สึกผูกพันกับโครงการ</p></div></details>
+
+  <details><summary>16. กิจกรรมย่อยสุดใน WBS ควรมีผู้รับผิดชอบกี่คน</summary>
+    <div class="ans"><p><b>เพียงคนเดียว</b> แม้ผู้ร่วมทำกิจกรรมนั้นจะมีมากกว่า 1 คนก็ตาม</p></div></details>
+
+  <details><summary>17. งาน X มีเวลาเร็วสุด 5 วัน น่าจะเป็น 8 วัน นานสุด 17 วัน จงหาเวลาที่เหมาะสมแบบ PERT</summary>
+    <div class="ans"><p>(O + 4M + P) ÷ 6 = (5 + 4×8 + 17) ÷ 6 = (5 + 32 + 17) ÷ 6 = 54 ÷ 6 = <b>9 วัน</b></p></div></details>
+
+  <details><summary>18. Critical Path คือเส้นทางแบบใด และถ้ากิจกรรมบนเส้นทางนี้ล่าช้าจะเกิดอะไรขึ้น</summary>
+    <div class="ans"><p><b>เส้นทางที่ยาวที่สุด</b> (ผลรวมเวลามากที่สุด) จากจุดเริ่มต้นถึงจุดสิ้นสุด — ถ้ากิจกรรมบนเส้นทางนี้เปลี่ยนแปลงหรือล่าช้า จะ<b>กระทบจำนวนวันและวันสิ้นสุดของโครงการทันที</b> เพราะ Slack = 0</p></div></details>
+
+  <details><summary>19. CPM กับ PERT เลือกใช้เมื่อไร</summary>
+    <div class="ans"><p><b>CPM</b> — เวลาแน่นอน ผู้บริหารเคยมีประสบการณ์ เน้น Cost-Time Trade-off และลดต้นทุน ใช้กับงานธุรกิจ วิศวกรรม ก่อสร้าง<br>
+    <b>PERT</b> — เวลาไม่แน่นอน ไม่เคยมีประสบการณ์ ต้องใช้ความน่าจะเป็นทางสถิติ เน้นเวลาเป็นสำคัญ ใช้กับงานวิจัยและพัฒนา</p></div></details>
+
+  <details><summary>20. โครงสร้างองค์กรแบบ Matrix มีคุณลักษณะสำคัญ 3 ประการอะไรบ้าง และข้อเสียคืออะไร</summary>
+    <div class="ans"><p><b>คุณลักษณะ:</b> 1) ระบบการบังคับบัญชาหลายสาย 2) กลไกสนับสนุนที่เกี่ยวข้อง 3) วัฒนธรรมองค์กรหรือรูปแบบพฤติกรรมองค์กรที่เกี่ยวข้อง<br>
+    <b>ข้อเสีย:</b> อำนาจและความรับผิดชอบของสมาชิกไม่ชัดเจน · อาจเกิดความซ้ำซ้อนของงาน · ซับซ้อนสูง ต้องสื่อสารอยู่เสมอ<br>
+    <b>ข้อดี:</b> มีทั้งเสถียรภาพและความยืดหยุ่น ใช้ทรัพยากรได้มีประสิทธิภาพ (เรียกอีกชื่อว่า Parallel Organization)</p></div></details>
+
+  <details><summary>21. ROM, Budgetary และ Definitive Estimate ต่างกันอย่างไร โดยเฉพาะช่วงความแม่นยำ</summary>
+    <div class="ans"><p><b>ROM</b> ใช้ช่วงต้นและหยาบที่สุด: −25% ถึง +75% · <b>Budgetary</b> ใช้จัดงบเมื่อมีรายละเอียดเพิ่ม: −10% ถึง +25% · <b>Definitive</b> ใช้เมื่อ Scope/Tasks เกือบครบ: −5% ถึง +10%</p></div></details>
+
+  <details><summary>22. Cost Estimating, Cost Budgeting และ Cost Baseline ต่างกันอย่างไร</summary>
+    <div class="ans"><p>Estimating = พยากรณ์ว่าน่าจะใช้เท่าไร · Budgeting = จัดสรรว่าจะให้ใช้เท่าไรในงาน/ช่วงเวลาใด · Baseline = แผนงบตามเวลาที่อนุมัติแล้ว ใช้เป็นฐานวัดและควบคุม</p></div></details>
+
+  <details><summary>23. ค่า PV, EV และ AC ตอบคำถามคนละข้ออย่างไร</summary>
+    <div class="ans"><p><b>PV</b> ถึงวันนี้ตามแผนควรทำงานมูลค่าเท่าไร · <b>EV</b> งานที่เสร็จจริงมีมูลค่าตามงบเท่าไร · <b>AC</b> งานที่ทำแล้วจ่ายจริงเท่าไร</p></div></details>
+
+  <details><summary>24. ถ้า EV = 80, PV = 100 และ AC = 120 จงหา SV, CV, SPI, CPI และแปลผล</summary>
+    <div class="ans"><p>SV = 80−100 = <b>−20</b> · CV = 80−120 = <b>−40</b> · SPI = 80/100 = <b>0.80</b> · CPI = 80/120 ≈ <b>0.67</b> จึงทั้งช้ากว่าแผนและใช้ต้นทุนไม่มีประสิทธิภาพ</p></div></details>
+
+  <details><summary>25. QA กับ QC ต่างกันอย่างไร</summary>
+    <div class="ans"><p><b>QA</b> เน้นกระบวนการ วางระบบเชิงป้องกันเพื่อสร้างความเชื่อมั่น · <b>QC</b> เน้นตรวจ Product/Service จริงให้ตรงมาตรฐาน และเป็นส่วนหนึ่งของ QA</p></div></details>
+
+  <details><summary>26. Burndown กับ Burnup Chart ควรใช้ดูอะไร</summary>
+    <div class="ans"><p><b>Burndown</b> ดู Story Points ที่เหลือลดลงตามวัน; Actual เหนือ Ideal = ช้า, ใต้ = เร็ว, เส้นราบ = blocker · <b>Burnup</b> ดูงานเสร็จสะสมเทียบ Total Scope และเห็น Scope Creep ชัดเมื่อเส้น Total Scope สูงขึ้น</p></div></details>
+
+  <details><summary>27. Sprint Review กับ Sprint Retrospective ต่างกันที่โฟกัส ผู้เข้าร่วม และผลลัพธ์อย่างไร</summary>
+    <div class="ans"><p><b>Review</b> ดู Product Increment กับ PO/Stakeholders เพื่อปรับ Backlog: “สร้างสิ่งที่ถูกต้องไหม?” · <b>Retrospective</b> ทีมภายในดูกระบวนการและสร้าง Action Items: “ทำงานดีแค่ไหน จะปรับอย่างไร?”</p></div></details>
+
+  <details><summary>28. ER Diagram มีองค์ประกอบหลักอะไร และความสัมพันธ์ M:N แปลงเป็นตารางอย่างไร</summary>
+    <div class="ans"><p>องค์ประกอบหลักคือ <b>Entity, Attribute, Relationship</b> ส่วน M:N ต้องสร้าง Associative/Junction Table คั่นกลาง และเก็บ Foreign Key ของทั้งสอง Entity</p></div></details>
+
+  <details><summary>29. Aggregation กับ Composition แยกกันด้วยคำถามใด</summary>
+    <div class="ans"><p>ถามว่า “เมื่อ Whole หาย Part ยังอยู่ได้ไหม?” ถ้ายังอยู่ได้คือ <b>Aggregation</b> (เพชรโปร่ง); ถ้าวงจรชีวิตผูกกันและอยู่แยกไม่ได้คือ <b>Composition</b> (เพชรทึบ)</p></div></details>
+
+  <details><summary>30. Sequence Fragment: alt, opt, loop และ ref หมายถึงอะไร</summary>
+    <div class="ans"><p><b>alt</b> = if/else หลายทางเลือก · <b>opt</b> = if ทางเลือกเดียว · <b>loop</b> = ทำซ้ำตาม Guard และกำหนด minint/maxint ได้ · <b>ref</b> = อ้างส่วนของ Sequence Diagram อื่น</p></div></details>
+
+  <details><summary>31. Risk ต่างจาก Issue อย่างไร</summary>
+    <div class="ans"><p><b>Risk</b> ยังไม่แน่ว่าจะเกิด จึงประเมิน Probability/Impact และเตรียม Response · <b>Issue</b> เกิดขึ้นแล้ว ต้องมี Owner และ Corrective Action ทันที</p></div></details>
+
+  <details><summary>32. Risk Severity คำนวณอย่างไร และใช้ทำอะไร</summary>
+    <div class="ans"><p><b>Severity = Probability × Impact</b> แล้ววางใน Probability–Impact Matrix (เช่น 3×3 หรือ 5×5) เพื่อจัดลำดับว่าความเสี่ยงใดต้องตอบสนองก่อน</p></div></details>
+
+  <details><summary>33. Mitigation Plan กับ Contingency Plan ต่างกันเมื่อไร</summary>
+    <div class="ans"><p><b>Mitigation</b> ทำก่อนเหตุเกิดเพื่อลดโอกาสหรือผลกระทบ (Prevention) · <b>Contingency</b> เป็นแผนที่เปิดใช้เมื่อเหตุ/Trigger เกิดจริง (Correction)</p></div></details>
+
+  <details><summary>34. กลยุทธ์ตอบสนอง Threat 4 แบบคืออะไร</summary>
+    <div class="ans"><p><b>Avoid</b> หลีกเลี่ยง · <b>Transfer/Share</b> ถ่ายโอน/แบ่ง · <b>Reduce/Control</b> ลดโอกาสหรือผลกระทบ · <b>Accept</b> ยอมรับพร้อมเฝ้าระวัง/เตรียมสำรอง</p></div></details>
+
+  <details><summary>35. Change Request ผ่านขั้นตอนหลักอะไรบ้าง และทีมเริ่มทำได้เมื่อไร</summary>
+    <div class="ans"><p>Submit &amp; Log → Impact Analysis → CCB Review/Decision → เมื่อ Approved จึง Update Baselines/Documents → Communicate → Implement/Track ทีมไม่ควรเริ่มก่อนอนุมัติและปรับ Baseline</p></div></details>
+
+  <details><summary>36. Change Management กับ Change Control ดูแลคนละเรื่องอย่างไร</summary>
+    <div class="ans"><p><b>Change Management</b> ดูแลคน การยอมรับ และการปรับตัว โดย Sponsor/HR/Manager · <b>Change Control</b> ดูแลคำขอ เอกสาร กระบวนการ และ Baseline โดย PM/CCB</p></div></details>
+
+  <details><summary>37. Project Completion กับ Project Closure ต่างกันอย่างไร</summary>
+    <div class="ans"><p><b>Completion</b> = งานและ Deliverables ตามแผนเสร็จ · <b>Closure</b> = ได้ Acceptance/Sign-off, Handover, Archive, ปิดเงิน/สัญญา, ปล่อยทรัพยากร และเก็บ Lessons Learned ครบ</p></div></details>
+
+  <details><summary>38. ใครควรทำ UAT และ Acceptance Criteria ที่ดีมีคุณสมบัติอะไร</summary>
+    <div class="ans"><p>UAT ทำโดย <b>End User หรือตัวแทนธุรกิจ</b> ด้วย Business Scenario จริง ไม่ใช่ทีมพัฒนา/QA ภายใน เกณฑ์ที่ดีต้อง <b>Clear, Testable, Agreed, Complete</b></p></div></details>
+
+  <details><summary>39. Software Maintenance 4 ประเภทมีอะไรบ้าง</summary>
+    <div class="ans"><p><b>Corrective</b> แก้ bug · <b>Adaptive</b> ปรับตาม environment ใหม่ · <b>Perfective</b> เพิ่มประสิทธิภาพ/feature เล็กน้อย · <b>Preventive</b> ป้องกันปัญหาอนาคต เช่น refactor/update dependency</p></div></details>
+
+  <details><summary>40. Warranty กับ Maintenance Contract ต่างกันอย่างไร</summary>
+    <div class="ans"><p><b>Warranty</b> เริ่มหลัง Sign-off ระยะตามสัญญา (ทั่วไป 60–90 วัน) แก้ defect จากการพัฒนาโดยไม่คิดเพิ่ม แต่ไม่รวม requirement ใหม่ · หลังหมด Warranty ใช้ <b>Maintenance/Support Contract</b> แยก มีค่าใช้จ่ายและ SLA ตามข้อตกลง</p></div></details>
+</section>
+
+<!-- =============== CHEAT =============== -->
+<section id="cheat">
+  <div class="unitbar"><span class="unitno">สรุปท้าย</span><h2>ตัวเลขและคู่คำที่ต้องจำก่อนเข้าห้องสอบ</h2></div>
+
+  <h3>ตัวเลขสำคัญ</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><td><b>3</b> ข้อจำกัดของ PM</td><td>Cost · Time · Scope</td></tr>
+    <tr><td><b>3</b> ผลอนุมัติเอกสารสิทธิ์</td><td>ดำเนินการต่อ · ชะลอ · ปฏิเสธ</td></tr>
+    <tr><td><b>3</b> เสาทฤษฎีสกรัม</td><td>Transparency · Inspection · Adoption</td></tr>
+    <tr><td><b>3</b> ประเภทข้อจำกัดโครงการ</td><td>ภายในโครงการ · ภายในองค์กร · ภายนอกองค์กร</td></tr>
+    <tr><td><b>3</b> โครงสร้างองค์กร</td><td>Functional · Task Force · Matrix</td></tr>
+    <tr><td><b>3</b> Baseline หลัก</td><td>Scope · Schedule · Cost</td></tr>
+    <tr><td><b>3</b> องค์ประกอบ ERD</td><td>Entity · Attribute · Relationship</td></tr>
+    <tr><td><b>3–9</b> คน</td><td>ขนาดทีม Scrum</td></tr>
+    <tr><td><b>4</b> คุณลักษณะโครงการ</td><td>Unique · Temporary · Complex · ใช้ทรัพยากรมาก</td></tr>
+    <tr><td><b>4</b> ความสัมพันธ์เชิงเวลาใน CPM</td><td>FS · SS · FF · SF</td></tr>
+    <tr><td><b>4</b> ประเภท Flow Chart</td><td>Document · Data · System · Program</td></tr>
+    <tr><td><b>4</b> กระบวนการ Cost Management</td><td>Resource Planning · Estimating · Budgeting · Control</td></tr>
+    <tr><td><b>4</b> Risk Responses</td><td>Avoid · Transfer/Share · Reduce/Control · Accept</td></tr>
+    <tr><td><b>4</b> Maintenance Types</td><td>Corrective · Adaptive · Perfective · Preventive</td></tr>
+    <tr><td><b>5</b> เฟสของ PLC</td><td>Initiation · Planning · Execution · M&amp;C · Closure</td></tr>
+    <tr><td><b>5</b> ด้านความเป็นไปได้</td><td>Technical · Economical · Legal · Operational · Scheduling</td></tr>
+    <tr><td><b>5</b> ผลการตัดสินใจคัดเลือกโครงการ</td><td>ยอมรับ · ปฏิเสธ · ชะลอ · End-user Dev · ทบทวน</td></tr>
+    <tr><td><b>5</b> วิธีสร้าง WBS</td><td>Guideline · Analogy · Top-down · Bottom-up · Mind-mapping</td></tr>
+    <tr><td><b>5</b> รูปแบบ Activity Diagram</td><td>Sequence · Selection · Iteration · Do while · Do until</td></tr>
+    <tr><td><b>6</b> มิติของ Scope</td><td>เวลา · พื้นที่ · เทคโนโลยี · ประชากร · ข้อมูล · จริยธรรม</td></tr>
+    <tr><td><b>6</b> ฟีเจอร์หลักของ PM Software</td><td>Collaboration · Scheduling · Issue Tracking · Portfolio · Document · Resource</td></tr>
+    <tr><td><b>7</b> ขั้นตอน SDLC</td><td>Planning → Requirements → Design → Development → Testing → Deployment → Maintenance</td></tr>
+    <tr><td><b>7</b> กระบวนการ Requirement Engineering</td><td>Inception → Elicitation → Elaboration → Negotiation → Specification → Validation → Management</td></tr>
+    <tr><td><b>9</b> ขั้นตอนการวางแผนโครงการ</td><td>รวบรวมข้อมูล → … → เสนออนุมัติแผนโครงการ</td></tr>
+    <tr><td><b>10</b> หมวดความรู้ PMBOK</td><td>Integration, Scope, Time, Cost, Quality, HR, Communications, Risk, Procurement, Stakeholders</td></tr>
+    <tr><td><b>10</b> งานปิดโครงการ</td><td>Verify/Accept → Assess → Finance → Archive → Release → Lessons → Legal → Report → Celebrate → Checklist</td></tr>
+    <tr><td><b>16</b> ช่อง</td><td>ตาราง LogFrame (4 × 4)</td></tr>
+    <tr><td><b>60–90</b> วัน</td><td>ช่วง Warranty ที่พบบ่อย (สัญญาจริงอาจ 6–12 เดือน)</td></tr>
+    <tr><td><b>1917</b></td><td>Henry L. Gantt คิดค้น Gantt Chart</td></tr>
+    <tr><td><b>1950s ปลาย</b></td><td>James E. Kelley พัฒนา CPM</td></tr>
+    <tr><td><b>1958</b></td><td>กองทัพเรือสหรัฐฯ พัฒนา PERT</td></tr>
+  </table>
+  </div>
+
+  <h3>คู่คำที่ชอบสลับกันในตัวเลือก</h3>
+  <div class="tblwrap">
+  <table>
+    <tr><th style="width:28%">คู่</th><th>วิธีแยก</th></tr>
+    <tr><td><b>Need ↔ Requirement</b></td><td>Need = เป้าหมาย/ความรู้สึกที่อยากเติมเต็ม · Requirement = สิ่งที่ต้องทำให้สำเร็จเพื่อบรรลุ Need</td></tr>
+    <tr><td><b>Top-down ↔ Bottom-up</b> (แหล่งเกิดโครงการ)</td><td>Top-down = เจตนารมณ์ผู้บริหาร · Bottom-up = ปัญหาในสายงานปกติ</td></tr>
+    <tr><td><b>Top-down ↔ Bottom-up</b> (สร้าง WBS)</td><td>Top-down = PM มีประสบการณ์เทคนิคสูง มองภาพรวมออก · Bottom-up = ทีมมีบทบาทมาก เสียเวลามาก แต่เหมาะกับของใหม่</td></tr>
+    <tr><td><b>Program ↔ Project</b></td><td>Program = ชุดของโครงการ (≥2) ที่มีเป้าหมายเดียวกัน · Project = กลุ่มของกิจกรรมที่สัมพันธ์กัน</td></tr>
+    <tr><td><b>include ↔ extend</b></td><td>include = mandatory (ต้องมี) · extend = optional (ไม่มีก็สมบูรณ์)</td></tr>
+    <tr><td><b>Do while ↔ Do until</b></td><td>Do while ตรวจก่อนทำ ออกเมื่อเท็จ · Do until ทำก่อนตรวจ ออกเมื่อจริง</td></tr>
+    <tr><td><b>As-is ↔ To-be</b></td><td>As-is = ระบบงานปัจจุบัน · To-be = ระบบงานใหม่จาก Requirements ล่าสุด</td></tr>
+    <tr><td><b>Macro ↔ Micro Project</b></td><td>Macro = ระดับชาติ ข้ามภูมิภาค วิสัยทัศน์ระยะยาว · Micro = ระดับองค์กร/โครงการรายตัว มี task list ละเอียด</td></tr>
+    <tr><td><b>Fork ↔ Join</b></td><td>Fork = แยกเป็นคู่ขนาน · Join = รวมหลายงานเข้าเป็นงานเดียว</td></tr>
+    <tr><td><b>Agile ↔ Scrum ↔ Kanban</b></td><td>Agile = แนวคิด/Iterative · Scrum = framework แบบ Incremental มี sprint และ 3 บทบาท · Kanban = กระดานแสดง workflow ตาม Status</td></tr>
+    <tr><td><b>Estimate ↔ Budget ↔ Baseline</b></td><td>Estimate = คาดว่าจะใช้ · Budget = เงินที่จัดสรร · Baseline = แผนที่อนุมัติสำหรับเทียบผล</td></tr>
+    <tr><td><b>PV ↔ EV ↔ AC</b></td><td>PV = ควรเสร็จตามแผน · EV = เสร็จจริงคิดตามงบ · AC = จ่ายจริง</td></tr>
+    <tr><td><b>Variance ↔ Index</b></td><td>SV/CV ใช้ลบและมีหน่วยเงิน · SPI/CPI ใช้หาร ไม่มีหน่วย; EV อยู่หน้าเสมอ</td></tr>
+    <tr><td><b>QA ↔ QC</b></td><td>QA = ป้องกัน/กระบวนการ · QC = ตรวจจับ/ผลิตภัณฑ์</td></tr>
+    <tr><td><b>Burndown ↔ Burnup</b></td><td>Burndown = งานที่เหลือ · Burnup = งานเสร็จสะสมเทียบ Scope รวม จึงเห็น Scope Creep</td></tr>
+    <tr><td><b>Aggregation ↔ Composition</b></td><td>Aggregation = Part อยู่ได้เอง · Composition = วงจรชีวิต Part ผูกกับ Whole</td></tr>
+    <tr><td><b>Mitigation ↔ Contingency</b></td><td>Mitigation = ลดก่อนเกิด · Contingency = แผนใช้เมื่อ Risk เกิด/Trigger ทำงาน</td></tr>
+    <tr><td><b>Risk ↔ Issue</b></td><td>Risk = ยังไม่แน่ว่าจะเกิด · Issue = เกิดแล้วและต้องแก้</td></tr>
+    <tr><td><b>Change Management ↔ Control</b></td><td>Management = คนและการยอมรับ · Control = คำขอ กระบวนการ และ Baseline</td></tr>
+    <tr><td><b>Completion ↔ Closure</b></td><td>Completion = งานเสร็จ · Closure = ยอมรับ ส่งต่อ ปิดภาระ และเก็บบทเรียนครบ</td></tr>
+    <tr><td><b>Warranty ↔ Maintenance</b></td><td>Warranty แก้ defect ตามสัญญาหลัง Sign-off · Maintenance คือบริการต่อเนื่องหลัง Warranty ซึ่งมักมีสัญญา/ค่าใช้จ่ายแยก</td></tr>
+  </table>
+  </div>
+</section>
+
+<footer>
+  <p>ชีทนี้เรียบเรียงจากเอกสารประกอบการสอน 960200 Software Project Management for DII (Unit 1–12), Requirements Analysis และ UML for Software Project · College of Arts, Media and Technology, Chiang Mai University</p>
+  <p style="margin-bottom:0">ถ้าเจอหัวข้อไหนที่ยังไม่มั่นใจ ให้กลับไปดูสไลด์แผ่นที่มีไดอะแกรมประกอบ เพราะข้อสอบมักหยิบภาพจากสไลด์มาให้ตีความ โชคดีกับการสอบ</p>
+</footer>
+
+</main>
+<button class="backtop" id="backtop" type="button" aria-label="กลับขึ้นด้านบน">↑</button>
+<script>
+(() => {
+  const progress = document.getElementById('reading-progress');
+  const backtop = document.getElementById('backtop');
+  const search = document.getElementById('topic-search');
+  const results = document.getElementById('search-results');
+  const navLinks = [...document.querySelectorAll('.navin a[href^="#"]')];
+  const sections = [...document.querySelectorAll('section[id]')];
+  const headings = [...document.querySelectorAll('section h2, section h3, section h4')];
+
+  headings.forEach((heading, index) => {
+    if (!heading.id) heading.id = `${heading.closest('section').id}-topic-${index + 1}`;
+  });
+
+  const updateScrollUI = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = `${max > 0 ? (scrollY / max) * 100 : 0}%`;
+    backtop.classList.toggle('show', scrollY > 650);
+    let current = sections[0]?.id;
+    sections.forEach(section => { if (section.getBoundingClientRect().top <= 120) current = section.id; });
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+  };
+  addEventListener('scroll', updateScrollUI, {passive:true});
+  addEventListener('resize', updateScrollUI);
+  updateScrollUI();
+  backtop.addEventListener('click', () => scrollTo({top:0, behavior:'smooth'}));
+
+  const closeResults = () => { results.classList.remove('show'); results.replaceChildren(); };
+  const runSearch = () => {
+    const query = search.value.trim().toLocaleLowerCase('th');
+    results.replaceChildren();
+    if (query.length < 2) return closeResults();
+    const matches = headings.filter(h => h.textContent.toLocaleLowerCase('th').includes(query)).slice(0, 14);
+    if (!matches.length) {
+      const empty = document.createElement('a'); empty.textContent = 'ไม่พบหัวข้อ ลองใช้คำที่สั้นลง'; results.append(empty);
+    } else {
+      matches.forEach(heading => {
+        const link = document.createElement('a');
+        link.href = `#${heading.id}`;
+        const label = document.createElement('small');
+        label.textContent = heading.closest('section').querySelector('h2')?.textContent || 'หัวข้อ';
+        link.append(label, document.createTextNode(heading.textContent));
+        link.addEventListener('click', () => { closeResults(); search.value = ''; });
+        results.append(link);
+      });
+    }
+    results.classList.add('show');
+  };
+  search?.addEventListener('input', runSearch);
+  search?.addEventListener('keydown', event => { if (event.key === 'Escape') { search.value = ''; closeResults(); search.blur(); } });
+  document.addEventListener('click', event => { if (!results.contains(event.target) && event.target !== search) closeResults(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === '/' && document.activeElement !== search) { event.preventDefault(); search?.focus(); }
+  });
+
+  let openedForPrint = [];
+  addEventListener('beforeprint', () => {
+    openedForPrint = [...document.querySelectorAll('details:not([open])')];
+    openedForPrint.forEach(item => item.open = true);
+  });
+  addEventListener('afterprint', () => openedForPrint.forEach(item => item.open = false));
+})();
+</script>
+</body>
+</html>
